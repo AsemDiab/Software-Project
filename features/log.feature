@@ -27,3 +27,14 @@ Feature: Login
                 And clicks on the login button
             Then the user should see an error message indicating that the login failed
                 And the user should remain on the login page
+
+    Scenario: Reset password
+        Given the user is on the login page
+        When click on "Reset password" button
+        Then send the user to Reset password page
+        And sent an email 
+
+    Scenario: exit 
+        Given user is in the login page
+        When the user click on exit button
+        Then end the system             

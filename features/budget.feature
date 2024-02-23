@@ -7,5 +7,8 @@ Feature: Budgeting  and Finance
         Then admim estimate expenses such as venue rental, catering, decorations, entertainment.
         And set an overall budget for the event
 
-    
+
+
+        
+
     

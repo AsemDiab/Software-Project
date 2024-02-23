@@ -28,3 +28,8 @@ Feature: Register
                 And enter an email that already taken
             Then the registerion is failed 
                 And display massege to warn him       
+
+    Scenario: exit 
+        Given user is in the registerion page
+        When the user click on exit button
+        Then redirect him to login page

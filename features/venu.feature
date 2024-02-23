@@ -1,50 +1,51 @@
 Feature: place manegment
 
+    Scenario: view all venue
+        Given the user logged into venue page 
+        When the user click on "view venue" button
+        Then the system display all venue
+
     Scenario: booking a valid place
         Given the user loged into venue page
-        When the user search for venue attribute
-        Then the system display all venues 
-        And user can see all venue (available/unvalable)
-        And choose available venue to book
+        And user search for venue attribute
+        When the system display all venues 
+        And choose vailable venue to book
+        Then the venue booked 
+        And display masseg "the venue is booked successfully" 
 
     Scenario: booking a invalid place
         Given the user loged into venue page
-        When the user search for venue attribute
-        Then the system display all venues 
-        And user can see all venue (available/unvalable)
+        And user search for venue attribute
+        When the system display all venues 
         And choose unvailable venue to book
-        And display a masseged to warn him 
+        Then display a masseged to warn him 
+        And cancel operation
 
     Scenario: add new place
         Given the user loged into venue page
         And the user was an admin
         When the user clicked on add button
-        Then admin fill all venue attribute (capacity,price,amenity)
-        And the venue added to venue list
+        And admin fill all venue attribute (capacity,price,amenity)
+        Then the venue added to venue list
 
     Scenario: add exist place
         Given the user loged into venue page
         And the user was an admin
         When the user clicked on add button
-        Then admin fill all venue attribute (capacity,price,amenity)
-        And the venue dont added to venue list
-        And display a massege to warn the admin
+        And admin fill all venue attribute (capacity,price,amenity)
+        Then the venue dont added to venue list
+        And display a massege "The venue already exist" 
 
-    Scenario: deleting exist place
+    Scenario: deleting place
         Given the user loged into venue page
         And the user was an admin
         When the user clicked on delete button
-        Then admin select venue to delete
-        And the venue was deleted and remove from venue list
+        And select venue to delete
+        Then the venue was deleted and remove from venue list
 
     Scenario: invalid input
         Given the user loged into venue page
         And the user was an admin
-        When the user clicked on delete button
-        Then admin select venue to delete
-        And the venue well not delete
-        And display massege to warn the admin
-
-
-    Scenario: the new place valable
-    Scenario: the new place unvalable
+        When enter invalid data
+        Then operation failed
+        And display massege "invalid input"
