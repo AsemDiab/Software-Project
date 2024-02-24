@@ -27,6 +27,11 @@ Feature: Register page
         Then the registerion is failed 
         And display massege "password is too weak please enter another password"   
 
+    Scenario: go to login page
+        Given the user is in the registerion page
+        When user click on "login page" button
+        Then send him to login page
+
     Scenario: exit 
         Given the user is in the registerion page
         When the user click on exit button
