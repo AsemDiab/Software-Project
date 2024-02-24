@@ -28,7 +28,17 @@ Feature: reset Password
     
 
     Scenario: valid reset operation
+        Given : the user in reset password Page
+            And : he entered correct code 
+        When he enter valid password (strong one)
+        Then change his password to new one 
+        And redirecthimt to login page 
     Scenario: invalid reset operation
+      Given : the user in reset password Page
+            And : he entered correct code 
+        When he enter invalid password (weak one)
+        Then display the warning message "the password is weak" 
+        And make him write new one
 
     Scenario: exit 
         Given user is in the "Reset Password" page
