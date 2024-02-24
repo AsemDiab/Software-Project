@@ -23,11 +23,12 @@ Feature: reset Password
         Given the user in the "Reset Password" page
         And received a password reset email
         When the user enter the wrong verification code
-        And clicks on the "reset password" link
+        And clicks on the "reset password" button
         Then display message "wrong verification code"
 
     Scenario: Enter new password 
         Given the user in the "Reset Password" page
+        And enter the right verification code
         When the user enter new password
         And clicks on the "reset password" button
         Then save the new password 
@@ -35,12 +36,18 @@ Feature: reset Password
 
     Scenario: Enter weak new password 
         Given the user in the "Reset Password" page
+        And enter the right verification code
         When the user enter weak password
         And clicks on the "reset password" button
         Then display message "password is too weak please enter another password"
 
-
-    Scenario: exit 
+    Scenario: resend verification code
+        Given the user in the "Reset Password" page
+        And dont receive the verification code
+        When clicks on the "resend code" button
+        Then send new verification code
+        
+    Scenario: exit  
         Given user is in the "Reset Password" page
         When the user click on exit button
         Then redirect him to login page
