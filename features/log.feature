@@ -34,6 +34,11 @@ Feature: Login page
         Then send the user to "Reset password" page
         And send an email 
 
+    Scenario: go to registerion page
+        Given the user is on the login page
+        When click on "registerion page" button
+        Then send the user to "registerion" page
+
     Scenario: exit 
         Given user is in the login page
         When the user click on "exit" button
