@@ -1,40 +1,45 @@
-Feature: Login
+Feature: Login page
 
-    Scenario: Admin successful login
+    Scenario: admin successful login 
         Given the admin is on the login page
-            When the admin enters valid credentials (username and password)
-                And clicks on the login button
-            Then send the admin to home page
-                And should see a welcome message or personalized content
-                
-    Scenario: service-provider successful login
-        Given the service-provider is on the login page
-            When the service-provider enters valid credentials (username and password)
-                And clicks on the login button
-            Then send the service-provider to home page
-                And should see a welcome message or personalized content
+        When the admin enters valid data (email and password)
+        And clicks on the login button
+        Then redirect him to admin home page
+        And a welcome message will be displayed
 
     Scenario: user successful login
         Given the user is on the login page
-            When the user enters valid credentials (username and password)
-                And clicks on the login button
-            Then send the user to home page
-                And should see a welcome message or personalized content
+        When the user enters valid data (email and password)
+        And clicks on the login button
+        Then redirect him to user home page
+        And a welcome message will be displayed
                 
-    Scenario: failed login
+    Scenario: incorrect email or password 
         Given the user is on the login page
-            When the user enters invalid credentials (incorrect username or password)
-                And clicks on the login button
-            Then the user should see an error message indicating that the login failed
-                And the user should remain on the login page
+        When the user enters incorrect email or password
+        And clicks on the login button
+        Then the user should see an error message indicating that the login failed
+        And the user should remain on the login page
 
-    Scenario: Reset password
+    Scenario: invalid data input
         Given the user is on the login page
-        When click on "Reset password" button
-        Then send the user to Reset password page
-        And sent an email 
+        When the user enters invalid data 
+        And clicks on the login button
+        Then the user should see an error message indicating that the login failed
+        And the user should remain on the login page
+
+    Scenario: forget password
+        Given the user is on the login page
+        When click on "forget password" button
+        Then send the user to "Reset password" page
+        And send an email 
+
+    Scenario: go to registerion page
+        Given the user is on the login page
+        When click on "registerion page" button
+        Then send the user to "registerion" page
 
     Scenario: exit 
         Given user is in the login page
-        When the user click on exit button
+        When the user click on "exit" button
         Then end the system             
