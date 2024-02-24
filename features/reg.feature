@@ -6,7 +6,7 @@ Feature: Register
                 And all of  fields are valid
             Then the registeration is succeessful 
                 And send email
-                And login him
+                And send him to login page
 
     Scenario: invalid registerion
         Given user is in the registerion page
