@@ -22,14 +22,18 @@ Feature: Register
             Then the registerion is failed 
                 And display massege to warn him
 
-    Scenario: weak passward
-        Given user is in the registerion page
-            When the user click submit
-                And enter an email that already taken
-            Then the registerion is failed 
-                And display massege to warn him       
-
-    Scenario: exit 
+    Scenario: Return to start Page 
         Given user is in the registerion page
         When the user click on exit button
         Then redirect him to login page
+
+    Scenario Outline: weak passward
+        Given user is in the registerion page
+            When the user click submit
+                And enter an weak <password>
+            Then the registerion is failed 
+                And display massege to warn him   
+    Examples:
+        | email | passward | message |
+        | asemhesham55@gmail.com  | asem123  | 'weak passward'|    
+
