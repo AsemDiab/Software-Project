@@ -1,46 +1,53 @@
 Feature: reset Password
 
-    Scenario: Enter valid email 
-        Given the user logged into "Reset Password" page
-        And enter a valid email 
-        When the user click on submit button
-        Then send code to the user email
+    Scenario: User submits a valid email
+        Given the user in the "Reset Password" page
+        When the user enter a valid email
+        And click on submit button
+        Then send code to the user's email
 
-    Scenario: Enter invalid email
-        Given the user logged into "Reset Password" page
-        And enter a invalid email 
-        When the user click on submit button
-        Then cancel operation 
-        And display massege "invalid email"
+    Scenario: User submits a invalid email
+        Given the user in the "Reset Password" page
+        When the user enter a invalid email
+        And click on submit button
+        Then display error message "invalid email address"
 
     Scenario: Enter verification code
-        Given the user logged into "Reset Password" page
-        And recived a code to reset him Password
+        Given the user in the "Reset Password" page
+        And received a password reset email
         When the user enter the right verification code
+        And clicks on the "reset password" link
         Then the system make the user write the new Password 
 
     Scenario: Enter wrong verification code
-        Given the user logged into "Reset Password" page
-        And recived a code to reset him Password
+        Given the user in the "Reset Password" page
+        And received a password reset email
         When the user enter the wrong verification code
-        Then the system display "error: wrong code entered"
+        And clicks on the "reset password" button
+        Then display message "wrong verification code"
 
-    
+    Scenario: Enter new password 
+        Given the user in the "Reset Password" page
+        And enter the right verification code
+        When the user enter new password
+        And clicks on the "reset password" button
+        Then save the new password 
+        And redirect him to login page
 
-    Scenario: valid reset operation
-        Given : the user in reset password Page
-            And : he entered correct code 
-        When he enter valid password (strong one)
-        Then change his password to new one 
-        And redirecthimt to login page 
-    Scenario: invalid reset operation
-      Given : the user in reset password Page
-            And : he entered correct code 
-        When he enter invalid password (weak one)
-        Then display the warning message "the password is weak" 
-        And make him write new one
+    Scenario: Enter weak new password 
+        Given the user in the "Reset Password" page
+        And enter the right verification code
+        When the user enter weak password
+        And clicks on the "reset password" button
+        Then display message "password is too weak please enter another password"
 
-    Scenario: exit 
+    Scenario: resend verification code
+        Given the user in the "Reset Password" page
+        And dont receive the verification code
+        When clicks on the "resend code" button
+        Then send new verification code
+        
+    Scenario: exit  
         Given user is in the "Reset Password" page
         When the user click on exit button
         Then redirect him to login page
