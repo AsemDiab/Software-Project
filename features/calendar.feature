@@ -20,6 +20,6 @@ Feature: Calendar and Scheduling
         Then I should receive reminders and notifications.
         And I should be notified about upcoming events, deadlines, and tasks via email or in-app notifications.
         And I should be able to customize the timing and frequency of reminders.
-        
+
 
 
