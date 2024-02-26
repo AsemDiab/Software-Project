@@ -12,8 +12,8 @@ Feature: Event Creation and Management
         And want to add event that already exists
         When the user fill up all data to add the event
         And clicks on "add event" option
-        Then the event will not be added
-        And display message "the event already exists"
+        Then display message "the event already exists"
+        And reture user to Event management page
 
     Scenario: create new event with invalid data
         Given the user navicates to event page
@@ -66,7 +66,8 @@ Feature: Event Creation and Management
         Then operation failed
         And display massege "invalid input"
 
-    Scenario: exit 
-        Given user is in the registerion page
-        When the user clicks on exit button
-        Then redirect him to login page    
+    Scenario: return to Start Page
+        Given user is in the Event Management page
+        When the user clicks on the "return" option
+        Then redirect him to user main page
+        

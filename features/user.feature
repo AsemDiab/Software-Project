@@ -1,17 +1,12 @@
 Feature: User home page
 
     Scenario: going to event management page
-        Given the User logged into User page 
+        Given the User navicates into User page 
         When User clicks on "Event Management" option 
         Then send User to Event Management page
 
-    # Scenario: going to calender page
-    #     Given the User logged into User page 
-    #     When User click on calendar button
-    #     Then send User to Calendar and Scheduling page
-
     Scenario: open profile page
-        Given the User logged into User page 
+        Given the User navicates into User page 
         When User clicks on "Profile page" option 
         Then send User to Profile page
         
@@ -20,3 +15,8 @@ Feature: User home page
         When the user enters any invalid integer input
         Then display message "invalid input"
         And reture to the User page
+
+    Scenario: return to Start Page
+        Given user is in the registerion page
+        When the user clicks on the "return" option
+        Then redirect him to Start Page
