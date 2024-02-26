@@ -4,13 +4,11 @@ Feature: Starting Page
         Given the user is in the startng page
         When the user enters "1- Register"
         Then transfere him to the registerion page
-
-
+        
     Scenario: Login to your account
         Given the user is in the startng page
         When the user enters "2- Login"
         Then transfere him to the login page
-    
 
     Scenario: Exit
         Given the user is in the startng page

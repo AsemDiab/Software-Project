@@ -2,37 +2,38 @@ Feature: Register page
 
     Scenario: valid registerion
         Given the user is in the registerion page
-        When the user fills all attribute ( name , email ,password,..ect)
-        And click on submit button
+        When the user fills all attribute ( name , email ,password,..ect) with valid inputs
+        And clicks on continuo option
         Then redirect him to login page
 
-    Scenario: invalid registerion
+    Scenario: invalid input registerion
         Given the user is in the registerion page
-        When the user enter at least one of fields is invalid
-        And click on submit button
-        Then the registerion is failed 
+        When the user enter one or more invalid inputs
+        And clicks on continuo optin
+        Then the registerion failes
         And display massege "invalid data input"
 
     Scenario: email already taken
         Given the user is in the registerion page
-        When the user enter an email that already taken
-        And click on submit button
-        Then the registerion is failed 
-        And display massege "this email already taken"
+        When the user enter an email that is already taken
+        And clicks on continuo option
+        Then the registerion failes
+        And display massege "this email is already taken"
 
-    Scenario: Return to start Page 
+    Scenario: return to Start Page
         Given user is in the registerion page
-        When the user click on exit button
-        Then redirect him to login page
+        When the user clicks on the return option
+        Then redirect him to Start Page
 
-    Scenario Outline: weak passward
+    Scenario: weak password
         Given user is in the registerion page
-            When the user click submit
-                And enter an email that already taken
-            Then the registerion is failed 
-                And display massege to warn him       
+        When user enters a valid email
+        And user enters a weak password
+        Then the registerion failes
+        And display massege to warn him
 
-    Scenario: exit 
-        Given user is in the registerion page
-        When the user click on exit button
-        Then redirect him to login page
+    Scenario: invalid input
+        Given the user is in the Register page
+        When the user enters any invalid integer input
+        Then display message "invalid input"
+        And reture to the Register page

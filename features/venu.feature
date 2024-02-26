@@ -49,3 +49,5 @@ Feature: place manegment
         When enter invalid data
         Then operation failed
         And display massege "invalid input"
+ 
+ #didn't finish it yet

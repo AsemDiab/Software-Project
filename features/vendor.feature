@@ -17,4 +17,4 @@ Feature: Organizer page
         Then operation failed
         And display massege "invalid input"
 
-    Scenario: 
+        #Needs alot of work
