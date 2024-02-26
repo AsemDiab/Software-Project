@@ -1,44 +1,44 @@
 Feature: Event Creation and Management
 
     Scenario: add new event
-        Given the Organizer logged into event page
+        Given the user navicates to event page
         And want to add new event
-        When the Organizer fill all data to add event
-        And click on "add event" button
+        When the user fill all data to add event
+        And clicks on "add event" option
         Then the event is added successfully
 
-    Scenario: add exist place
-        Given the Organizer logged into event page
-        And want to add event already exist
-        When the Organizer fill all data to add event
-        And click on "add event" button
-        Then the event will not add
-        And display masseg "the event already exist"
+    Scenario: add existed place
+        Given the user navicates to event page
+        And want to add event that already exists
+        When the user fill up all data to add the event
+        And clicks on "add event" option
+        Then the event will not be added
+        And display message "the event already exists"
 
     Scenario: modify event 
-        Given the Organizer logged into event page
+        Given the user navicates to event page
         And want to modify an event
-        When the Organizer select a row of data 
-        And the system display all attribute for thet row 
-        And the Organizer update what he need to update
-        And click on "update event" button
+        When the user selects a row of data 
+        And the system display all attributes for that row 
+        And the user updates what he needs to update
+        And clicks on "update event" option
         Then the event is modifided successfully
     
     Scenario: delete event
-        Given the Organizer logged into event page
+        Given the user navicates to event page
         And want to delete an event
-        When the Organizer select row to delete
-        And click on "delete event" button
+        When the user select row to delete
+        And clicks on "delete event" option
         Then the event is deleted successfully
 
     Scenario: invalid input
-        Given the Organizer loged into venue page
-        And the Organizer was an admin
-        When enter invalid data
+        Given the user loged into venue page
+        And the user was an admin
+        When the user enters invalid data
         Then operation failed
         And display massege "invalid input"
 
     Scenario: exit 
         Given user is in the registerion page
-        When the user click on exit button
+        When the user clicks on exit button
         Then redirect him to login page    

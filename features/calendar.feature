@@ -2,15 +2,13 @@ Feature: Calendar and Scheduling
 
     Scenario: displaying upcoming events and important dates.
         Given user logged into the calendar and scheduling page
-        When click the "calendar view" button
+        When the user clicks the "calendar view" option
         Then display all events and important dates
 
-Feature: Calendar and Scheduling
-
     Scenario: Scheduling Tools
-        Given I am logged into the system,
-        When I need to coordinate tasks, deadlines, and appointments related to event planning,
-        Then I should have access to scheduling tools.
+        Given I am logged into the system
+        When I need to coordinate tasks, deadlines, and appointments related to event planning
+        Then I should have access to scheduling tools
         And I should be able to create new tasks, assign them to team members, and set due dates.
         And I should be able to view tasks in a list or calendar format.
 
