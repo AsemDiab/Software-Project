@@ -1,16 +1,11 @@
 {
-  "name": "software-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1"
   },
+  "name": "software-project",
+  "description": "",
+  "version": "1.0.0",
+  "main": "test.js",
   "dependencies": {
     "ansi-regex": "^4.1.1",
     "ansi-styles": "^4.3.0",
@@ -137,5 +132,11 @@
     "yallist": "^4.0.0",
     "yaml": "^2.3.4",
     "yup": "^1.2.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
