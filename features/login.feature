@@ -28,21 +28,15 @@ Feature: Login page
         Then the user should see an error message indicating that the login failed
         And the user should remain on the login page
 
-    Scenario: forget password
-        Given the user is on the login page
-        When click on "forget password" button
-        Then send the user to "Reset password" page
-        And send an email
-
     Scenario: go to registerion page
         Given the user is on the login page
         When click on "registerion page" button
         Then send the user to "registerion" page
 
-    Scenario: exit
+    Scenario: return to Start Page
         Given user is in the login page
-        When the user click on "exit" button
-        Then end the system
+        When the user clicks on the "return" option
+        Then redirect him to Start Page
 
     Scenario: Invalid input
         Given the user is in the Login page
