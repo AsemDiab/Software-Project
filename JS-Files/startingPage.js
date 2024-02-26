@@ -1,5 +1,7 @@
 const {Given, When, Then} = require('@cucumber/cucumber');
 
+let arrayTrack = [2, ]
+
 Given("the user is in the startng page", function () {
   // Write code here that turns the phrase above into concrete actions
   return "pending";
