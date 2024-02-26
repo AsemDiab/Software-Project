@@ -12,7 +12,13 @@ Feature: Starting Page
         Then transfere him to the login page
     
 
-    Scenario: exit
+    Scenario: Exit
         Given the user is in the startng page
         When the user enters "3- Exit the program"
-        Then Exit the program
+        Then exit the program
+
+    Scenario: Invalid input
+        Given the user is in the startng page
+        When the user enters any invalid integer input
+        Then display message "invalid input"
+        And reture to the staring page

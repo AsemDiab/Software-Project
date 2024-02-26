@@ -5,8 +5,6 @@ Feature: Calendar and Scheduling
         When click the "calendar view" button
         Then display all events and important dates
 
-Feature: Calendar and Scheduling
-
     Scenario: Scheduling Tools
         Given I am logged into the system,
         When I need to coordinate tasks, deadlines, and appointments related to event planning,
