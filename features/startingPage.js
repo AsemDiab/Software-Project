@@ -7,9 +7,9 @@ Given("the user is in the startng page", function () {
   Start.openPage();
 });
 
-When("the user enters option {int}", function (int) {
-  console.log("the option is: "+int);
-  Start.setOption("1");
+When("the user enters option {int}", function (op) {
+  console.log("the option is: ");
+  Start.setOption('1');
   Start.run();
 });
 
