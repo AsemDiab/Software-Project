@@ -4,6 +4,7 @@ Feature: Starting Page
         Given the user is in the startng page
         When the user enters option 1
         Then transfere him to the registerion page with option
+<<<<<<< HEAD
         
    Scenario: Login to your account
        Given the user is in the startng page
@@ -14,9 +15,24 @@ Feature: Starting Page
        Given the user is in the startng page
        When the user enters 3
        Then exit the program with option 3
+=======
 
-   Scenario: Invalid input
-       Given the user is in the startng page
-       When the user enters any invalid integer input
-       Then display message to warn him
-       And reture to the staring page
+    Scenario: Login to your account
+        Given the user is in the startng page
+        When the user enters 2
+        Then transfere him to the login page with option 2
+>>>>>>> b93827cce3ea73300b8e86106c48a19a19cd4bea
+
+    Scenario: Exit
+        Given the user is in the startng page
+        When the user enters 3
+        Then exit the program with option 3
+
+    Scenario Outline: Invalid input
+        Given the user is in the startng page
+        When the user enters invalid integer <input>
+        Then display message to warn him
+        And reture to the staring page
+        Examples:
+            | input |
+            | 10    |
