@@ -5,118 +5,113 @@ var registerion = new RegP();
 
 
 Given("the user is in the registerion page", function () {
-  return "pending";
+  registerion.openPage();
 });
 
 When("the user fills all attribute \\( name , email ,password,..ect) with valid inputs",function () {
-    return "pending";
-  }
-);
+  registerion.fillTheData();
+});
 
 When("clicks on submit option", function () {
-  return "pending";
+  registerion.submitManu();
 });
 
 Then("redirect him to login page", function () {
-  return "pending";
-});
-
-Given("the user is in the registerion page", function () {
-  return "pending";
+  registerion.goToLoginPage();
 });
 
 When("the user enter one or more invalid inputs", function () {
-  return "pending";
+  registerion.fillTheData();
 });
 
 When("clicks on submit option", function () {
-  return "pending";
+  registerion.submitManu();
 });
 
 Then("the system should display a message to warn him", function () {
-  return "pending";
+  
 });
 
-Then("user should remain on the registerion page", function () {
-  return "pending";
-});
+// Then("user should remain on the registerion page", function () {
+  
+// });
 
-Given("the user is in the registerion page", function () {
-  return "pending";
-});
+// Given("the user is in the registerion page", function () {
+  
+// });
 
-When("the user enter an email that is already taken", function () {
-  return "pending";
-});
+// When("the user enter an email that is already taken", function () {
+  
+// });
 
-When("clicks on submit option", function () {
-  return "pending";
-});
+// When("clicks on submit option", function () {
+  
+// });
 
-Then("the system should display a message to warn him", function () {
-  return "pending";
-});
+// Then("the system should display a message to warn him", function () {
+  
+// });
 
-Then("user should remain on the registerion page", function () {
-  return "pending";
-});
+// Then("user should remain on the registerion page", function () {
+  
+// });
 
-Given("user is in the registerion page", function () {
-  return "pending";
-});
+// Given("user is in the registerion page", function () {
+  
+// });
 
-When("user enters a valid email", function () {
-  return "pending";
-});
+// When("user enters a valid email", function () {
+  
+// });
 
-When("user enters a weak password", function () {
-  return "pending";
-});
+// When("user enters a weak password", function () {
+  
+// });
 
-Then("the system should display a message to warn him", function () {
-  return "pending";
-});
+// Then("the system should display a message to warn him", function () {
+  
+// });
 
-Then("user should remain on the registerion page", function () {
-  return "pending";
-});
+// Then("user should remain on the registerion page", function () {
+  
+// });
 
-Given("the user is on the registerion page", function () {
-  return "pending";
-});
+// Given("the user is on the registerion page", function () {
+  
+// });
 
-When("clicks on login page button", function () {
-  return "pending";
-});
+// When("clicks on login page button", function () {
+  
+// });
 
-Then("send the user to login page", function () {
-  return "pending";
-});
+// Then("send the user to login page", function () {
+  
+// });
 
-Given("user is in the registerion page", function () {
-  return "pending";
-});
+// Given("user is in the registerion page", function () {
+  
+// });
 
-When("the user clicks on the return option", function () {
-  return "pending";
-});
+// When("the user clicks on the return option", function () {
+  
+// });
 
-Then("redirect him to Start Page", function () {
-  return "pending";
-});
+// Then("redirect him to Start Page", function () {
+  
+// });
 
-Given("the user is in the Register page", function () {
-  return "pending";
-});
+// Given("the user is in the Register page", function () {
+  
+// });
 
-When("the user enters any invalid input", function () {
-  return "pending";
-});
+// When("the user enters any invalid input", function () {
+  
+// });
 
-Then("the system should display a message to warn him", function () {
-  return "pending";
-});
+// Then("the system should display a message to warn him", function () {
+  
+// });
 
-Then("reture to the Register page", function () {
-  return "pending";
-});
+// Then("reture to the Register page", function () {
+  
+// });

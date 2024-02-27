@@ -5,15 +5,15 @@ class RegP {
   username = null;
   email = null;
   password = null;
+  option = 0;
 
+  is_open = false;
   is_valid_username = false;
   is_valid_email = false;
   is_valid_password = false;
 
   go_to_start = 0;
   go_to_login = 0;
-
-  constructor() {}
 
   fillTheData() {
     this.username = readlineSync.question("Enter Your Name:");
@@ -24,22 +24,39 @@ class RegP {
     console.log(typeof this.password);
   }
 
-  fillValidInputs() {}
+  submitManu() {
 
-  fillInvalidInputs() {}
+    console.log("Options:");
+    console.log("1. submit");
+    console.log("2. cancel");
 
-  fillEmailAlreadyTaken() {}
-
-  fillWeakPassword() {}
+    this.option = readlineSync.question("Enter Your choise:");
+    console.log(this.option);
+    console.log(typeof this.option);
+    switch(this.option){
+        case "1":
+            console.log('save data in DB');
+            break;
+        case "2": 
+            console.log('cancel operation');
+            break;
+        default:
+            console.log('invalid input')
+    }
+  }
+  
+  openPage(){
+    this.is_open = true;
+  }
 
   goToLoginPage() {
-    go_to_start = 0;
-    go_to_login = 1;
+    this.go_to_start = 0;
+    this.go_to_login = 1;
   }
 
   goToStartPage() {
-    go_to_start = 1;
-    go_to_login = 0;
+    this.go_to_start = 1;
+    this.go_to_login = 0;
   }
 
   run() {
@@ -70,8 +87,5 @@ class RegP {
     }
   }
 }
-var registerion = new RegP();
-registerion.fillTheData();
-console.log(registerion.username + ' $ ' + registerion.email +' $ '+registerion.password);
 
 module.exports = RegP;
