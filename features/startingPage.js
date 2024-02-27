@@ -1,21 +1,18 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const assert = require('assert');
-const  StartP=require('../JS-Files/startP')
-var Start=new StartP()
-Given("the user is in the startng page", function () {
+const { Given, When, Then } = require("@cucumber/cucumber");
+const assert = require("assert");
+const StartP = require("../JS-Files/startP");
+var Start = new StartP();
 
-});
-
-let userChoice;
+Given("the user is in the startng page", function () {});
 
 When("the user enters option", function () {
-  Start.setOption(1)
+  Start.setOption(1);
   // userChoice = option;
 });
 
-Then("transfere him to the registerion page with option", function () {
-  console.log(assert.equal(1,1,"pizza is dump"))
-  Start.run()
+Then("transfere him to the registeration page with option", function () {
+  console.log(assert.equal(1, 1, "pizza is dump"));
+  Start.run();
 });
 
 // Given("the user is in the startng page", function () {

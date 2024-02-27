@@ -3,7 +3,7 @@ Feature: Login page
     Scenario: admin successful login
         Given the admin is on the login page
         When the admin enters valid data (email and password)
-        And clicks on the login button
+        And clicks w the login button
         Then redirect him to admin home page
         And a welcome message will be displayed
 
