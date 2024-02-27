@@ -29,16 +29,16 @@ Feature: Register page
 
    Scenario: go to login page
        Given the user is on the registerion page
-       When clicks on "login page" button
+       When clicks on login page button
        Then send the user to login page
 
    Scenario: return to Start Page
        Given user is in the registerion page
-       When the user clicks on the "return" option
+       When the user clicks on the return option
        Then redirect him to Start Page
 
     Scenario Outline: invalid input
         Given the user is in the Register page
-        When the user enters any invalid <username> input
-        Then display message "invalid input"
+        When the user enters any invalid input
+        Then the system should display a message to warn him
         And reture to the Register page

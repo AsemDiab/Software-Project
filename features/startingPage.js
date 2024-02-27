@@ -37,15 +37,16 @@ Given("the user is in the startng page", function () {
 //   assert.equal(Start._exit,1); 
 // });
 
-// When("the user enters any invalid integer input", function () {
-//   console.log("the option is: "+int);
-//   Start.setOption(String(int));
-//   Start.run();
-// });
+When("the user enters any invalid integer input", function (int) {
+  console.log("the option is: "+int);
+  Start.setOption(String(int));
+  Start.run();
+});
 
-// Then("display message to warn him", function () {
-//   console.log("invalid input");
-// });
+Then("display message to warn him", function (int) {
+  assert.notEqual(Start._exit,1);
+  // console.log("invalid input");
+});
 
 Then("reture to the staring page", function () {
   Start.run();

@@ -3,13 +3,12 @@ const readlineSync = require("readline-sync");
 class StartP {
 
   is_open = false;
-
+  go_to_reg = 0;
+  go_to_login = 0;
+  _exit = 0;
 
   option = -1;
   constructor() {
-    this.go_to_reg = 0;
-    this.go_to_login = 0;
-    this._exit = 0;
     this.printmanu();
   }
   printmanu() {
@@ -50,7 +49,7 @@ class StartP {
 
   run() {
     // userChoice=Start.getOption()
-    switch (String(this.option)) {
+    switch (String(this.option)){
       case "1":
         console.log("User chose option 1. Performing actions for option 1...");
         this.goToReg();
