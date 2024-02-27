@@ -1,28 +1,26 @@
-// const { Given, When, Then } = require("@cucumber/cucumber");
-// // const assert = require("assert");
-// const LoginP = require("../JS-Files/loginP");
-// var login = new LoginP();
+const { Given, When, Then } = require("@cucumber/cucumber");
+// const assert = require("assert");
+const LoginP = require("../JS-Files/loginP");
+var login = new LoginP();
 
-// Given("the admin is on the login page", function () {});
+Given("the admin is on the login page", function () {});
 
-// When("the admin enters valid data \\(email and password)", function () {
-// //   login.enterEmailAndPassword();
-// });
+When("the admin enters valid data \\(email and password)", function () {
+    login.openPage();
+    login.enterEmailAndPassword();
+});
 
 // When("clicks on the login button", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
+//   login.run();
 // });
 
-// Then("redirect him to admin home page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("redirect him to admin home page", function () {
+  login.goToUserPage;
+});
 
-// Then("a welcome message will be displayed", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("a welcome message will be displayed", function () {
+  login.welcomeMessage();
+});
 
 // Given("the user is on the login page", function () {
 //   // Write code here that turns the phrase above into concrete actions
