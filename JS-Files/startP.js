@@ -3,12 +3,13 @@ const readlineSync = require("readline-sync");
 class StartP {
 
   is_open = false;
-  go_to_reg = 0;
-  go_to_login = 0;
-  _exit = 0;
+
 
   option = -1;
   constructor() {
+    this.go_to_reg = 0;
+    this.go_to_login = 0;
+    this._exit = 0;
     this.printmanu();
   }
   printmanu() {
