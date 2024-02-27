@@ -1,6 +1,6 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
-const StartP = require("../JS-Files/regP");
+const RegP = require("../JS-Files/regP");
 var registerion = new RegP();
 
 
