@@ -65,7 +65,15 @@ class StartP {
         break;
       default:
         console.log("Invalid option. Please choose 1, 2, or 3.");
+        this.reopenPage()
+        break;
     }
+  }
+  reopenPage(){
+    this.go_to_reg=0
+    this.go_to_login=0
+    this.is_open=true
+    this._exit=0
   }
 }
 
