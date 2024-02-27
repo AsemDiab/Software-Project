@@ -7,7 +7,6 @@ Given("the user is in the startng page", function () {
   Start.openPage();
 });
 
-<<<<<<< HEAD
 // When("the user enters option {int}", function (int) {
 //   console.log("the option is: "+int);
 //   Start.setOption(String(int));
@@ -50,11 +49,6 @@ Then("display message to warn him", function (int) {
 });
 
 Then("reture to the staring page", function () {
-=======
-When("the user enters option {int}", function (op) {
-  console.log("the option is: ");
-  Start.setOption('1');
->>>>>>> b93827cce3ea73300b8e86106c48a19a19cd4bea
   Start.run();
 });
 
@@ -65,7 +59,7 @@ Then("transfere him to the registerion page with option", function () {
 
 When("the user enters {int}", function (int) {
   console.log("the option is: "+int);
-  Start.setOption(int);
+  Start.setOption(string(int));
   Start.run();
 });
 
@@ -100,6 +94,4 @@ Then("display message to warn him", function () {
 
 Then("reture to the staring page", function () {
   Start.run();
-
 });
-//

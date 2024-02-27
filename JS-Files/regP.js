@@ -17,11 +17,11 @@ class RegP {
 
   fillTheData() {
     this.username = readlineSync.question("Enter Your Name:");
-    console.log(typeof this.email);
+    console.log(typeof this.username);
     this.email = readlineSync.question("Enter Your Email:");
     console.log(typeof this.email);
     this.password = readlineSync.question("Enter Your Password:");
-    console.log(typeof this.email);
+    console.log(typeof this.password);
   }
 
   fillValidInputs() {}
@@ -70,9 +70,8 @@ class RegP {
     }
   }
 }
-
-var registerion = new regP();
-
-
+var registerion = new RegP();
+registerion.fillTheData();
+console.log(registerion.username + ' $ ' + registerion.email +' $ '+registerion.password);
 
 module.exports = RegP;
