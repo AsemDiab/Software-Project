@@ -22,23 +22,20 @@ When("the user enters {int}", function (int) {
   Start.run();
 });
 
-Then("transfere him to the login page with option ", function () {
+Then("transfere him to the login page with option {int}", function (int) {
   assert.equal(Start.go_to_login,1);
 });
 
 
-Then("exit the program with option ", function () {
+Then("exit the program with option {int}", function (int) {
   assert.equal(Start._exit,1);
 });
 
 When('the user enters invalid integer {int}', function (int) {
-  console.log("the option is: "+int);
   Start.setOption(int);
   Start.run();
-  // return 'pending';
 });
 When('the user enters invalid integer {string}', function (string) {
-  // Write code here that turns the phrase above into concrete actions
   Start.setOption(string);
   Start.run();});
 

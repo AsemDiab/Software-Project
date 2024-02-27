@@ -10,12 +10,12 @@ Feature: Starting Page
     Scenario: Login to your account
         Given the user is in the startng page
         When the user enters 2
-        Then transfere him to the login page with option
+        Then transfere him to the login page with option 2
 
     Scenario: Exit
         Given the user is in the startng page
         When the user enters 3
-        Then exit the program with option
+        Then exit the program with option 3
 
     Scenario Outline: Invalid input
         Given the user is in the startng page
@@ -25,5 +25,5 @@ Feature: Starting Page
         Examples:
             | input |
             | 10    |
-            | '20'    |
+            | 'a'   |
             | -10   |
