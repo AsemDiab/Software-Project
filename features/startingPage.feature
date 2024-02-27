@@ -1,9 +1,9 @@
 Feature: Starting Page
 
-    Scenario: Registerion new account
-        Given the user is in the startng page
-        When the user enters option 1
-        Then transfere him to the registerion page with option
+#     Scenario: Registerion new account
+#         Given the user is in the startng page
+#         When the user enters option 1
+#         Then transfere him to the registerion page with option
         
 #    Scenario: Login to your account
 #        Given the user is in the startng page
@@ -15,8 +15,8 @@ Feature: Starting Page
 #        When the user enters 3
 #        Then exit the program with option 3
 
-#    Scenario: Invalid input
-#        Given the user is in the startng page
-#        When the user enters any invalid integer input
-#        Then display message to warn him
-#        And reture to the staring page
+   Scenario: Invalid input
+       Given the user is in the startng page
+       When the user enters any invalid integer input
+       Then display message to warn him
+       And reture to the staring page

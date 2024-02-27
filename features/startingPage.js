@@ -7,24 +7,19 @@ Given("the user is in the startng page", function () {
   Start.openPage();
 });
 
-When("the user enters option {int}", function (int) {
-  console.log("the option is: "+int);
-  Start.setOption("1");
-  Start.run();
-});
+// When("the user enters option {int}", function (int) {
+//   console.log("the option is: "+int);
+//   Start.setOption(String(int));
+//   Start.run();
+// });
 
-Then("transfere him to the registerion page with option", function () {
-  assert.equal(Start.go_to_reg,1);
-});
-
-// Given("the user is in the startng page", function () {
-//   Start.openPage();
-   
+// Then("transfere him to the registerion page with option", function () {
+//   assert.equal(Start.go_to_reg,1);
 // });
 
 // When("the user enters {int}", function (int) {
 //   console.log("the option is: "+int);
-//   Start.setOption(int);
+//   Start.setOption(String(int));
 //   Start.run();
 // });
 
@@ -32,13 +27,9 @@ Then("transfere him to the registerion page with option", function () {
 //   assert.equal(Start.go_to_login,1);
 // });
 
-// Given("the user is in the startng page", function () {
-//   Start.openPage();   
-// });
-
 // When("the user enters {int}", function (int) {
 //   console.log("the option is: "+int);
-//   Start.setOption(int);
+//   Start.setOption(String(int));
 //   Start.run();
 // });
 
@@ -46,13 +37,9 @@ Then("transfere him to the registerion page with option", function () {
 //   assert.equal(Start._exit,1); 
 // });
 
-// Given("the user is in the startng page", function () {
-//   Start.openPage();  
-// });
-
 // When("the user enters any invalid integer input", function () {
 //   console.log("the option is: "+int);
-//   Start.setOption(int);
+//   Start.setOption(String(int));
 //   Start.run();
 // });
 
@@ -60,7 +47,7 @@ Then("transfere him to the registerion page with option", function () {
 //   console.log("invalid input");
 // });
 
-// Then("reture to the staring page", function () {
-//   Start.run();
-// });
+Then("reture to the staring page", function () {
+  Start.run();
+});
 
