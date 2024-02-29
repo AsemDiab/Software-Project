@@ -7,7 +7,6 @@ Given("the user is in the startng page", function () {
   Start.openPage();
 });
 When("the user enters option {int}", function (int) {
-  console.log("the option is: "+int);
   Start.setOption(String(int));
   Start.run();
 });
@@ -17,7 +16,6 @@ Then("transfere him to the registerion page with option", function () {
 });
 
 When("the user enters {int}", function (int) {
-  console.log("the option is: "+int);
   Start.setOption(String(int));
   Start.run();
 });
@@ -42,7 +40,7 @@ When('the user enters invalid integer {string}', function (string) {
 
 Then("display message to warn him", function () {
   assert.equal(Start.is_open,1)
-  console.log("invalid input");
+
 });
 
 Then("reture to the staring page", function () {

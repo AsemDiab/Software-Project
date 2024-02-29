@@ -1,11 +1,14 @@
 const readlineSync = require("readline-sync");
-
+const  DB=require('../JS-Files/ourDataBase');
+DB.init()
 class RegP {
 
   username = null;
   email = null;
   password = null;
   option = 0;
+  warmUser=false;
+
 
   isOpen = false;
   isValidName = false;
@@ -14,6 +17,12 @@ class RegP {
 
   goToLogin = 0;
   goToLogin = 0;
+  cache={
+    email:'',
+    username:'',
+    password:''
+
+  }
 
   usernameValidity(username) {
     if (username.length > 3) {
@@ -22,22 +31,21 @@ class RegP {
         this.isValidName = false;
         console.log("Try to enter a username with more than 3 characters.");
     }
+    return this.isValidName;
   }
-// لسه مش جاهز
   emailAlreadyTaken(email){
-    if(true){
-      return true;
-    }else{
-      return false
-    }
+
+    return DB.userMap.get(email)==undefined;
   }
 
   emailValidity(email){
-    if(this.email.includes('@') && this.email.endsWith('.com') && this.emailAlreadyTaken()){
+    // console.log("the is ",email)
+    if(email.includes('@') && email.endsWith('.com') && this.emailAlreadyTaken(email)){
       this.isValidEmail = true;
     }else{
       this.isValidEmail = false;
     }
+    return this.isValidEmail;
   }
   passwordValidity(password) {
     const minLength = 8;
@@ -55,97 +63,114 @@ class RegP {
     } else {
       this.isValidPassword = false;
     }
+    return this.isValidPassword;
   }
 
-  trueValue(){
 
-  }
-  wrongValue(){
 
-  }
-
-  chickOnTheData() {
-    this.usernameValidity(this.username);
-    this.emailValidity(this.email);
-    this.passwordValidity(this.password);
+  chickOnTheData(username,email,password) {
+    this.usernameValidity(username);
+    this.emailValidity(email);
+    this.passwordValidity(password);
 
     if(this.isValidName == true && this.isValidEmail == true && this.isValidPassword == true ){
       console.log("all data are valid");
-      return this.trueValue();
     }else{
       console.log("invalid data");
-      return this.wrongValue();
     }
   }
-
-  readTheData(){
-    this.username = readlineSync.question("Enter Your Name:");
-    console.log(typeof this.username);
-    this.email = readlineSync.question("Enter Your Email:");
-    console.log(typeof this.email);
-    this.password = readlineSync.question("Enter Your Password:");
-    console.log(typeof this.password);
-
-    chickOnTheData();
+  fillData(){
+    // this.chickOnTheData(username,email,password)
+    this.warmUser=true
+    if(this.isValidEmail&&this.isValidName&&this.isValidPassword)
+    {
+      this.email=this.cache.email;
+      this.username=this.cache.username;
+      this.password=this.cache.password;
+      DB.insertUser(this.email,this.username,this.password,'user');
+      console.log('save data in DB');
+      this.warmUser=false
+    }
 
   }
-  
-  submitManu() {
+  setName(username){
+    this.cache.username=username;
+    return this.usernameValidity(username)
+  }
+  setPassword(password){
+    this.cache.password=password
+    return this.passwordValidity(password)
+  }
+  setEmail(email){
+    this.cache.email=email;
+    return this.emailValidity(email)
+  }
 
+
+  readTheData(){
+    let username = readlineSync.question("Enter Your Name:");
+    let email = readlineSync.question("Enter Your Email:");
+    let password = readlineSync.question("Enter Your Password:");
+
+this.fillData(username,email,password)
+  }
+  
+  submitManu(option) {
+
+    console.log('sub')
+
+
+    this.option =option
+        // readlineSync.question("Enter Your choise:");
+    console.log(this.option);
+    console.log(typeof this.option);
+    switch(String(this.option)){
+      case "1":
+            this.fillData()
+            this.run()
+          break;
+        case "2": 
+            // console.log('cancel operation');
+            break;
+        default:break;
+            // console.log('invalid input')
+    }
+  }
+  printSubmitManu(){
     console.log("Options:");
     console.log("1. submit");
     console.log("2. cancel");
-
-    this.option = readlineSync.question("Enter Your choise:");
-    console.log(this.option);
-    console.log(typeof this.option);
-    switch(this.option){
-        case "1":
-            console.log('save data in DB');
-            break;
-        case "2": 
-            console.log('cancel operation');
-            break;
-        default:
-            console.log('invalid input')
-    }
   }
-
+  run(){
+    if(this.warmUser)
+      console.log('warning :(')
+  }
   openPage(){
     this.isOpen = true;
   }
 
   goToLoginPage() {
-    this.goToLogin = 0;
+    // this.goToLogin = 0;
     this.goToLogin = 1;
   }
 
   goToStartPage() {
-    this.goToLogin = 1;
+    // this.goToLogin = 1;
     this.goToLogin = 0;
   }
 
-  run() {
+  clicks(scenario) {
     // userChoice=Start.getOption()
-    switch (scenario) {
-      case "valid input":
-        console.log("option 1. valid registerion ");
-        break;
-      case "invalid input":
-        console.log("option 2. invalid registerion");
-        break;
-      case "email alteady taken":
-        console.log("option 3. email already taken");
-        break;
-      case "weak password":
-        console.log("option 4. weak password");
+
+    switch (scenario.toLowerCase().trim()) {
+      case "submit":
+
+        this.submitManu(1);
         break;
       case "go to login page":
-        console.log("option 5. go to login page");
         this.goToLoginPage();
         break;
       case "return to start page":
-        console.log("option 6. return to start page");
         this.goToStartPage();
         break;
       default:
@@ -155,3 +180,5 @@ class RegP {
 }
 
 module.exports = RegP;
+// let  r=new RegP();
+// r.emailValidity('AhmadDaradouck@gmail.com')
