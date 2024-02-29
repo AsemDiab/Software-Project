@@ -22,10 +22,21 @@ class RegP {
         this.isValidName = false;
         console.log("Try to enter a username with more than 3 characters.");
     }
-}
+  }
+// لسه مش جاهز
+  emailAlreadyTaken(email){
+    if(true){
+      return true;
+    }else{
+      return false
+    }
+  }
+
   emailValidity(email){
-    if(this.email.includes('@') && this.email.endsWith('.com')){
+    if(this.email.includes('@') && this.email.endsWith('.com') && this.emailAlreadyTaken()){
       this.isValidEmail = true;
+    }else if(){
+
     }else{
       this.isValidEmail = false;
     }
@@ -80,21 +91,7 @@ class RegP {
     chickOnTheData();
 
   }
-
-  // validity(username , email , password ){
-  //   if(this.username != null && this.email != null && this.password != null){
-  //       this.isValidName = true;
-  //       this.isValidEmail = true;
-  //       this.isValidPassword = true;
-  //       console.log("valid input");
-  //   }else{
-  //       this.isValidName = false;
-  //       this.isValidEmail = false;
-  //       this.isValidPassword = false;
-  //       console.log("invalid input");
-  //   }
-  // }
-
+  
   submitManu() {
 
     console.log("Options:");

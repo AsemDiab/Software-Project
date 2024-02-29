@@ -1,10 +1,10 @@
 Feature: Register page
 
-#    Scenario: valid registerion
-#        Given the user is in the registerion page
-#        When the user fills all attribute ( name , email ,password,..ect) with valid inputs
-#        And clicks on submit option
-#        Then redirect him to login page
+   Scenario: valid registerion
+       Given the user is in the registerion page
+       When the user fills all attribute ( name , email ,password,..ect) with valid inputs
+       And clicks on submit option
+       Then redirect him to login page
 
    Scenario: invalid input registerion
        Given the user is in the registerion page

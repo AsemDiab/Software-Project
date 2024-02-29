@@ -19,23 +19,23 @@ When("clicks on submit option", function () {
 Then("redirect him to login page", function () {
   registerion.goToLoginPage();
 });
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+When("the user enter one or more invalid inputs", function () {
+  registerion.readTheData();
+});
 
-// When("the user enter one or more invalid inputs", function () {
-//   registerion.fillTheData();
-// });
+When("clicks on submit option", function () {
+  registerion.validity();
+  // registerion.submitManu();
+});
 
-// When("clicks on submit option", function () {
-//   registerion.validity();
-//   // registerion.submitManu();
-// });
+Then("the system should display a message to warn him", function () {
+  console.log("invalid data input. plaese try to fill data");
+});
 
-// Then("the system should display a message to warn him", function () {
-//   console.log("invalid data input. plaese try to fill data");
-// });
-
-// Then("user should remain on the registerion page", function () {
-//   registerion.openPage();
-// });
+Then("user should remain on the registerion page", function () {
+  registerion.openPage();
+});
 
 // Given("the user is in the registerion page", function () {
   
