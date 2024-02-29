@@ -9,7 +9,7 @@ Given("the user is in the registerion page", function () {
 });
 
 When("the user fills all attribute \\( name , email ,password,..ect) with valid inputs",function () {
-  registerion.fillTheData();
+  registerion.readTheData();
 });
 
 When("clicks on submit option", function () {
@@ -20,20 +20,21 @@ Then("redirect him to login page", function () {
   registerion.goToLoginPage();
 });
 
-When("the user enter one or more invalid inputs", function () {
-  registerion.fillTheData();
-});
+// When("the user enter one or more invalid inputs", function () {
+//   registerion.fillTheData();
+// });
 
-When("clicks on submit option", function () {
-  registerion.submitManu();
-});
+// When("clicks on submit option", function () {
+//   registerion.validity();
+//   // registerion.submitManu();
+// });
 
-Then("the system should display a message to warn him", function () {
-  
-});
+// Then("the system should display a message to warn him", function () {
+//   console.log("invalid data input. plaese try to fill data");
+// });
 
 // Then("user should remain on the registerion page", function () {
-  
+//   registerion.openPage();
 // });
 
 // Given("the user is in the registerion page", function () {

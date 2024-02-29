@@ -7,52 +7,93 @@ class RegP {
   password = null;
   option = 0;
 
-  is_open = false;
-  is_valid_username = false;
-  is_valid_email = false;
-  is_valid_password = false;
+  isOpen = false;
+  isValidName = false;
+  isValidEmail = false;
+  isValidPassword = false;
 
-  go_to_start = 0;
-  go_to_login = 0;
+  goToLogin = 0;
+  goToLogin = 0;
 
-  fillTheData() {
+  usernameValidity(username) {
+    if (username.length > 3) {
+        this.isValidName = true;
+    } else {
+        this.isValidName = false;
+        console.log("Try to enter a username with more than 3 characters.");
+    }
+}
+  emailValidity(email){
+    if(this.email.includes('@') && this.email.endsWith('.com')){
+      this.isValidEmail = true;
+    }else{
+      this.isValidEmail = false;
+    }
+  }
+  passwordValidity(password) {
+    const minLength = 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+    if (password.length >= minLength &&
+      hasUppercase &&
+      hasLowercase &&
+      hasNumber &&
+      hasSpecialChar
+    ){
+      this.isValidPassword = true;
+    } else {
+      this.isValidPassword = false;
+    }
+  }
+
+  trueValue(){
+
+  }
+  wrongValue(){
+
+  }
+
+  chickOnTheData() {
+    this.usernameValidity(this.username);
+    this.emailValidity(this.email);
+    this.passwordValidity(this.password);
+
+    if(this.isValidName == true && this.isValidEmail == true && this.isValidPassword == true ){
+      console.log("all data are valid");
+      return this.trueValue();
+    }else{
+      console.log("invalid data");
+      return this.wrongValue();
+    }
+  }
+
+  readTheData(){
     this.username = readlineSync.question("Enter Your Name:");
     console.log(typeof this.username);
     this.email = readlineSync.question("Enter Your Email:");
     console.log(typeof this.email);
     this.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.password);
+
+    chickOnTheData();
+
   }
 
-  validity(username , email , password ){
-    if(this.username != null && this.email != null && this.password != null){
-        this.is_valid_username = true;
-        this.is_valid_email = true;
-        this.is_valid_password = true;
-        
-    }else{
-        is_valid_username = false;
-        is_valid_email = false;
-        is_valid_password = false;
-    }
-  }
-
-//   isValidPassword(password) {
-//     // Check if the password meets the criteria
-//     const minLength = 8;
-//     const hasUppercase = /[A-Z]/.test(password);
-//     const hasLowercase = /[a-z]/.test(password);
-//     const hasNumber = /\d/.test(password);
-//     const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
-  
-//     return (
-//       password.length >= minLength &&
-//       hasUppercase &&
-//       hasLowercase &&
-//       hasNumber &&
-//       hasSpecialChar
-//     );
-//   }
+  // validity(username , email , password ){
+  //   if(this.username != null && this.email != null && this.password != null){
+  //       this.isValidName = true;
+  //       this.isValidEmail = true;
+  //       this.isValidPassword = true;
+  //       console.log("valid input");
+  //   }else{
+  //       this.isValidName = false;
+  //       this.isValidEmail = false;
+  //       this.isValidPassword = false;
+  //       console.log("invalid input");
+  //   }
+  // }
 
   submitManu() {
 
@@ -76,17 +117,17 @@ class RegP {
   }
 
   openPage(){
-    this.is_open = true;
+    this.isOpen = true;
   }
 
   goToLoginPage() {
-    this.go_to_start = 0;
-    this.go_to_login = 1;
+    this.goToLogin = 0;
+    this.goToLogin = 1;
   }
 
   goToStartPage() {
-    this.go_to_start = 1;
-    this.go_to_login = 0;
+    this.goToLogin = 1;
+    this.goToLogin = 0;
   }
 
   run() {
