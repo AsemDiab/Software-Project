@@ -15,7 +15,7 @@ Feature: User home page
         When the user enters option 3
         Then redirect him to Start Page
 
-    Scenario: Invalid input
+    Scenario Outline: Invalid input
         Given the user is in the User page
         When the user enters invalid integer <input>
         Then display message to warn him

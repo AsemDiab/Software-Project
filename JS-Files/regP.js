@@ -35,8 +35,6 @@ class RegP {
   emailValidity(email){
     if(this.email.includes('@') && this.email.endsWith('.com') && this.emailAlreadyTaken()){
       this.isValidEmail = true;
-    }else if(){
-
     }else{
       this.isValidEmail = false;
     }
