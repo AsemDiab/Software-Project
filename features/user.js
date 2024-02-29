@@ -1,65 +1,49 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
-const userP = require("../JS-Files/userP");
+const UserP = require("../JS-Files/userP");
 var user = new UserP();
 
-
 Given("the User navicates into User page", function () {
-  
-  
+  user.openPage();
+});
+
+When("user enters option {int}", function (int) {
+  console.log("the option is:"+int);
+  user.setOPtion(String(int));
+  user.run();
 });
 
 Then("transfere him to the Event Management page", function () {
-  
-  
-});
-
-Given("the User navicates into User page", function () {
-  
-  
+  assert.equal(user.eventPage , 1);
 });
 
 Then("send User to Profile page", function () {
-  
-  
-});
-
-Given("user is in the registerion page", function () {
-  
-  
+    assert.equal(user.profilePage , 1);
 });
 
 Then("redirect him to Start Page", function () {
-  
-  
+    assert.equal(user.startingPage , 1);
 });
 
-Given("the user is in the User page", function () {
-  
-  
+When("user enters invalid integer {int}", function (int) {
+  console.log("the option is:"+int);
+  user.setOPtion(String(int));
+  user.run();
 });
 
-Then("reture to the user page", function () {
-  
-  
+When("user enters invalid integer {string}", function (string) {
+  console.log("the option is:"+string);
+  user.setOPtion(string);
+  user.run();
 });
 
-Given("the user is in the User page", function () {
-  
-  
+Then("the system display message to warn him", function () {
+    assert.equal(user.isOpen,true);
+    console.log("invalid input");
 });
 
-Then("reture to the user page", function () {
-  
-  
-});
-
-Given("the user is in the User page", function () {
-  
-  
-});
-
-Then("reture to the user page", function () {
-  
-  
+Then("reture user to the user page", function () {
+  user.run();
+  user.reopenPage();
+  assert.equal(user.isOpen,true);
 });

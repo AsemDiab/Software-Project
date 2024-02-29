@@ -14,6 +14,9 @@ class UserP {
   openPage(){
     this.isOpen= true;
   }
+  setOPtion(option){
+    this.option = option;
+  }
   goToEventPage(){
     this.eventPage = 1;
     this.profilePage  = 0;
@@ -33,20 +36,20 @@ class UserP {
 
     switch (String(this.option)){
       case "1":
-        console.log("User chose option 1. Performing actions for option 1...");
-        this.goToReg();
+        console.log("User chose option 1. event page");
+        this.goToEventPage();
         break;
       case "2":
-        console.log("User chose option 2. Performing actions for option 2...");
-        this.goToLogin();
+        console.log("User chose option 2. Profile page");
+        this.goToProfilePage();
         break;
       case "3":
-        console.log("User chose option 3. Performing actions for option 3...");
-        this.goToExit();
+        console.log("User chose option 3. start page");
+        this.goToStartingPage();
         break;
       default:
         console.log("Invalid option. Please choose 1, 2, or 3.");
-        this.reopenPage()
+        this.reopenPage();
         break;
     }
   }
@@ -54,7 +57,7 @@ class UserP {
     this.eventPage = 0;
     this.profilePage  = 0;
     this.startingPage = 0;
-    this.isOpen = 0;
+    this.isOpen = true;
   }
 }
 module.exports = UserP;

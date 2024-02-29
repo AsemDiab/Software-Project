@@ -37,16 +37,16 @@ When('the user enters invalid integer {int}', function (int) {
 });
 When('the user enters invalid integer {string}', function (string) {
   Start.setOption(string);
-  Start.run();});
-
+  Start.run();
+});
 
 Then("display message to warn him", function () {
-  assert.equal(Start.is_open,1)
+  assert.equal(Start.is_open,1);
   console.log("invalid input");
 });
 
 Then("reture to the staring page", function () {
   Start.run();
-  Start.reopenPage()
-  assert.equal(Start.is_open,true)
+  Start.reopenPage();
+  assert.equal(Start.is_open,true);
 });
