@@ -1,4 +1,6 @@
 const readlineSync = require("readline-sync");
+const DB = require("../JS-Files/ourDataBase");
+DB.init();
 
 class LoginP {
   state = "admin";
@@ -12,6 +14,13 @@ class LoginP {
   goToLogin = 1;
   goToAdmin = 0;
 
+  userObject = '';
+
+  cache={
+    email:'',
+    password:''
+  }
+
   constructor() {
     // this.enterEmailAndPassword();
   }
@@ -20,6 +29,7 @@ class LoginP {
     console.log(typeof this.email);
     this.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.email);
+    this.userObject = JSON.parse(DB.userMap.get([this.email]));
     this.run();
   }
 
@@ -45,8 +55,8 @@ class LoginP {
   welcomeMessage() {
     console.log("Login Seccussfully");
   }
-  getState(){
-    return this.state;
+  getState() {
+    return userObject["asemhesham@gmail.com"].type;
   }
   setPassword(password) {
     this.password = password;
@@ -64,9 +74,13 @@ class LoginP {
   setOption(_option) {
     this.option = readlineSync.question("Enter Your Option: ");
   }
-  getOption() {cl
+  getOption() {
+    cl;
     return this.option;
   }
+  // emailDoesntExist(email) {
+  //   return DB.userMap.get(email) == undefined;
+  // }
 
   run() {
     let tempState = this.getState();
@@ -79,8 +93,7 @@ class LoginP {
         console.log("Flailed To Login");
         this.goToLoginPage();
       }
-    } 
-    else {
+    } else {
       if (this.email == "user@hotmail.com" && this.password == "123") {
         console.log("User Successfullu Login");
         goToUserPage();
