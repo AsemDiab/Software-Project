@@ -1,5 +1,5 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
-// const assert = require("assert");
+const assert = require("assert");
 const LoginP = require("../JS-Files/loginP");
 var login = new LoginP();
 
