@@ -79,6 +79,17 @@ class RegP {
       console.log("invalid data");
     }
   }
+<<<<<<< HEAD
+
+  readTheData(){
+    this.username = readlineSync.question("Enter Your Name:");
+    console.log(typeof this.username);
+    this.email = readlineSync.question("Enter Your Email:");
+    console.log(typeof this.email);
+    this.password = readlineSync.question("Enter Your Password:");
+    console.log(typeof this.password);
+    chickOnTheData();
+=======
   fillData(){
     // this.chickOnTheData(username,email,password)
     this.warmUser=true
@@ -92,6 +103,7 @@ class RegP {
       this.warmUser=false
     }
 
+>>>>>>> dcc518f0b59f7cbb1f12e519e3089fccc50df53e
   }
   setName(username){
     this.cache.username=username;
