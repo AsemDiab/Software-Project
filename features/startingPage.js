@@ -1,73 +1,52 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const assert = require('assert');
-const  StartP=require('../JS-Files/startP')
-var Start=new StartP()
+const { Given, When, Then } = require("@cucumber/cucumber");
+const assert = require("assert");
+const StartP = require("../JS-Files/startP");
+var Start = new StartP();
+
 Given("the user is in the startng page", function () {
-
+  Start.openPage();
 });
-
-let userChoice;
-
-When("the user enters option", function () {
-  Start.setOption(1)
-  // userChoice = option;
+When("the user enters option {int}", function (int) {
+  console.log("the option is: "+int);
+  Start.setOption(String(int));
+  Start.run();
 });
 
 Then("transfere him to the registerion page with option", function () {
-  console.log(assert.equal(1,1,"pizza is dump"))
-  Start.run()
+  assert.equal(Start.go_to_reg,1);
 });
 
-// Given("the user is in the startng page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+When("the user enters {int}", function (int) {
+  console.log("the option is: "+int);
+  Start.setOption(String(int));
+  Start.run();
+});
 
-// When("the user enters {int}", function (int) {
-//   // When('the user enters {float}', function (float) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("transfere him to the login page with option {int}", function (int) {
+  assert.equal(Start.go_to_login,1);
+});
 
-// Then("transfere him to the login page with option {int}", function (int) {
-//   // Then('transfere him to the login page with option {float}', function (float) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
 
-// Given("the user is in the startng page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("exit the program with option {int}", function (int) {
+  assert.equal(Start._exit,1);
+});
 
-// When("the user enters {int}", function (int) {
-//   // When('the user enters {float}', function (float) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+When('the user enters invalid integer {int}', function (int) {
+  Start.setOption(int);
+  Start.run();
+});
+When('the user enters invalid integer {string}', function (string) {
+  Start.setOption(string);
+  Start.run();
+});
 
-// Then("exit the program with option {int}", function (int) {
-//   // Then('exit the program with option {float}', function (float) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("display message to warn him", function () {
+  assert.equal(Start.is_open,1);
+  console.log("invalid input");
+});
 
-// Given("the user is in the startng page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("the user enters any invalid integer input", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("display message {string}", function (string) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("reture to the staring page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("reture to the staring page", function () {
+  Start.run();
+  Start.reopenPage();
+  assert.equal(Start.is_open,true);
+});
