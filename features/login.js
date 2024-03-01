@@ -3,48 +3,55 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 const LoginP = require("../JS-Files/loginP");
 var login = new LoginP();
 
-Given("the admin is on the login page", function () {});
-
-When("the admin enters valid data \\(email and password)", function () {
-    login.openPage();
-    login.enterEmailAndPassword();
+Given("the user or admin is on the login page", function () {
+  login.openPage();
 });
 
-// When("clicks on the login button", function () {
-//   login.run();
-// });
-
-Then("redirect him to admin home page", function () {
-  login.goToUserPage;
+When("the user or admin enters valid data \\(email and password)", function () {
+  login.enterEmailAndPassword();
 });
 
-Then("a welcome message will be displayed", function () {
-  login.welcomeMessage();
+Then("redirect him to user or admin home page", function () {
+  // login.run();
 });
 
-// Given("the user is on the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
+// Given("the admin is on the login page", function () {});
+
+// When("the admin enters valid data \\(email and password)", function () {
+//   login.openPage();
+//   login.enterEmailAndPassword();
 // });
 
-// When("the user enters valid data \\(email and password)", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+// // When("clicks on the login button", function () {
+// //   login.run();
+// // });
 
-// When("clicks on the login button", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("redirect him to user home page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
+// Then("redirect him to admin home page", function () {
+//   login.goToUserPage;
 // });
 
 // Then("a welcome message will be displayed", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
+//   login.welcomeMessage();
+// });
+
+// Given("the user is on the login page", function () {});
+
+// When("the user enters valid data \\(email and password)", function () {
+//   login.openPage();
+//   login.enterEmailAndPassword();
+// });
+
+// // When("clicks on the login button", function () {
+// //   // Write code here that turns the phrase above into concrete actions
+// //   return "pending";
+// // });
+
+// Then("redirect him to user home page", function () {
+//   goToAdminPage();
+// });
+
+// Then("a welcome message will be displayed", function () {
+//   login.welcomeMessage();
 // });
 
 // Given("the user is on the login page", function () {

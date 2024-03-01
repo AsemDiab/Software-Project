@@ -1,6 +1,7 @@
 const readlineSync = require("readline-sync");
 
 class LoginP {
+  state = "admin";
   // option = -1;
   password = "password";
   email = "name@example.com";
@@ -44,33 +45,49 @@ class LoginP {
   welcomeMessage() {
     console.log("Login Seccussfully");
   }
+  getState(){
+    return this.state;
+  }
+  setPassword(password) {
+    this.password = password;
+  }
+  getPassword() {
+    return this.getPassword;
+  }
+  setEmail(email) {
+    this.email = email;
+  }
+  getEmail() {
+    return this.email;
+  }
 
-  // setPassword(password) {
-  //   this.password = password;
-  // }
-  // getPassword() {
-  //   return this.getPassword;
-  // }
-  // setEmail(email) {
-  //   this.email = email;
-  // }
-  // getEmail() {
-  //   return this.email;
-  // }
-
-  // setOption(_option) {
-  //   this.option = readlineSync.question("Enter Your Option: ");
-  // }
-  // getOption() {cl
-  //   return this.option;
-  // }
+  setOption(_option) {
+    this.option = readlineSync.question("Enter Your Option: ");
+  }
+  getOption() {cl
+    return this.option;
+  }
 
   run() {
-    if (this.email == "sayed@hotmail.com" && this.password == "123") {
-      console.log("Successfull Login");
-    } else {
-      console.log("Flailed To Login");
-      goToUserLogin();
+    let tempState = this.getState();
+    console.log(this.tempState);
+    if (tempState == "admin") {
+      if (this.email == "admin@hotmail.com" && this.password == "123") {
+        console.log("Admin Successfully Login");
+        this.goToAdminPage();
+      } else {
+        console.log("Flailed To Login");
+        this.goToLoginPage();
+      }
+    } 
+    else {
+      if (this.email == "user@hotmail.com" && this.password == "123") {
+        console.log("User Successfullu Login");
+        goToUserPage();
+      } else {
+        console.log("Flailed To Login");
+        goToLoginPage();
+      }
     }
   }
 }
