@@ -29,7 +29,8 @@ class LoginP {
     console.log(typeof this.email);
     this.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.email);
-    this.userObject = JSON.parse(DB.userMap.get([this.email]));
+    this.userObject = DB.DataHandler.userMap.get([this.email]);
+    console.log(this.userObject);
     this.run();
   }
 
@@ -86,7 +87,7 @@ class LoginP {
     let tempState = this.getState();
     console.log(this.tempState);
     if (tempState == "admin") {
-      if (this.email == "admin@hotmail.com" && this.password == "123") {
+      if (this.email == "asemhesham@gmail.com" && this.password == "123456") {
         console.log("Admin Successfully Login");
         this.goToAdminPage();
       } else {
