@@ -83,6 +83,9 @@ class DataHandler{
     }
     static insertEvent(id,name,date,venue,time, them,Description,Count,type ){
 
+        if(id==undefined)
+            id=DataHandler.eventMap.size()
+
         var x= {
             id: id,
              name: name,
