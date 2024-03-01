@@ -5,10 +5,10 @@ Feature: Profile page
         When he clicks on "my account" button
         Then send the user to my account page
 
-    # Scenario: open notification 
-    #     Given the user in Profile page
-    #     When he click on "notification" button
-    #     Then the system will display all notification for the user  
+    Scenario: open notification 
+        Given the user in Profile page
+        When he click on "notification" button
+        Then the system will display all notification for the user  
 
     # Scenario: Booking Confirmation
     #     Given the user in Profile page

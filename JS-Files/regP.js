@@ -85,9 +85,7 @@ class RegP {
     console.log(typeof this.email);
     this.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.password);
-
     chickOnTheData();
-
   }
   
   submitManu() {
