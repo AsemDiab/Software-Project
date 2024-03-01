@@ -29,8 +29,8 @@ class LoginP {
     console.log(typeof this.email);
     this.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.email);
-    this.userObject = DB.DataHandler.userMap.get([this.email]);
-    console.log(this.userObject);
+    this.userObject = DB.userMap.get(this.email);
+    console.log(typeof(this.userObject));
     this.run();
   }
 
