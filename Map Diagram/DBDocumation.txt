@@ -1,0 +1,39 @@
+
+how too use DataHandler?
+1-inlize object from it or call static init after that the three maps userMap,eventMAp ,vnueMap .
+2-for insert rows
+    a-user: the e-mail is key , and the method create object with the following data:-
+            "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"admin"}
+    b-event: the id is key , and the method create object with the following data ex:-
+                "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": 101 }
+    c-venue: the id is key , and the method create object with the following data ex:-
+        "101" :   { "id": 101, "name": "Venue A", "location": "City X" },
+
+3- for delete DataHandler.[map name].delete([key]);
+4- for select DataHandler.[map name].get([key]);
+5- for select all DataHandler.[map name];
+6-update
+
+
+
+
+
+
+
+
+
+
+// let datahand=new DataHandler()
+// console.log(datahand.getUsers());
+// DataHandler.insertUser('asemdiab@gmail.com',"asemHesham",'2256','user')
+// console.log(DataHandler.userMap);
+// // maps=DataHandler.getUsers('asemdiab@gmail.com')
+// DataHandler.updateUser('asemdiab@gmail.com','patata','123456','adm')
+// console.log("---------------------------------------------------------------------------")
+// console.log(DataHandler.userMap);
+// DataHandler.updateVenue("101",'vem','')
+// console.log("---------------------------------------------------------------------------")
+// console.log(DataHandler.venueMap);
+// console.log("---------------------------------------------------------------------------")
+// DataHandler.updateEvent('event-001','eve')
+// console.log(DataHandler.eventMap);
