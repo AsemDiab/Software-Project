@@ -9,18 +9,15 @@ class EventManagementPage extends Page{
         this.openPage();
     }
     addEvent(date,time,theme,location,description,attendeeCount,eventTyp){
-
         DB.insertEvent(id,date,time,theme,location,description,attendeeCount,eventTyp)
-
     }
     editEvent(id,name,date,venuetime, them,Description, Count, type){
         DB.updateEvent(id,name,date,venuetime, them,Description, Count, type)
-
     }
     deleteEvent(id){
         this.isdeleted=false
         if(id==undefined)
-            return
+            return;
         DB.eventMap.delete(id)
         this.isdeleted=true
     }

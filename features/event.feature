@@ -1,45 +1,78 @@
 Feature: Event Creation and Management
 
-    Scenario: add new event
+    Scenario Outline: Add new event 
         Given the user navicates to event page
-        And want to add new event
-        When the user fill all data to add event
-        And clicks on "add event" option
-        Then the event is added successfully
+        When the user enter option 1
+        And fill all attributes data (id,name,date,venue-ID)
+        Then display message "event added successfully"
+        And reture user to Event management page
 
-    Scenario: add existed place
+    Scenario: add existed event
         Given the user navicates to event page
-        And want to add event that already exists
-        When the user fill up all data to add the event
-        And clicks on "add event" option
-        Then display message "the event already exists"
+        When the user enter option 1
+        And fill all attributes data (id,name,date,venue-ID)
+        Then display message "error: event already exist"
+        And reture user to Event management page
+
+    Scenario: add new event with invalid input 
+        Given the user navicates to event page
+        When the user enter option 1
+        And fill all attributes data (id,name,date,venue-ID)
+        Then display message "error: invalid input"
+        And reture user to Event management page
+
+    
+    Scenario: delete event 
+        Given the user navicates to event page
+        When the user enter option 2
+        And select a row with its id to delete
+        Then display message "event deleted successfully"
+        And reture user to Event management page
+
+    Scenario: delete unexisted event 
+        Given the user navicates to event page
+        When the user enter option 2
+        And select a row with its id to delete
+        Then display massege "error: that ID does not exist"
         And reture user to Event management page
 
     Scenario: modify event 
         Given the user navicates to event page
-        And want to modify an event
-        When the user selects a row of data 
-        And the system display all attributes for that row 
-        And the user updates what he needs to update
-        And clicks on "update event" option
-        Then the event is modifided successfully
-    
-    Scenario: delete event
+        When the user enter option 3
+        And select a row with its id to update it
+        And refill the data he need to update ( ID, Name, date, venue-ID)
+        Then display message "event updated successfully"
+        And reture user to Event management page
+
+    Scenario: modify unexisted event 
         Given the user navicates to event page
-        And want to delete an event
-        When the user select row to delete
-        And clicks on "delete event" option
-        Then the event is deleted successfully
+        When the user enter option 3 
+        And select a row with its id to update it
+        And refill the data he need to update ( ID, Name, date, venue-ID)
+        Then display message "error: updated unexisted event"
+        And reture user to Event management page
 
-    Scenario: invalid input
-        Given the user loged into venue page
-        And the user was an admin
-        When the user enters invalid data
-        Then operation failed
-        And display massege "invalid input"
+    Scenario: modify event with invalid input
+        Given the user navicates to event page
+        When the user enter option 3
+        And select a row with its id to update it
+        And refill the data he need to update ( ID, Name, date, venue-ID)
+        Then display message "error: update event with invalid input"
+        And reture user to Event management page
 
-    Scenario: return to Start Page
-        Given user is in the Event Management page
-        When the user clicks on the "return" option
+    Scenario Outline: Invalid input
+        Given the user navicates to event page
+        When user enters invalid integer <input>
+        Then display message "error: invalid input"
+        And reture user to Event management page
+        Examples:
+            | input |
+            | 8     |
+            | 'c'   |
+            | -8    |
+
+    Scenario: return to user Page
+        Given the user navicates to event page
+        When the user enter option 4
         Then redirect him to user main page
         

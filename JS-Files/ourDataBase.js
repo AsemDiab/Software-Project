@@ -9,8 +9,8 @@ const venueData=`{
     "102" : { "id": 102, "name": "Venue B", "location": "City Y",capcity:100,price:100$,Amenities:[] }
 }`
 const eventData=`{
-    "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101","time":"3:00","them":"black","Description":"","Count":"100","type":"party" },
-    "event-002":{ "id": "event-002","name": "Event 2","date": "2024-03-15","venueId": "102" }
+    "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101", "time":"3:00","theme":"black","Description":"","Count":"100","type":"party" },
+    "event-002" :{ "id": "event-002", "name": "Event 2", "date": "2024-03-15", "venueId": "102", "time":"4:00","theme":"gray", "Description":"","Count":"100","type":"party" }
 
 }`
 
@@ -81,7 +81,7 @@ class DataHandler{
              DataHandler.venueMap.set(id,x)
        
     }
-    static insertEvent(id,name,date,venue,time, them,Description,Count,type ){
+    static insertEvent(id,name,date,venue,time, theme,Description,Count,type ){
 
         if(id==undefined)
             id=DataHandler.eventMap.size()
@@ -92,7 +92,7 @@ class DataHandler{
              date: date,
              venueId: venue
             ,time:time,
-            them:them,
+            theme:theme,
             Description:Description,
             Count:Count
             ,type:type                }
@@ -118,7 +118,7 @@ class DataHandler{
 
         }
     }
-   static updateEvent(id,name,date,venuetime, them,Description, Count, type){
+   static updateEvent(id,name,date,venuetime, theme,Description, Count, type){
        
     if(id!=undefined) {
         let row = DataHandler.eventMap.get(id);
@@ -128,13 +128,13 @@ class DataHandler{
             let newDate= (date != undefined ? date.trim() :row.date);
             let newVenue= (venue != undefined ? venue.trim() :row.venue);
             let newtime= (time != undefined ? time.trim() :row.time);
-            let newthem= (them != undefined ? them.trim() :row.them);
+            let newtheme= (theme != undefined ? theme.trim() :row.theme);
             let newDescription= (Description != undefined ? Description.trim() :row.Description);
             let newCount= (Count != undefined ? Count.trim() :row.Count);
             let newtype= (type != undefined ? type.trim() :row.type);
 
 
-        DataHandler.insertEvent(id,name,date,venuetime, them,Description, Count, type)
+        DataHandler.insertEvent(id,name,date,venuetime, theme,Description, Count, type)
 
     }
     }
