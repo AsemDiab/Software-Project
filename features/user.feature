@@ -13,7 +13,7 @@ Feature: User home page
     Scenario: return to Start Page
         Given the User navicates into User page 
         When user enters option 3
-        Then redirect him to Start Page
+        Then redirect him from user page to Start Page
 
     Scenario Outline: Invalid input
         Given the User navicates into User page 

@@ -2,7 +2,7 @@ const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 DB.init();
 
-class LoginP {
+class LoginP extends Page{
   state = "admin";
   // option = -1;
   password = "password";
@@ -22,6 +22,7 @@ class LoginP {
   }
 
   constructor() {
+    super()
     // this.enterEmailAndPassword();
   }
   enterEmailAndPassword() {
@@ -32,6 +33,10 @@ class LoginP {
     this.userObject = DB.userMap.get(this.email);
     console.log(typeof(this.userObject));
     this.run();
+  }
+
+  readOption(){
+
   }
 
   openPage() {

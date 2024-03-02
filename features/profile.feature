@@ -7,7 +7,7 @@ Feature: Profile page
 
     Scenario: open notification 
         Given the user in Profile page
-        When he click on "notification" button
+        When he clicks on "notification" button
         Then the system will display all notification for the user  
 
     # Scenario: Booking Confirmation
@@ -26,19 +26,19 @@ Feature: Profile page
         Then the system will display all Reservation for all event
 
     Scenario: return
-        Given user is in the profile page
-        When the user click on return option
+        Given the user in Profile page
+        When he clicks on "return" button
         Then redirect him to user home page
 
     Scenario: User Logout
-        Given the user is in the Profile page
-        When clicked on Logout option
+        Given the user in Profile page
+        When he clicks on "Logout" button
         Then send the user to Starting page 
 
     Scenario: Invalid input
-        Given the user is in the Profile page
+        Given the user in Profile page
         When the user enters any invalid integer input
         Then display message "invalid input"
-        And reture to the Profile page  
+        And warn him
 
         

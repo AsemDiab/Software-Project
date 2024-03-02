@@ -1,13 +1,15 @@
 const readlineSync = require("readline-sync");
 const  DB=require('../JS-Files/ourDataBase');
+const Page=require('./Page.js')
 DB.init()
-class RegP {
+class RegP extends Page{
 
   username = null;
   email = null;
   password = null;
   option = 0;
   warmUser=false;
+
 
   isOpen = false;
   isValidName = false;
@@ -20,6 +22,12 @@ class RegP {
     email:'',
     username:'',
     password:''
+
+  }
+
+  constructor() {
+
+    super()
   }
 
   usernameValidity(username) {
@@ -64,6 +72,8 @@ class RegP {
     return this.isValidPassword;
   }
 
+
+
   chickOnTheData(username,email,password) {
     this.usernameValidity(username);
     this.emailValidity(email);
@@ -75,6 +85,8 @@ class RegP {
       console.log("invalid data");
     }
   }
+
+
   fillData(){
     // this.chickOnTheData(username,email,password)
     this.warmUser=true
@@ -87,6 +99,7 @@ class RegP {
       console.log('save data in DB');
       this.warmUser=false
     }
+
   }
   setName(username){
     this.cache.username=username;
@@ -101,12 +114,18 @@ class RegP {
     return this.emailValidity(email)
   }
 
+
   readTheData(){
     let username = readlineSync.question("Enter Your Name:");
     let email = readlineSync.question("Enter Your Email:");
     let password = readlineSync.question("Enter Your Password:");
 
-    this.fillData(username,email,password)
+    this.setEmail(email)
+    this.setName(username)
+    this.setPassword(password)
+    this.printSubmitManu()
+    this.option=readlineSync.question();
+    this.submitManu(this.option)
   }
   
   submitManu(option) {
@@ -116,8 +135,8 @@ class RegP {
 
     this.option =option
         // readlineSync.question("Enter Your choise:");
-    console.log(this.option);
-    console.log(typeof this.option);
+    // console.log(this.option);
+    // console.log(typeof this.option);
     switch(String(this.option)){
       case "1":
             this.fillData()
@@ -126,7 +145,8 @@ class RegP {
         case "2": 
             // console.log('cancel operation');
             break;
-        default:break;
+        default:
+          break;
             // console.log('invalid input')
     }
   }
@@ -171,8 +191,17 @@ class RegP {
         console.log("Invalid option. Please choose an existed option");
     }
   }
+
+  readOption(){
+    this.readTheData()
+    if(this.goToLogin)
+      return 3;
+    else
+      return 0;
+  }
+  printMenu(){
+    console.clear()
+  }
 }
 
 module.exports = RegP;
-// let  r=new RegP();
-// r.emailValidity('AhmadDaradouck@gmail.com')

@@ -1,7 +1,13 @@
-// const readlineSync = require("readline-sync");
+const readlineSync = require("readline-sync");
+const Page=require('./Page.js')
 
-class StartP {
+const RegisitionPage=require('../JS-Files/regP')
+const LoginPage=require('../JS-Files/loginP')
+var process = require('process');
 
+class StartP extends Page{
+
+  goToOtherPage=0
   is_open = false;
   go_to_reg = 0;
   go_to_login = 0;
@@ -10,8 +16,10 @@ class StartP {
   option = -1;
   constructor() {
     // this.printmanu();
+    super()
   }
-  printmanu() {
+  printMenu() {
+    // console.clear()
     console.log("Options:");
     console.log("1. Register To Your Account");
     console.log("2. Login to Your Acount");
@@ -35,18 +43,33 @@ class StartP {
     this.go_to_reg = 1;
     this.go_to_login = 0;
     this._exit = 0;
+    console.log('regition open ')
   }
   goToLogin(){
     this.go_to_reg = 0;
     this.go_to_login = 1;
     this._exit = 0;
+    Server.currentPage=new LoginPage();
+
+
   }
   goToExit(){
     this.go_to_reg = 0;
     this.go_to_login = 0;
     this._exit = 1;
+    process.exit(0)
   }
 
+  readOption(){
+    let tempOP=readlineSync.question('what\'s your option')
+    this.setOption(tempOP)
+    this.run();
+
+    if(this.go_to_reg)
+      return 2;
+    if(this.go_to_login)
+      return  3;
+  }
   run() {
     // userChoice=Start.getOption()
     switch (String(this.option)){
