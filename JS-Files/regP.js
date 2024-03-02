@@ -9,7 +9,6 @@ class RegP {
   option = 0;
   warmUser=false;
 
-
   isOpen = false;
   isValidName = false;
   isValidEmail = false;

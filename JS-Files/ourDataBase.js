@@ -11,7 +11,6 @@ const venueData=`{
 const eventData=`{
     "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101", "time":"3:00","theme":"black","Description":"","Count":"100","type":"party" },
     "event-002" :{ "id": "event-002", "name": "Event 2", "date": "2024-03-15", "venueId": "102", "time":"4:00","theme":"gray", "Description":"","Count":"100","type":"party" }
-
 }`
 
 class DataHandler{
@@ -39,12 +38,12 @@ class DataHandler{
             }
             let venue=JSON.parse(venueData);
             for ( let key  in venue)
-            DataHandler.insertVenue(key,venue[key].name,venue[key].location)
+                DataHandler.insertVenue(key,venue[key].name,venue[key].location)
             this.isreadvenue=true;
             let event=JSON.parse(eventData);
             this.isreadevent=true;
             for ( let key  in event){
-                DataHandler.insertEvent(key,event[key].name,event[key].date,event[key].venueId)
+                DataHandler.insertEvent(key,event[key].name,event[key].date,event[key].venueId,event[key].time,event[key].theme,event[key].Description,event[key].Count,event[key].type)
             }
             // console.log(DataHandler.userMap)
         } catch (err) {
@@ -118,36 +117,37 @@ class DataHandler{
 
         }
     }
-   static updateEvent(id,name,date,venuetime, theme,Description, Count, type){
+   static updateEvent(id,name,date,venue,time, theme,Description, Count, type){
        
     if(id!=undefined) {
+        console.log("================"+Count)
         let row = DataHandler.eventMap.get(id);
-        if(row==undefined)
+            if(row==undefined)
             return;
-            let newName= (name != undefined ? name :row.name);
-            let newDate= (date != undefined ? date.trim() :row.date);
-            let newVenue= (venue != undefined ? venue.trim() :row.venue);
-            let newtime= (time != undefined ? time.trim() :row.time);
-            let newtheme= (theme != undefined ? theme.trim() :row.theme);
-            let newDescription= (Description != undefined ? Description.trim() :row.Description);
-            let newCount= (Count != undefined ? Count.trim() :row.Count);
-            let newtype= (type != undefined ? type.trim() :row.type);
+            let newName = ((name != undefined && name != '') ? name :row.name);
+            let newDate= ((date != undefined && date != '') ? date.trim() :row.date);
+            let newVenue= ((venue != undefined && venue != '') ? venue.trim() :row.venue);
+            let newtime= ((time != undefined && time != '') ? time.trim() :row.time);
+            let newtheme= ((theme != undefined && theme != '') ? theme.trim() :row.theme);
+            let newDescription= ((Description != undefined && Description != '') ? Description.trim() :row.Description);
+            let newCount= ((Count != undefined && Count != '')? Count.trim() :row.Count);
+            let newtype= ((type != undefined &&type != '') ? type.trim() :row.type);
 
-        DataHandler.insertEvent(id,name,date,venuetime, theme,Description, Count, type)
-
-    }
+            DataHandler.insertEvent(id,newName,newDate,newVenue,newtime, newtheme ,newDescription, newCount, newtype);
+        }
     }
    static updateVenue( id, name,location,capcity,price,Amenities){
     if(id!=undefined) {
         let row = DataHandler.venueMap.get(id);
         if(row==undefined)
             return;
+            let newID = row.id;
             let newName= (name != undefined ? name :row.name);
             let newLocation= (location != undefined ? location.trim() :row.location);
             let newCapcity= (capcity != undefined ? capcity.trim() :row.capcity);
             let newPrice= (price != undefined ? price.trim() :row.price);
             let newAmenities= (Amenities != undefined ? Amenities.toString().trim() :row.Amenities);
-        DataHandler.insertVenue(id , newName , newLocation,newCapcity,newPrice,newAmenities);
+        DataHandler.insertVenue(newID , newName , newLocation,newCapcity,newPrice,newAmenities);
     }}}
 
 module.exports=DataHandler;

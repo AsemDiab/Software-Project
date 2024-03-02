@@ -1,7 +1,7 @@
 const Page = require("../JS-Files/Page.js");
 const DB = require("../JS-Files/ourDataBase.js");
 const readlineSync = require("readline-sync");
-
+DB.init();
 class EventManagementPage extends Page {
   eventID = null;
   eventName = null;
@@ -12,6 +12,20 @@ class EventManagementPage extends Page {
   eventCount = null;
   eventType = null;
   venueID = null;
+
+  setID(id){this.cache.ID = id;return this.idValidity(id)}
+  setName(name){this.cache.name = name;}
+  setDate(date){this.cache.date = date;}
+  setTime(time){this.cache.time = time;}
+  setTheme(theme){this.cache.theme = theme;}
+  setDescription(discription){this.cache.description = discription;}
+  setCount(count){this.cache.count = count;}
+  setType(type){this.cache.type = type;}
+  setVenueID(venueID){this.cache.venueID = venueID;}
+
+  idValidity(id){
+    return DB.eventMap.get(this.eventID) == undefined;
+  }
 
   userPage = 0;
 
@@ -24,6 +38,7 @@ class EventManagementPage extends Page {
     super();
     this.openPage();
   }
+  
   setOption(option) {
     this.option = option;
   }
@@ -37,22 +52,36 @@ class EventManagementPage extends Page {
   goToUserPage() {
     this.userPage = 1;
   }
+  cacheSubmit(){
+    this.eventID = this.cache.ID;
+    this.eventName = this.cache.name;
+    this.eventDate = this.cache.date;
+    this.venueID = this.cache.venueID;
+    this.eventTime = this.cache.time;
+    this.eventCount = this.cache.count;
+    this.eventTheme = this.cache.theme;
+    this.eventDescription = this.cache.description;
+    this.eventType = this.cache.type;
+  }
   checkEventID(eventID) {
-    return DB.userMap.get(eventID) == undefined;
+    if(eventID != '' && eventID != undefined && eventID != null){
+      this.cacheSubmit();
+      return DB.eventMap.get(eventID) == undefined;
+    }else return false;
   }
   cache={
     ID:'',
     name:'',
     date:'',
-    Time:'',
-    Theme:'',
+    time:'',
+    theme:'',
     description:'',
     count:'',
     type:'',
     venueID:''
   }
 
-  fillDataToAdd() {
+  readData(){
     let ID = readlineSync.question("Enter Your ID:");
     let name = readlineSync.question("Enter Your Name:");
     let date = readlineSync.question("Enter Your Date:");
@@ -62,20 +91,51 @@ class EventManagementPage extends Page {
     let count = readlineSync.question("Enter Your Count:");
     let type = readlineSync.question("Enter Your Type:");
     let venueID = readlineSync.question("Enter Your Venue-ID:");
-    if (this.checkEventID(ID)){
-      DB.insertEvent(ID, name, date,venueID,time,theme,description,count,type);
-      console.log(DB.eventMap.get(ID));
+    this.setID(ID);
+    this.setName(name);
+    this.setDate(date);
+    this.setTime(time);
+    this.setTheme(theme);
+    this.setDescription(description);
+    this.setCount(count);
+    this.setType(type);
+    this.setVenueID(venueID);
+  }
+
+  fillDataToAdd() {
+    this.readData();
+    if (this.checkEventID(this.eventID)){
+      DB.insertEvent(this.eventID, this.eventName, this.eventDate,this.venueID,this.eventTime,this.eventTheme,this.eventDescription,this.eventCount,this.eventType);
+      console.log(DB.eventMap.get(this.eventID));
+      console.log(DB.eventMap);
     }else{
-        console.log("event already exist");
+      console.log("event already exist or null");
     }
   }
   selectToDelete() {
-    let row = readlineSync.question("Enter the row you want to delete it");
+    console.log('-----------------------------------');
+    let ID = readlineSync.question("Enter ID To Delete:");
+    if(this.checkEventID(ID) == false){
+      DB.eventMap.delete(ID);
+      console.log(DB.eventMap);
+    }else{
+      console.log('error: try to delete event doesnt exist');
+      console.log(DB.eventMap);
+    }
   }
+ 
   selectToUpdate() {
-    let row = readlineSync.question("Enter the row you want to update it");
+    let ID = readlineSync.question("Enter ID To Update:");
+    if(this.checkEventID(ID) == false){
+      console.log('---event---updated---');
+      this.readData();
+      this.cacheSubmit();
+      DB.updateEvent(ID, this.eventName, this.eventDate,this.venueID,this.eventTime,this.eventTheme,this.eventDescription,this.eventCount,this.eventType);
+      console.log(DB.eventMap);
+    }else
+    console.log("error: try to update event doesnt exist");
   }
-
+ 
   addEvent(
     id,
     name,

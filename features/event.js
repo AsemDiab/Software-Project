@@ -1,10 +1,12 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const EventManagementPage = require("../JS-Files/EventManagementPage.js");
+const { event } = require("../JS-Files/ourDataBase.js");
 var eventManagmentPage = new EventManagementPage();
 
 Given("the user navicates to event page", function () {
   eventManagmentPage.openPage();
+  eventManagmentPage.printMenu();
 });
 
 When("the user enter option {int}", function (int) {
@@ -24,6 +26,7 @@ Then("display message {string}", function (string) {
 Then("reture user to Event management page", function () {});
 
 When("select a row with its id to delete", function () {
+    console.log('select row to delet')
     eventManagmentPage.selectToDelete();
 });
 
