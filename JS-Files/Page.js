@@ -5,6 +5,11 @@ class Page{
     constructor() {
         this.openPage()
     }
+
+    printMenu(){
+        console.clear()
+
+    }
     openPage(){
         this.isOpen=true
     }

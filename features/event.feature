@@ -40,6 +40,6 @@ Feature: Event Creation and Management
 
     Scenario: return to Start Page
         Given user is in the Event Management page
-        When the user clicks on the "return" option
+        When the user clicks on the  return option
         Then redirect him to user main page
         
