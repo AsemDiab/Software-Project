@@ -9,7 +9,6 @@ class RegP {
   option = 0;
   warmUser=false;
 
-
   isOpen = false;
   isValidName = false;
   isValidEmail = false;
@@ -21,7 +20,6 @@ class RegP {
     email:'',
     username:'',
     password:''
-
   }
 
   usernameValidity(username) {
@@ -66,8 +64,6 @@ class RegP {
     return this.isValidPassword;
   }
 
-
-
   chickOnTheData(username,email,password) {
     this.usernameValidity(username);
     this.emailValidity(email);
@@ -79,17 +75,6 @@ class RegP {
       console.log("invalid data");
     }
   }
-<<<<<<< HEAD
-
-  readTheData(){
-    this.username = readlineSync.question("Enter Your Name:");
-    console.log(typeof this.username);
-    this.email = readlineSync.question("Enter Your Email:");
-    console.log(typeof this.email);
-    this.password = readlineSync.question("Enter Your Password:");
-    console.log(typeof this.password);
-    chickOnTheData();
-=======
   fillData(){
     // this.chickOnTheData(username,email,password)
     this.warmUser=true
@@ -102,8 +87,6 @@ class RegP {
       console.log('save data in DB');
       this.warmUser=false
     }
-
->>>>>>> dcc518f0b59f7cbb1f12e519e3089fccc50df53e
   }
   setName(username){
     this.cache.username=username;
@@ -118,13 +101,12 @@ class RegP {
     return this.emailValidity(email)
   }
 
-
   readTheData(){
     let username = readlineSync.question("Enter Your Name:");
     let email = readlineSync.question("Enter Your Email:");
     let password = readlineSync.question("Enter Your Password:");
 
-this.fillData(username,email,password)
+    this.fillData(username,email,password)
   }
   
   submitManu(option) {

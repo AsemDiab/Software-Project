@@ -13,7 +13,6 @@ Feature: Register page
        Then the system should display a message to warn him
        And user should remain on the registerion page
        Examples:
-
            | email                    | username | password      |
            | 'asemhesham55gmail.com'  | 'asem'   | 'Saitama@123' |
            | 'asemhesham55@gmailcom'  | 'asem'   | 'Saitama@123' |

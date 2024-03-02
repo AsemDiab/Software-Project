@@ -18,11 +18,11 @@ Then("transfere him to the Event Management page", function () {
 });
 
 Then("send User to Profile page", function () {
-    assert.equal(user.profilePage , 1);
+  assert.equal(user.profilePage , 1);
 });
 
 Then("redirect him to Start Page", function () {
-    assert.equal(user.startingPage , 1);
+  assert.equal(user.startingPage , 1);
 });
 
 When("user enters invalid integer {int}", function (int) {

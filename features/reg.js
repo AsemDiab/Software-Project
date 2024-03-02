@@ -8,8 +8,6 @@ Given("the user is in the registerion page", function () {
   registerion.openPage();
 });
 
-
-
 When('the user fills all attribute \\( name , email ,password,..ect) with valid inputs', function () {
   registerion.setName('asem')
   registerion.setEmail('semhesham@gmail.com')
