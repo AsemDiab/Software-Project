@@ -21,7 +21,6 @@ class RegP {
     email:'',
     username:'',
     password:''
-
   }
 
   usernameValidity(username) {
@@ -66,8 +65,6 @@ class RegP {
     return this.isValidPassword;
   }
 
-
-
   chickOnTheData(username,email,password) {
     this.usernameValidity(username);
     this.emailValidity(email);
@@ -91,7 +88,6 @@ class RegP {
       console.log('save data in DB');
       this.warmUser=false
     }
-
   }
   setName(username){
     this.cache.username=username;
@@ -106,13 +102,12 @@ class RegP {
     return this.emailValidity(email)
   }
 
-
   readTheData(){
     let username = readlineSync.question("Enter Your Name:");
     let email = readlineSync.question("Enter Your Email:");
     let password = readlineSync.question("Enter Your Password:");
 
-this.fillData(username,email,password)
+    this.fillData(username,email,password)
   }
   
   submitManu(option) {

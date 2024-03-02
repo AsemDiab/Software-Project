@@ -20,7 +20,6 @@ Feature: Event Creation and Management
         And fill all attributes data (id,name,date,venue-ID)
         Then display message "error: invalid input"
         And reture user to Event management page
-
     
     Scenario: delete event 
         Given the user navicates to event page
@@ -33,30 +32,27 @@ Feature: Event Creation and Management
         Given the user navicates to event page
         When the user enter option 2
         And select a row with its id to delete
-        Then display massege "error: that ID does not exist"
+        Then display message "error: that ID does not exist"
         And reture user to Event management page
 
     Scenario: modify event 
         Given the user navicates to event page
         When the user enter option 3
-        And select a row with its id to update it
-        And refill the data he need to update ( ID, Name, date, venue-ID)
+        And select a row with its id to update it and refill the data
         Then display message "event updated successfully"
         And reture user to Event management page
 
     Scenario: modify unexisted event 
         Given the user navicates to event page
         When the user enter option 3 
-        And select a row with its id to update it
-        And refill the data he need to update ( ID, Name, date, venue-ID)
+        And select a row with its id to update it and refill the data
         Then display message "error: updated unexisted event"
         And reture user to Event management page
 
     Scenario: modify event with invalid input
         Given the user navicates to event page
         When the user enter option 3
-        And select a row with its id to update it
-        And refill the data he need to update ( ID, Name, date, venue-ID)
+        And select a row with its id to update it and refill the data
         Then display message "error: update event with invalid input"
         And reture user to Event management page
 

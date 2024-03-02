@@ -12,7 +12,6 @@ Given('Numbers are provided', function () {
     return console.log('Addition is preformed here');
   });
 
-
   Then('Display sum of numbers', function () {
     return console.log('Sum of numbers are '+ sum);
   });

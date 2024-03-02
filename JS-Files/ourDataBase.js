@@ -5,8 +5,8 @@ const userData=`{
     "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"admin"}
 }`;
 const venueData=`{ 
-    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,capcity:100,price:100$,Amenities:[]},
-    "102" : { "id": 102, "name": "Venue B", "location": "City Y",capcity:100,price:100$,Amenities:[] }
+    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":[]},
+    "102" :   { "id": 102, "name": "Venue B", "location": "City Y" ,"capcity":"100","price":"100$","Amenities":[]}
 }`
 const eventData=`{
     "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101", "time":"3:00","theme":"black","Description":"","Count":"100","type":"party" },
@@ -75,7 +75,7 @@ class DataHandler{
              location:location
             ,capcity:capcity,
             price:price,
-            Amenities:Amenities.toString()
+            Amenities:String(Amenities)
                 }
 
              DataHandler.venueMap.set(id,x)
@@ -84,7 +84,7 @@ class DataHandler{
     static insertEvent(id,name,date,venue,time, theme,Description,Count,type ){
 
         if(id==undefined)
-            id=DataHandler.eventMap.size()
+            id=DataHandler.eventMap.size;
 
         var x= {
             id: id,
@@ -132,7 +132,6 @@ class DataHandler{
             let newDescription= (Description != undefined ? Description.trim() :row.Description);
             let newCount= (Count != undefined ? Count.trim() :row.Count);
             let newtype= (type != undefined ? type.trim() :row.type);
-
 
         DataHandler.insertEvent(id,name,date,venuetime, theme,Description, Count, type)
 
