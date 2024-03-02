@@ -21,7 +21,7 @@ Then("send User to Profile page", function () {
   assert.equal(user.profilePage , 1);
 });
 
-Then("redirect him to Start Page", function () {
+Then("redirect him from user page to Start Page", function () {
   assert.equal(user.startingPage , 1);
 });
 
@@ -39,7 +39,9 @@ When("user enters invalid integer {string}", function (string) {
 
 Then("the system display message to warn him", function () {
     assert.equal(user.isOpen,true);
+    assert.equal(user.warnTheUser,true);
     console.log("invalid input");
+
 });
 
 Then("reture user to the user page", function () {

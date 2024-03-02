@@ -4,6 +4,7 @@ class UserP {
     profilePage = 0;
     startingPage = 0;
     option = -1;
+    warnTheUser=false
 
   printmanu(){
     console.log("Options:");
@@ -50,6 +51,7 @@ class UserP {
       default:
         console.log("Invalid option. Please choose 1, 2, or 3.");
         this.reopenPage();
+        this.warnTheUser=true
         break;
     }
   }
