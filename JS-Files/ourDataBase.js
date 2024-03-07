@@ -2,7 +2,8 @@ const fs=require('fs')
 
 
 const userData=`{
-    "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"admin"}
+    "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"admin"},
+    "sayed@hotmail.com":{"username":"Sayed","email": "sayed@hotmail.com","password": "123456","type":"admin"}
 }`;
 const venueData=`{ 
     "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":[]},
@@ -154,14 +155,3 @@ class DataHandler{
     }}}
 
 module.exports=DataHandler;
-
-let m=new Map()
-m.set('a',1)
-m.set('b',2)
-console.log(typeof (m))
-
-DataHandler.init()
-console.log(DataHandler.userMap)
-console.log("---------------------------------------")
-console.log(DataHandler.userMap.get("asemhesham@gmail.com"))
-DataHandler.updateUser(type='pp',1,3,4,5,6,7,8);

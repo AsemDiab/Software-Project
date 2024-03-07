@@ -3,159 +3,53 @@ const assert = require("assert");
 const LoginP = require("../JS-Files/loginP");
 var login = new LoginP();
 
-Given("the user or admin is on the login page", function () {
-  login.openPage();
+Given("the user is on the login page", function () {
+  // Write code here that turns the phrase above into concrete actions
 });
 
-When("the user or admin enters valid data \\(email and password)", function () {
-  login.enterEmailAndPassword();
+When("the user enters valid data {string} and {int}", function (string, int) {
+  // When('the user enters valid data {string} and {float}', function (string, float) {
+  // Write code here that turns the phrase above into concrete actions
 });
 
-Then("redirect him to user or admin home page", function () {
-  // login.run();
+When(
+  "the user enters valid data {string} and {string}",
+  function (string, string2) {
+    // Write code here that turns the phrase above into concrete actions
+  }
+);
+
+When(
+  "the user enters invalid data {string} and {string}",
+  function (string, string2) {
+    // Write code here that turns the phrase above into concrete actions
+  }
+);
+
+Then("display an message {string}", function (string) {
+  // Write code here that turns the phrase above into concrete actions
 });
 
-// Given("the admin is on the login page", function () {});
+Then("refresh login page", function () {
+  // Write code here that turns the phrase above into concrete actions
+});
 
-// When("the admin enters valid data \\(email and password)", function () {
-//   login.openPage();
-//   login.enterEmailAndPassword();
-// });
+When("the user enters invalid data", function () {
+  // Write code here that turns the phrase above into concrete actions
+});
 
-// // When("clicks on the login button", function () {
-// //   login.run();
-// // });
+When("click on registerion page option", function () {
+  // Write code here that turns the phrase above into concrete actions
+});
 
-// Then("redirect him to admin home page", function () {
-//   login.goToUserPage;
-// });
+Then("send the user to registerion page", function () {
+  // Write code here that turns the phrase above into concrete actions
+});
 
-// Then("a welcome message will be displayed", function () {
-//   login.welcomeMessage();
-// });
+When("the user enters any invalid integer", function () {
+  // Write code here that turns the phrase above into concrete actions
+});
 
-// Given("the user is on the login page", function () {});
-
-// When("the user enters valid data \\(email and password)", function () {
-//   login.openPage();
-//   login.enterEmailAndPassword();
-// });
-
-// // When("clicks on the login button", function () {
-// //   // Write code here that turns the phrase above into concrete actions
-// //   return "pending";
-// // });
-
-// Then("redirect him to user home page", function () {
-//   goToAdminPage();
-// });
-
-// Then("a welcome message will be displayed", function () {
-//   login.welcomeMessage();
-// });
-
-// Given("the user is on the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("the user enters incorrect email or password", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("clicks on the login button", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then(
-//   "the user should see an error message indicating that the login failed",
-//   function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-//   }
-// );
-
-// Then("the user should remain on the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Given("the user is on the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("the user enters invalid data", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("clicks on the login button", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then(
-//   "the user should see an error message indicating that the login failed",
-//   function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-//   }
-// );
-
-// Then("the user should remain on the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Given("the user is on the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("click on {string} button", function (string) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("send the user to {string} page", function (string) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Given("user is in the login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("the user clicks on the {string} option", function (string) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("redirect him to Start Page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Given("the user is in the Login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// When("the user enters any invalid integer input", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("display message {string}", function (string) {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then("reture to the Login page", function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
+Then("display message {string}", function (string) {
+  // Write code here that turns the phrase above into concrete actions
+});

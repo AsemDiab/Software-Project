@@ -1,9 +1,9 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
-const Page =require('../JS-Files/Page')
+const Page = require("../JS-Files/Page");
 DB.init();
 
-class LoginP extends Page{
+class LoginP extends Page {
   state = "admin";
   // option = -1;
   password = "password";
@@ -15,18 +15,18 @@ class LoginP extends Page{
   goToLogin = 1;
   goToAdmin = 0;
 
-  userObject = '';
+  userObject = "";
 
-  cache={
-    email:'',
-    password:''
-  }
+  cache = {
+    email: "",
+    password: "",
+  };
 
-  nextPage=0
-  systemMsg=''
+  nextPage = 0;
+  systemMsg = "";
 
   constructor() {
-    super()
+    super();
     // this.enterEmailAndPassword();
   }
   enterEmailAndPassword() {
@@ -35,16 +35,14 @@ class LoginP extends Page{
     this.cache.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.email);
     this.userObject = DB.userMap.get(this.email);
-    console.log(typeof(this.userObject));
-    this.setEmail(this.cache.email)
-    this.setPassword(this.cache.password)
+    console.log(typeof this.userObject);
+    this.setEmail(this.cache.email);
+    this.setPassword(this.cache.password);
     this.run();
   }
 
-
-
-  readOption(){
-return this.nextPage
+  readOption() {
+    return this.nextPage;
   }
 
   openPage() {
@@ -55,7 +53,7 @@ return this.nextPage
     this.goToUser = 1;
     this.goToLogin = 0;
     this.goToAdmin = 0;
-    this.nextPage=4
+    this.nextPage = 4;
   }
   goToAdminPage() {
     this.goToUser = 0;
@@ -71,7 +69,7 @@ return this.nextPage
     console.log("Login Seccussfully");
   }
   getState() {
-    return DB.userMap.get('asemhesham@gmail.com').type
+    return DB.userMap.get("asemhesham@gmail.com").type;
     // userObject["asemhesham@gmail.com"].type;
   }
   setPassword(password) {
@@ -101,9 +99,9 @@ return this.nextPage
   run() {
     let tempState = this.getState();
     console.log(this.tempState);
-    let user=DB.userMap.get((this.email.trim()).toLowerCase())
+    let user = DB.userMap.get(this.email.trim().toLowerCase());
     if (tempState == "admin") {
-      if ( this.password == user.password) {
+      if (this.password == user.password) {
         console.log("Admin Successfully Login");
         this.goToAdminPage();
       } else {
