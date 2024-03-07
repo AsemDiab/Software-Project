@@ -66,7 +66,7 @@ class EventManagementPage extends Page {
   checkEventID(eventID) {
     if(eventID != '' && eventID != undefined && eventID != null){
       this.cacheSubmit();
-      return DB.eventMap.get(eventID) == undefined;
+      return (DB.eventMap.get(eventID) == undefined);
     }else return false;
   }
   cache={
@@ -104,7 +104,7 @@ class EventManagementPage extends Page {
 
   fillDataToAdd() {
     this.readData();
-    if (this.checkEventID(this.eventID)){
+    if (this.checkEventID(this.cache.ID)){
       DB.insertEvent(this.eventID, this.eventName, this.eventDate,this.venueID,this.eventTime,this.eventTheme,this.eventDescription,this.eventCount,this.eventType);
       console.log(DB.eventMap.get(this.eventID));
       console.log(DB.eventMap);
@@ -206,3 +206,6 @@ class EventManagementPage extends Page {
   }
 }
 module.exports = EventManagementPage;
+var eventManagmentPage = new EventManagementPage();
+
+eventManagmentPage.fillDataToAdd();
