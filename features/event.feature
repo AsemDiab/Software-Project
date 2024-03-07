@@ -2,8 +2,8 @@ Feature: Event Creation and Management
 
     Scenario: add new event
         Given the user navicates to event page
-        And want to add new event
-        When the user fill all data to add event
+        When  select add new event
+        And the user fill all data to add event
         And clicks on "add event" option
         Then the event is added successfully
 

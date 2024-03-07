@@ -1,5 +1,6 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
+const Page =require('../JS-Files/Page')
 DB.init();
 
 class LoginP extends Page{
@@ -21,22 +22,29 @@ class LoginP extends Page{
     password:''
   }
 
+  nextPage=0
+  systemMsg=''
+
   constructor() {
     super()
     // this.enterEmailAndPassword();
   }
   enterEmailAndPassword() {
-    this.email = readlineSync.question("Enter Your Email:");
+    this.cache.email = readlineSync.question("Enter Your Email:");
     console.log(typeof this.email);
-    this.password = readlineSync.question("Enter Your Password:");
+    this.cache.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.email);
     this.userObject = DB.userMap.get(this.email);
     console.log(typeof(this.userObject));
+    this.setEmail(this.cache.email)
+    this.setPassword(this.cache.password)
     this.run();
   }
 
-  readOption(){
 
+
+  readOption(){
+return this.nextPage
   }
 
   openPage() {
@@ -47,6 +55,7 @@ class LoginP extends Page{
     this.goToUser = 1;
     this.goToLogin = 0;
     this.goToAdmin = 0;
+    this.nextPage=4
   }
   goToAdminPage() {
     this.goToUser = 0;
@@ -62,7 +71,8 @@ class LoginP extends Page{
     console.log("Login Seccussfully");
   }
   getState() {
-    return userObject["asemhesham@gmail.com"].type;
+    return DB.userMap.get('asemhesham@gmail.com').type
+    // userObject["asemhesham@gmail.com"].type;
   }
   setPassword(password) {
     this.password = password;
@@ -91,8 +101,9 @@ class LoginP extends Page{
   run() {
     let tempState = this.getState();
     console.log(this.tempState);
+    let user=DB.userMap.get((this.email.trim()).toLowerCase())
     if (tempState == "admin") {
-      if (this.email == "asemhesham@gmail.com" && this.password == "123456") {
+      if ( this.password == user.password) {
         console.log("Admin Successfully Login");
         this.goToAdminPage();
       } else {

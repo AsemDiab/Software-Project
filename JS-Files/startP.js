@@ -14,6 +14,8 @@ class StartP extends Page{
   _exit = 0;
 
   option = -1;
+  nextPage=0
+  systemMsg=''
   constructor() {
     // this.printmanu();
     super()
@@ -43,15 +45,14 @@ class StartP extends Page{
     this.go_to_reg = 1;
     this.go_to_login = 0;
     this._exit = 0;
-    console.log('regition open ')
-  }
+    this.nextPage=2
+    }
   goToLogin(){
     this.go_to_reg = 0;
     this.go_to_login = 1;
     this._exit = 0;
-    Server.currentPage=new LoginPage();
-
-
+    // Server.currentPage=new LoginPage();
+    this.nextPage=3
   }
   goToExit(){
     this.go_to_reg = 0;

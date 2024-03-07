@@ -20,6 +20,7 @@ class DataHandler{
     static isreadUsers=false;
     static isreadvenue=false;
     static isreadevent=false;
+    static isUpdate=false;
     constructor(){
         DataHandler.init();
     }
@@ -34,7 +35,8 @@ class DataHandler{
             let user=JSON.parse(userData);
             this.isreadUsers=true;
             for ( let key  in user){
-                DataHandler.userMap.set([key],{username:user[key].username,email:user[key].email,password:user[key].password,type : user[key].type})
+                DataHandler.userMap.set(key,{username:user[key].username,email:user[key].email,password:user[key].password,type : user[key].type})
+
             }
             let venue=JSON.parse(venueData);
             for ( let key  in venue)
@@ -53,14 +55,15 @@ class DataHandler{
 
      static insertUser(_email,username,password,type){
 
-
+        if(DataHandler.userMap.get((_email.trim()).toLowerCase())!=undefined&& !DataHandler.isUpadte)
+            return;
         var x={
             username:username.trim(),
             email:_email.trim(),
             password:password.trim(),
             type : type.trim()
          }
-        DataHandler.userMap.set(_email.trim(),x)
+        DataHandler.userMap.set((_email.trim()).toLowerCase(),x)
        // console.log(DataHandler.userMap)
 
     }
@@ -111,10 +114,10 @@ class DataHandler{
                 let newPassword= (password != undefined ? password.trim() :row.password);
                 let newType= (type != undefined ? type.trim() :row.type)
                 console.log("update email=",_email,"to  ",newUsername,newPassword,newType)
-            
 
+        DataHandler.isUpdate=true
             DataHandler.insertUser(_email,newUsername,newPassword,newType)
-
+        DataHandler.isUpdate=false
         }
     }
    static updateEvent(id,name,date,venue,time, theme,Description, Count, type){
@@ -151,3 +154,14 @@ class DataHandler{
     }}}
 
 module.exports=DataHandler;
+
+let m=new Map()
+m.set('a',1)
+m.set('b',2)
+console.log(typeof (m))
+
+DataHandler.init()
+console.log(DataHandler.userMap)
+console.log("---------------------------------------")
+console.log(DataHandler.userMap.get("asemhesham@gmail.com"))
+DataHandler.updateUser(type='pp',1,3,4,5,6,7,8);

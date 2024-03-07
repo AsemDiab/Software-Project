@@ -1,7 +1,9 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const RegP = require("../JS-Files/regP");
+const DB = require("../JS-Files/ourDataBase");
 var registerion = new RegP();
+DB.init()
 
 
 Given("the user is in the registerion page", function () {
@@ -21,12 +23,10 @@ When("clicks on submit option", function () {
 
 Then("redirect him to login page", function () {
   registerion.goToLoginPage();
+  assert.equal(registerion.nextPage,3)
+  // assert.equal()
 });
 
-// When("the user enter one or more invalid inputs", function () {
-//   registerion.fillData('asem','asemhesham@gmail.com','Asem@2003');
-//
-// });
 When('the user enter at least invalid inputs {string} {string} {string}', function (string, string2, string3) {
   // registerion.fillData(string,string2,string3);
   registerion.setEmail(string)
@@ -37,11 +37,17 @@ When('the user enter at least invalid inputs {string} {string} {string}', functi
 
 
 Then("the system should display a message to warn him", function () {
-  assert.equal(true,registerion.warmUser,'the user is sad due to you don\'t warn him',registerion.cache)
+  assert.equal(registerion.systemMsg,'the password is invalid','email already taken test failed')
+
+});
+Then('the system should display a message {string} to warn him', function (string) {
+  // Write code here that turns the phrase above into concrete actions
+  assert.equal(string,registerion.systemMsg,'invalid input test failed')
 });
 
+
 Then("user should remain on the registerion page", function () {
-  registerion.openPage();
+  assert.equal(registerion.nextPage,0,'the user should remain in same page ')
 });
 
 
@@ -75,16 +81,19 @@ When("clicks on login page button", function () {
 
 Then("send the user to login page", function () {
   assert.equal(registerion.goToLogin,1,"you aren't in login page")
+  assert.equal(registerion.nextPage,3,'successful login test failed')
 });
 
 
 
 When("the user clicks on the return option", function () {
+  registerion.clicks('return to start page')
+
 
 });
 
 Then("redirect him to Start Page", function () {
-
+  assert.equal(registerion.nextPage,1)
 });
 
 Given("the user is in the Register page", function () {
@@ -95,10 +104,9 @@ When("the user enters any invalid input", function () {
 
 });
 
-// Then("the system should display a message to warn him", function () {
-//
-// });
 
 Then("reture to the Register page", function () {
+
+  assert.equal(registerion.nextPage,0,'invalid test failed ')
 
 });

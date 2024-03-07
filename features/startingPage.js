@@ -24,6 +24,8 @@ When("the user enters {int}", function (int) {
 
 Then("transfere him to the login page with option {int}", function (int) {
   assert.equal(Start.go_to_login,1);
+  assert.equal(Start.nextPage , 3);
+
 });
 
 
@@ -49,4 +51,6 @@ Then("reture to the staring page", function () {
   Start.run();
   Start.reopenPage();
   assert.equal(Start.is_open,true);
+  assert.equal(Start.nextPage , 0);
+
 });

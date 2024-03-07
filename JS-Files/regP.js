@@ -1,7 +1,6 @@
 const readlineSync = require("readline-sync");
 const  DB=require('../JS-Files/ourDataBase');
 const Page=require('./Page.js')
-DB.init()
 class RegP extends Page{
 
   username = null;
@@ -25,6 +24,8 @@ class RegP extends Page{
 
   }
 
+  nextPage=0
+  systemMsg=''
   constructor() {
 
     super()
@@ -35,20 +36,29 @@ class RegP extends Page{
         this.isValidName = true;
     } else {
         this.isValidName = false;
+        this.systemMsg='invalid username'
         console.log("Try to enter a username with more than 3 characters.");
     }
     return this.isValidName;
   }
   emailAlreadyTaken(email){
 
-    return DB.userMap.get(email)==undefined;
+    if(DB.userMap.get(email)==undefined)
+      return true ;
+
+    this.systemMsg='this email already taken'
+    return false
   }
 
   emailValidity(email){
     // console.log("the is ",email)
-    if(email.includes('@') && email.endsWith('.com') && this.emailAlreadyTaken(email)){
+    if(email.includes('@') && email.endsWith('.com') &&this.emailAlreadyTaken(email) ){
       this.isValidEmail = true;
-    }else{
+    }else if(this.emailAlreadyTaken(email)){
+      this.systemMsg='this email is invalid';
+      this.isValidEmail=false
+    }
+    else{
       this.isValidEmail = false;
     }
     return this.isValidEmail;
@@ -68,29 +78,32 @@ class RegP extends Page{
       this.isValidPassword = true;
     } else {
       this.isValidPassword = false;
+      this.systemMsg='the password is invalid'
     }
     return this.isValidPassword;
   }
 
 
-
-  chickOnTheData(username,email,password) {
-    this.usernameValidity(username);
-    this.emailValidity(email);
-    this.passwordValidity(password);
-
-    if(this.isValidName == true && this.isValidEmail == true && this.isValidPassword == true ){
-      console.log("all data are valid");
-    }else{
-      console.log("invalid data");
-    }
-  }
-
+  //
+  // chickOnTheData(username,email,password) {
+  //   this.usernameValidity(username);
+  //   this.emailValidity(email);
+  //   this.passwordValidity(password);
+  //
+  //   if(this.isValidName == true && this.isValidEmail == true && this.isValidPassword == true ){
+  //     console.log("all data are valid");
+  //   }else{
+  //     console.log("invalid data");
+  //   }
+  // }
+  //
 
   fillData(){
     // this.chickOnTheData(username,email,password)
     this.warmUser=true
-    if(this.isValidEmail&&this.isValidName&&this.isValidPassword)
+    if(this.emailValidity(this.cache.email)
+        &&this.usernameValidity(this.cache.username)
+        &&this.passwordValidity(this.cache.password))
     {
       this.email=this.cache.email;
       this.username=this.cache.username;
@@ -116,21 +129,32 @@ class RegP extends Page{
 
 
   readTheData(){
-    let username = readlineSync.question("Enter Your Name:");
     let email = readlineSync.question("Enter Your Email:");
-    let password = readlineSync.question("Enter Your Password:");
-
     this.setEmail(email)
-    this.setName(username)
-    this.setPassword(password)
-    this.printSubmitManu()
-    this.option=readlineSync.question();
-    this.submitManu(this.option)
+    if(this.isValidEmail){
+      let username = readlineSync.question("Enter Your Name:");
+
+      this.setName(username)
+      if(this.isValidName){
+        let password = readlineSync.question("Enter Your Password:");
+
+        this.setPassword(password)
+        this.printSubmitManu()
+        this.option=readlineSync.question();
+        this.submitManu(this.option)
+      }
+      else {
+        this.submitManu(1)}
+    }
+    else {
+      this.submitManu(1)}
+
+
   }
+
   
   submitManu(option) {
 
-    console.log('sub')
 
 
     this.option =option
@@ -156,8 +180,11 @@ class RegP extends Page{
     console.log("2. cancel");
   }
   run(){
-    if(this.warmUser)
-      console.log('warning :(')
+
+    if(this.warmUser){
+      console.log(this.systemMsg)
+      this.nextPage=0
+    }
   }
   openPage(){
     this.isOpen = true;
@@ -166,11 +193,13 @@ class RegP extends Page{
   goToLoginPage() {
     // this.goToLogin = 0;
     this.goToLogin = 1;
+    this.nextPage=3
   }
 
   goToStartPage() {
     // this.goToLogin = 1;
     this.goToLogin = 0;
+    this.nextPage=1;
   }
 
   clicks(scenario) {
@@ -193,11 +222,9 @@ class RegP extends Page{
   }
 
   readOption(){
+    console.log(this.systemMsg)
     this.readTheData()
-    if(this.goToLogin)
-      return 3;
-    else
-      return 0;
+   return this.nextPage;
   }
   printMenu(){
     console.clear()

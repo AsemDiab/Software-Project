@@ -19,6 +19,9 @@ class Page{
     invalidOption(){
 
     }
+    readOption(){
+
+    }
 }
 
 module.exports = Page
