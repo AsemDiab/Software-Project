@@ -193,7 +193,6 @@ class RegP extends Page {
 
   clicks(scenario) {
     // userChoice=Start.getOption()
-
     switch (scenario.toLowerCase().trim()) {
       case "submit":
         this.submitManu(1);

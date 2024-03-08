@@ -29,6 +29,28 @@ class LoginP extends Page {
     super();
     // this.enterEmailAndPassword();
   }
+
+  printSubmitManu() {
+    console.log("Options:");
+    console.log("1. submit");
+    console.log("2. cancel");
+  }
+
+  submitManu(option) {
+    this.option = option;
+    switch (String(this.option)) {
+      case "1":
+        this.run();
+        break;
+      case "2":
+        // console.log('cancel operation');
+        break;
+      default:
+        break;
+      // console.log('invalid input')
+    }
+  }
+
   enterEmailAndPassword() {
     this.cache.email = readlineSync.question("Enter Your Email:");
     console.log(typeof this.email);
@@ -38,7 +60,50 @@ class LoginP extends Page {
     console.log(typeof this.userObject);
     this.setEmail(this.cache.email);
     this.setPassword(this.cache.password);
-    this.run();
+    this.printSubmitManu();
+    this.option = readlineSync.question();
+    this.submitManu(this.option);
+  }
+
+  run() {
+    let tempState = this.getState();
+    console.log(this.tempState);
+    let user = DB.userMap.get(this.email.trim().toLowerCase());
+    console.log(typeof(user) + "//////////////////////");
+    if (tempState == "admin") {
+      if (this.password == user.password) {
+        console.log("Admin Successfully Login");
+        this.goToAdminPage();
+      } else {
+        console.log("Failed To Login");
+        this.goToLoginPage();
+      }
+    } else {
+      if (this.email == user.email) {
+        console.log("User Successfullu Login");
+        this.goToUserPage();
+      } else {
+        console.log("Failed To Login");
+        this.goToLoginPage();
+      }
+    }
+  }
+
+  clicks(scenario) {
+    // userChoice=Start.getOption()
+    switch (scenario.toLowerCase().trim()) {
+      case "submit":
+        this.submitManu(1);
+        break;
+      case "go to login page":
+        this.goToLoginPage();
+        break;
+      case "return to start page":
+        this.goToStartPage();
+        break;
+      default:
+        console.log("Invalid option. Please choose an existed option");
+    }
   }
 
   readOption() {
@@ -59,11 +124,13 @@ class LoginP extends Page {
     this.goToUser = 0;
     this.goToLogin = 0;
     this.goToAdmin = 1;
+    this.nextPage = 7;
   }
   goToLoginPage() {
     this.goToUser = 0;
     this.goToLogin = 1;
     this.goToAdmin = 0;
+    this.nextPage = 3;
   }
   welcomeMessage() {
     console.log("Login Seccussfully");
@@ -95,29 +162,6 @@ class LoginP extends Page {
   // emailDoesntExist(email) {
   //   return DB.userMap.get(email) == undefined;
   // }
-
-  run() {
-    let tempState = this.getState();
-    console.log(this.tempState);
-    let user = DB.userMap.get(this.email.trim().toLowerCase());
-    if (tempState == "admin") {
-      if (this.password == user.password) {
-        console.log("Admin Successfully Login");
-        this.goToAdminPage();
-      } else {
-        console.log("Flailed To Login");
-        this.goToLoginPage();
-      }
-    } else {
-      if (this.email == "user@hotmail.com" && this.password == "123") {
-        console.log("User Successfullu Login");
-        goToUserPage();
-      } else {
-        console.log("Flailed To Login");
-        goToLoginPage();
-      }
-    }
-  }
 }
 
 module.exports = LoginP;

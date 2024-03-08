@@ -13,7 +13,7 @@ Feature: Login page
 
     Scenario Outline: incorrect email or password
         Given the user is on the login page
-        When the user enters invalid data <email> and <password>
+        When the user enters incorrect <email> and/or <password>
         And clicks on submit option
         Then display an message "Wronge Email or Password Data Input"
         And refresh login page
