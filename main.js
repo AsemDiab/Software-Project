@@ -5,6 +5,7 @@ const EventManagementPage=require('./JS-Files/EventManagementPage')
 const UserPage=require('./JS-Files/userP')
 const ProfilePage=require('./JS-Files/profileP')
 const Page =require('./JS-Files/Page.js')
+const adminPage =require('./JS-Files/Page.js')
 const DB=require('./JS-Files/Page')
 
 class Server{
@@ -31,6 +32,7 @@ class Server{
                 case "4":Server.currentPage=new UserPage();break;
                 case "5":Server.currentPage=new EventManagementPage();break;
                 case "6":Server.currentPage=new ProfilePage();break;
+                case "7":Server.currentPage=new adminPage();break;
             }
         }
     }

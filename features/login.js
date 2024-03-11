@@ -4,26 +4,31 @@ const LoginP = require("../JS-Files/loginP");
 var login = new LoginP();
 
 Given("the user is on the login page", function () {
-  // Write code here that turns the phrase above into concrete actions
+  login.openPage();
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  // When('the user enters valid data {string} and {float}', function (string, float) {
-  // Write code here that turns the phrase above into concrete actions
+  login.setEmail("sayed@gmail.com");
+  login.setPassword("1234");
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    // Write code here that turns the phrase above into concrete actions
+    login.setEmail("sayed@gmail.com");
+    login.setPassword("1234");
   }
 );
 
+//i'am not sure of this one
+Then("redirect him to user or admin home page", function () {
+  login.clicks("submit");
+  // assert.equal(login.nextPage, 3);
+});
+
 When(
-  "the user enters invalid data {string} and {string}",
-  function (string, string2) {
-    // Write code here that turns the phrase above into concrete actions
-  }
+  "the user enters incorrect {string} and\\/or {string}",
+  function (string, string2) {}
 );
 
 Then("display an message {string}", function (string) {
