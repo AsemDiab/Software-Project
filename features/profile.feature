@@ -2,12 +2,12 @@ Feature: Profile page
 
     Scenario: open my account page
         Given the user in Profile page
-        When he clicks on "my account" button
+        When select "my account" option
         Then send the user to my account page
 
     Scenario: open notification 
         Given the user in Profile page
-        When he clicks on "notification" button
+        When select "notification " option
         Then the system will display all notification for the user  
 
     # Scenario: Booking Confirmation
@@ -20,25 +20,30 @@ Feature: Profile page
     #     When he click on "Billing Ditails" button
     #     Then the system will display all Billing ditails of budget
         
-    Scenario: open Reservation page
+    Scenario: show Reservation 
         Given the user in Profile page
-        When he clicks on "Reservation" button
+        When select "Reservation " option
         Then the system will display all Reservation for all event
 
     Scenario: return
         Given the user in Profile page
-        When he clicks on "return" button
+        When select "return " option
         Then redirect him to user home page
 
     Scenario: User Logout
         Given the user in Profile page
-        When he clicks on "Logout" button
+        When select "Logout " option
         Then send the user to Starting page 
 
-    Scenario: Invalid input
+    Scenario Outline: Invalid input
         Given the user in Profile page
-        When the user enters any invalid integer input
-        Then display message "invalid input"
-        And warn him
+        When the user enters invalid integer in Profile Page <input>
+        Then display a message "invalid input enterd, plase inter again" 
+        And return him to profile page
+        Examples:
+            | input |
+            | 13    |
+            | 'f'   |
+            | -13   |
 
         
