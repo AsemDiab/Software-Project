@@ -22,17 +22,17 @@ Feature: Profile page
         
     Scenario: show Reservation 
         Given the user in Profile page
-        When select "Reservation " option
+        When select "Reservation" option
         Then the system will display all Reservation for all event
 
     Scenario: return
         Given the user in Profile page
-        When select "return " option
+        When select "return" option
         Then redirect him to user home page
 
     Scenario: User Logout
         Given the user in Profile page
-        When select "Logout " option
+        When select "Logout" option
         Then send the user to Starting page 
 
     Scenario Outline: Invalid input
