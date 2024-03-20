@@ -6,13 +6,17 @@ const userData=`{
     "sayed@hotmail.com":{"username":"Sayed","email": "sayed@hotmail.com","password": "123456","type":"admin"}
 }`;
 const venueData=`{ 
-    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":[]},
-    "102" :   { "id": 102, "name": "Venue B", "location": "City Y" ,"capcity":"100","price":"100$","Amenities":[]}
+    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":[],"url":"101"},
+    "102" :   { "id": 102, "name": "Venue B", "location": "City Y" ,"capcity":"100","price":"100$","Amenities":[],"url":"102"}
 }`
 const eventData=`{
     "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101", "time":"3:00","theme":"black","Description":"","Count":"100","type":"party" },
     "event-002" :{ "id": "event-002", "name": "Event 2", "date": "2024-03-15", "venueId": "102", "time":"4:00","theme":"gray", "Description":"","Count":"100","type":"party" }
 }`
+
+const Reservation=`
+    "asemhesham@gmail.com":{"email": "asemhesham@gmail.com","id": "event-001","time":"4:00",date,"date": "2024-03-15"},] 
+`
 
 class DataHandler{
     static user;
@@ -31,6 +35,7 @@ class DataHandler{
             DataHandler.userMap=new Map()
             DataHandler.venueMap=new Map()
             DataHandler.eventMap=new Map()
+            DataHandler.reservationMap=new Map()
             // console.log(typeof (DataHandler.userMap))
 
             let user=JSON.parse(userData);
@@ -48,6 +53,11 @@ class DataHandler{
             for ( let key  in event){
                 DataHandler.insertEvent(key,event[key].name,event[key].date,event[key].venueId,event[key].time,event[key].theme,event[key].Description,event[key].Count,event[key].type)
             }
+            let  reservation=JSON.parse(Reservation);
+            for ( let key  in reservation){
+                DataHandler.insertReservation(key,event[key].id ,event[key].date,event[key].time)
+            }
+
             // console.log(DataHandler.userMap)
         } catch (err) {
             console.error('Error reading JSON files:', err);
@@ -83,6 +93,21 @@ class DataHandler{
 
              DataHandler.venueMap.set(id,x)
        
+    }
+    static insertReservation(email,id,date,time ){
+
+        if(email==undefined)
+            return
+
+        var x= {
+            id: id,
+            date: date
+            ,time:time
+            ,email:email                }
+
+        DataHandler.reservationMap.set(email,x)
+
+
     }
     static insertEvent(id,name,date,venue,time, theme,Description,Count,type ){
 
@@ -152,6 +177,9 @@ class DataHandler{
             let newPrice= (price != undefined ? price.trim() :row.price);
             let newAmenities= (Amenities != undefined ? Amenities.toString().trim() :row.Amenities);
         DataHandler.insertVenue(newID , newName , newLocation,newCapcity,newPrice,newAmenities);
-    }}}
+    }}
+
+
+}
 
 module.exports=DataHandler;
