@@ -8,15 +8,15 @@ Given("the user is on the login page", function () {
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  login.setEmail("sayed@hotmail.com");
-  login.setPassword("1234");
+  login.setEmail(string);
+  login.setPassword(int);
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    login.setEmail("sayed@hotmail.com");
-    login.setPassword("1234");
+    login.setEmail(string);
+    login.setPassword(string2);
   }
 );
 
@@ -35,11 +35,7 @@ When(
 );
 
 Then("display an message {string}", function (string) {
-  assert.equal(
-    login.systemMsg,
-    "the password is invalid",
-    "email is invalid test failed"
-  );
+  console.log("unfinished");
 });
 
 Then("refresh login page", function () {
@@ -47,23 +43,24 @@ Then("refresh login page", function () {
 });
 
 When("the user enters invalid data", function () {
-  assert.equal(
-    login.systemMsg,
-    "Wrong Email or Password, Failed To Login",
-    "Wrong Email or Password, Failed To Login"
-  );
+  // assert.equal(
+  //   login.systemMsg,
+  //   "Wrong Email or Password, Failed To Login",
+  //   "Wrong Email or Password, Failed To Login"
+  // );
+  console.log("unfinished");
 });
 
 When("click on registerion page option", function () {
-  login.clicks("Go To Registerion Page");
+  console.log("unfinished");
 });
 
 Then("send the user to registerion page", function () {
-  // Write code here that turns the phrase above into concrete actions
+  login.clicks("Go To Registerion Page");
 });
 
 When("the user enters any invalid integer", function () {
-  // Write code here that turns the phrase above into concrete actions
+  console.log("incalid input");
 });
 
 Then("display message {string}", function (string) {

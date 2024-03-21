@@ -1,13 +1,12 @@
-const StartPage=require('./JS-Files/startP.js')
-const loginPage=require('./JS-Files/loginP')
-const regPage=require('./JS-Files/regP')
-const EventManagementPage=require('./JS-Files/EventManagementPage')
-const UserPage=require('./JS-Files/userP')
-const ProfilePage=require('./JS-Files/profileP')
-const Page =require('./JS-Files/Page.js')
-const adminPage =require('./JS-Files/Page.js')
-const DB=require('./JS-Files/ourDataBase')
-const readlineSync = require("readline-sync");
+const StartPage = require("./JS-Files/startP.js");
+const loginPage = require("./JS-Files/loginP");
+const regPage = require("./JS-Files/regP");
+const EventManagementPage = require("./JS-Files/EventManagementPage");
+const UserPage = require("./JS-Files/userP");
+const ProfilePage = require("./JS-Files/profileP");
+const Page = require("./JS-Files/Page.js");
+const adminPage = require("./JS-Files/Page.js");
+const DB = require("./JS-Files/ourDataBase.js");
 
 class Server{
     static currentPage=new Page();
