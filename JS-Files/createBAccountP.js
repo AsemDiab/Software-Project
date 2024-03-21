@@ -22,10 +22,6 @@ class cpaP extends Page {
   }
 
   readData() {
-    let pageName = readlineSync.question("Enter Your Business page name: ");
-    let phoneNumber = readlineSync.question("Enter Your phone number: ");
-    let businessType = readlineSync.question("Enter Your Business Type: ");
-
     this.setName(pageName);
     this.setPhone(phoneNumber);
     this.setType(businessType);

@@ -22,7 +22,7 @@ Then("return him to create Business Account page", function () {});
 
 When(
   "the user enters invalid integer in create Business Account Page {string}",
-  function (string) {}
+  function (string) {console.log(string);}
 );
 
 When("user select {string} options", function (string) {});
