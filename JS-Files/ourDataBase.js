@@ -53,10 +53,10 @@ class DataHandler{
             for ( let key  in event){
                 DataHandler.insertEvent(key,event[key].name,event[key].date,event[key].venueId,event[key].time,event[key].theme,event[key].Description,event[key].Count,event[key].type)
             }
-            let  reservation=JSON.parse(Reservation);
-            for ( let key  in reservation){
-                DataHandler.insertReservation(key,event[key].id ,event[key].date,event[key].time)
-            }
+            // let  reservation=JSON.parse(Reservation);
+            // for ( let key  in reservation){
+            //     DataHandler.insertReservation(key,event[key].id ,event[key].date,event[key].time)
+            // }
 
             // console.log(DataHandler.userMap)
         } catch (err) {
