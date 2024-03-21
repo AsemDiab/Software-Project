@@ -206,6 +206,4 @@ class EventManagementPage extends Page {
   }
 }
 module.exports = EventManagementPage;
-var eventManagmentPage = new EventManagementPage();
 
-eventManagmentPage.fillDataToAdd();
