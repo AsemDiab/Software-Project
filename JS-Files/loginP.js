@@ -42,7 +42,7 @@ class LoginP extends Page {
         this.run();
         break;
       case "2":
-        this.goToLoginPage();
+        // console.log('cancel operation');
         break;
       default:
         break;
@@ -59,7 +59,7 @@ class LoginP extends Page {
     console.log(typeof this.userObject);
     this.setEmail(this.cache.email);
     this.setPassword(this.cache.password);
-    // this.printSubmitManu();
+    this.printSubmitManu();
     this.option = readlineSync.question();
     this.submitManu(this.option);
   }
@@ -67,22 +67,15 @@ class LoginP extends Page {
   run() {
     let tempState = this.getState();
     console.log(this.tempState);
-    console.log(this.email);
-    let user = DB.userMap.get(this.email.trim().toLowerCase()); // check here
-    // let user = DB.userMap.get("asemhesham@gmail.com");
-    console.log(user);
-    console.log(
-      "//////////////////// " + typeof user + " //////////////////////"
-    );
+    let user = DB.userMap.get(this.email.trim().toLowerCase());
+    console.log(typeof(user) + "//////////////////////");
     if (tempState == "admin") {
       if (this.password == user.password) {
         console.log("Admin Successfully Login");
         this.nextPage=7
         this.goToAdminPage();
       } else {
-        // console.log("Failed To Login");
-        systemMsg = "Wrong Email or Password, Failed To Login";
-        console.log(this.systemMsg);
+        console.log("Failed To Login");
         this.goToLoginPage();
       }
     } else {
@@ -91,9 +84,7 @@ class LoginP extends Page {
         this.nextPage=6
         this.goToUserPage();
       } else {
-        // console.log("Failed To Login");
-        systemMsg = "Wrong Email or Password, Failed To Login";
-        console.log(this.systemMsg);
+        console.log("Failed To Login");
         this.goToLoginPage();
         Server.username=this.email
 
@@ -106,11 +97,14 @@ class LoginP extends Page {
   clicks(scenario) {
     // userChoice=Start.getOption()
     switch (scenario.toLowerCase().trim()) {
-      case "enter your email and password":
+      case "submit":
         this.submitManu(1);
         break;
-      case "go to registerion page":
-        this.goToAdminRegPage();
+      case "go to login page":
+        this.goToLoginPage();
+        break;
+      case "return to start page":
+        this.goToStartPage();
         break;
       default:
         console.log("Invalid option. Please choose an existed option");
@@ -145,9 +139,6 @@ class LoginP extends Page {
     this.goToLogin = 1;
     this.goToAdmin = 0;
     this.nextPage = 3;
-  }
-  goToAdminRegPage(){
-    this.nextPage = 2;
   }
   welcomeMessage() {
     console.log("Login Seccussfully");

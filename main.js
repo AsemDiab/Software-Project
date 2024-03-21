@@ -6,7 +6,8 @@ const UserPage=require('./JS-Files/userP')
 const ProfilePage=require('./JS-Files/profileP')
 const Page =require('./JS-Files/Page.js')
 const adminPage =require('./JS-Files/Page.js')
-const DB=require('./JS-Files/Page')
+const DB=require('./JS-Files/ourDataBase')
+const readlineSync = require("readline-sync");
 
 class Server{
     static currentPage=new Page();
@@ -19,11 +20,12 @@ class Server{
        Server.excute()
     }
     static excute(){
-        Db.init()
+        DB.init()
         while(true){
             Server.currentPage.printMenu();
             let status=Server.currentPage.readOption();
             console.log(status)
+            let password = readlineSync.question("Enter Your Password:");
             switch (String(status)){
                 case "0":break;
                 case "1":Server.currentPage=new StartPage();break;
@@ -33,6 +35,7 @@ class Server{
                 case "5":Server.currentPage=new EventManagementPage();break;
                 case "6":Server.currentPage=new ProfilePage();break;
                 case "7":Server.currentPage=new adminPage();break;
+                case "8":Server.currentPage=new MyAccount()
             }
         }
     }
@@ -41,7 +44,5 @@ class Server{
 }
 
 Server.buildServer()
-
-
-
+module.exports=Server
 

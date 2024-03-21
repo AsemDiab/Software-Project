@@ -66,10 +66,6 @@ class DataHandler{
                                                 ,reservation[key].startDate,reservation[key].endDate,
                                                  reservation[key].startTime,reservation[key].endTime)
             }
-            // let  reservation=JSON.parse(Reservation);
-            // for ( let key  in reservation){
-            //     DataHandler.insertReservation(key,event[key].id ,event[key].date,event[key].time)
-            // }
 
             let bussiness=JSON.parse(BussinessAccount)
             for( let key in bussiness)
