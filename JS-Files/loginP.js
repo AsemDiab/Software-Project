@@ -56,51 +56,53 @@ class LoginP extends Page {
     console.log(typeof this.email);
     this.cache.password = readlineSync.question("Enter Your Password:");
     console.log(typeof this.email);
-    this.userObject = DB.userMap.get(this.email);
+    this.userObject = DB.userMap.get(this.cache.email);
     console.log(typeof this.userObject);
     this.setEmail(this.cache.email);
     this.setPassword(this.cache.password);
-    // this.printSubmitManu();
+    this.printSubmitManu();
     this.option = readlineSync.question();
     this.submitManu(this.option);
   }
 
   run() {
     let tempState = this.getState();
-    console.log(this.tempState);
-    console.log(this.email);
-    let user = DB.userMap.get(this.email.trim().toLowerCase()); // check here
-    // let user = DB.userMap.get("asemhesham@gmail.com");
+    console.log(tempState);
+    console.log(this.cache.email);
+    // let user = DB.userMap.get(this.email.trim().toLowerCase()); // check here
+    let user = DB.userMap.get("asemhesham@gmail.com");
     console.log(user);
     console.log(
-      "//////////////////// " + typeof user + " //////////////////////"
+      "//////////////////// " + typeof(user) + " //////////////////////"
     );
     if (tempState == "admin") {
-      if (this.password == user.password) {
+      if (this.cache.password == user.password) {
         // console.log("Admin Successfully Login");
-        systemMsg = "Admin Successfully Login";
+        this.systemMsg = "Admin Successfully Login";
         console.log(this.systemMsg);
         this.goToAdminPage();
       } else {
         // console.log("Failed To Login");
-        systemMsg = "Wrong Email or Password, Failed To Login";
+        this.systemMsg = "Wrong Email or Password, Failed To Login";
         console.log(this.systemMsg);
         this.goToLoginPage();
       }
     } else {
-      if (this.email == user.email) {
+      if (this.cache.password == user.password) {
         // console.log("User Successfullu Login");
-        systemMsg = "User Successfullu Login";
+        this.systemMsg = "User Successfullu Login";
         console.log(this.systemMsg);
         this.goToUserPage();
       } else {
         // console.log("Failed To Login");
-        systemMsg = "Wrong Email or Password, Failed To Login";
+        this.systemMsg = "Wrong Email or Password, Failed To Login";
         console.log(this.systemMsg);
         this.goToLoginPage();
       }
     }
   }
+
+  
 
   clicks(scenario) {
     // userChoice=Start.getOption()
@@ -115,11 +117,6 @@ class LoginP extends Page {
         console.log("Invalid option. Please choose an existed option");
     }
   }
-
-  readOption() {
-    return this.nextPage;
-  }
-
   openPage() {
     this.is_open = true;
   }
@@ -142,14 +139,15 @@ class LoginP extends Page {
     this.goToAdmin = 0;
     this.nextPage = 3;
   }
-  goToAdminRegPage(){
+  goToAdminRegPage() {
     this.nextPage = 2;
   }
   welcomeMessage() {
     console.log("Login Seccussfully");
   }
   getState() {
-    return DB.userMap.get("asemhesham@gmail.com").type;
+    // return DB.userMap.get("asemhesham@gmail.com").type;
+    return "admin";
     // userObject["asemhesham@gmail.com"].type;
   }
   setPassword(password) {
@@ -175,6 +173,11 @@ class LoginP extends Page {
   // emailDoesntExist(email) {
   //   return DB.userMap.get(email) == undefined;
   // }
+  readOption() {
+    this.nextPage = 0;
+    this.enterEmailAndPassword();
+    return this.nextPage;
+  }
 }
 
 module.exports = LoginP;
