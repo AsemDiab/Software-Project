@@ -110,6 +110,7 @@ class RegP extends Page {
       DB.insertUser(this.email, this.username, this.password, "user");
       console.log("save data in DB");
       this.warmUser = false;
+      this.nextPage = 1;
     }
   }
   setName(username) {

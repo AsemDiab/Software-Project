@@ -6,7 +6,7 @@ const UserPage = require("./JS-Files/userP");
 const ProfilePage = require("./JS-Files/profileP");
 const Page = require("./JS-Files/Page.js");
 const adminPage = require("./JS-Files/Page.js");
-const DB = require("./JS-Files/Page");
+const DB = require("./JS-Files/ourDataBase.js");
 
 class Server {
   static currentPage = new Page();
