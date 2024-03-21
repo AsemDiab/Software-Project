@@ -16,6 +16,19 @@ When("select {string} options", function (string) {
     account.run(string);
 });
 
+When('the user enter his page name', function () {
+    account.loginBusinessAccount('facebook');
+});
+
+When('the user enter unexisted page name', function () {
+    account.loginBusinessAccount('hakonaa matataa');
+  });
+
+When('the user enter invalid page name', function () {
+    account.loginBusinessAccount('');
+});
+
+
 Then("display all user information", function () {
     account.userProfileInfo();
 });

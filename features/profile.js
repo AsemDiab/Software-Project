@@ -5,9 +5,6 @@ const DB = require("../JS-Files/ourDataBase");
 var profile = new ProfileP();
 DB.init();
 
-
-
-
 Given("the user in Profile page", function () {
   profile.openPage();
   console.log("open page");

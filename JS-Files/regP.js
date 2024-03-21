@@ -41,7 +41,7 @@ class RegP extends Page {
   emailAlreadyTaken(email) {
     if (DB.userMap.get(email) == undefined) return true;
 
-    this.systemMsg = "this email already taken";
+    this.systemMsg = "this email already taken" ;
     return false;
   }
 

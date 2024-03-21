@@ -21,8 +21,25 @@ class myAccount extends Page{
     creatBusinessAccount(){
         this.creatAccount = true;
     }
-    loginBusinessAccount(){
+    isNamePageExist(name){
+        if(name == 'facebook'){
+            return true;
+        }
+        return false;
+    }
+    loginBusinessAccount(pageName){
         this.loginAccount = true;
+        if(this.isNamePageExist(pageName)){
+            console.log('user enter: '+ pageName);
+            console.log("page was found , welcome to your business");
+
+        }else if(pageName != null && pageName != undefined && pageName != ""){
+            console.log('user enter: '+ pageName)
+            console.log("sorry ,we could not found your page");
+        }
+        else{
+            console.log("invalid name input");
+        }
     }
     returnBack(){
         this.returnFlage = true;
@@ -49,7 +66,6 @@ class myAccount extends Page{
                 console.log('in create business account case');
                 break;
             case "login business account":
-                this.loginBusinessAccount();
                 console.log('in login business account case');
                 break;
             case "return":

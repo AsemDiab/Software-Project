@@ -19,7 +19,12 @@ Feature: Create Business Account
         When the user enters invalid name page like null
         And clicks on create Business Account page option
         Then display a message "invalid name page , please try agine with valid name"
-        And redirect him to myAccount page        
+        And redirect him to myAccount page      
+
+    Scenario: return
+        Given the user is on the Create Business Account page
+        When user select "return" options
+        Then back to myAccount page  
 
     Scenario Outline: Invalid input
         Given the user is on the Create Business Account page
@@ -31,3 +36,4 @@ Feature: Create Business Account
             | 13    |
             | 'f'   |
             | -13   |        
+         
