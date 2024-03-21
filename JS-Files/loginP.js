@@ -43,7 +43,7 @@ class LoginP extends Page {
         this.run();
         break;
       case "2":
-        // console.log('cancel operation');
+        this.goToLoginPage();
         break;
       default:
         break;
@@ -60,7 +60,7 @@ class LoginP extends Page {
     console.log(typeof this.userObject);
     this.setEmail(this.cache.email);
     this.setPassword(this.cache.password);
-    this.printSubmitManu();
+    // this.printSubmitManu();
     this.option = readlineSync.question();
     this.submitManu(this.option);
   }
@@ -77,18 +77,26 @@ class LoginP extends Page {
     );
     if (tempState == "admin") {
       if (this.password == user.password) {
-        console.log("Admin Successfully Login");
+        // console.log("Admin Successfully Login");
+        systemMsg = "Admin Successfully Login";
+        console.log(this.systemMsg);
         this.goToAdminPage();
       } else {
-        console.log("Failed To Login");
+        // console.log("Failed To Login");
+        systemMsg = "Wrong Email or Password, Failed To Login";
+        console.log(this.systemMsg);
         this.goToLoginPage();
       }
     } else {
       if (this.email == user.email) {
-        console.log("User Successfullu Login");
+        // console.log("User Successfullu Login");
+        systemMsg = "User Successfullu Login";
+        console.log(this.systemMsg);
         this.goToUserPage();
       } else {
-        console.log("Failed To Login");
+        // console.log("Failed To Login");
+        systemMsg = "Wrong Email or Password, Failed To Login";
+        console.log(this.systemMsg);
         this.goToLoginPage();
       }
     }
@@ -97,14 +105,11 @@ class LoginP extends Page {
   clicks(scenario) {
     // userChoice=Start.getOption()
     switch (scenario.toLowerCase().trim()) {
-      case "submit":
+      case "enter your email and password":
         this.submitManu(1);
         break;
-      case "go to login page":
-        this.goToLoginPage();
-        break;
-      case "return to start page":
-        this.goToStartPage();
+      case "go to registerion page":
+        this.goToAdminRegPage();
         break;
       default:
         console.log("Invalid option. Please choose an existed option");
@@ -136,6 +141,9 @@ class LoginP extends Page {
     this.goToLogin = 1;
     this.goToAdmin = 0;
     this.nextPage = 3;
+  }
+  goToAdminRegPage(){
+    this.nextPage = 2;
   }
   welcomeMessage() {
     console.log("Login Seccussfully");
@@ -170,4 +178,3 @@ class LoginP extends Page {
 }
 
 module.exports = LoginP;
-
