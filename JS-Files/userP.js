@@ -15,7 +15,7 @@ class UserP extends Page{
     super();
     this.openPage()
   }
-  printmanu(){
+  printMenu(){
     console.log("Options:");
     console.log("1. event management page");
     console.log("2. profile page");
@@ -26,6 +26,7 @@ class UserP extends Page{
       let op=readlineSync.question()
     this.setOPtion(op)
       this.run();
+      return this.nextPage
   }
   openPage(){
     this.isOpen= true;

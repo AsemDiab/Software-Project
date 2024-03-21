@@ -82,19 +82,7 @@ class RegP extends Page {
     return this.isValidPassword;
   }
 
-  //
-  // chickOnTheData(username,email,password) {
-  //   this.usernameValidity(username);
-  //   this.emailValidity(email);
-  //   this.passwordValidity(password);
-  //
-  //   if(this.isValidName == true && this.isValidEmail == true && this.isValidPassword == true ){
-  //     console.log("all data are valid");
-  //   }else{
-  //     console.log("invalid data");
-  //   }
-  // }
-  //
+
 
   fillData() {
     // this.chickOnTheData(username,email,password)
@@ -110,6 +98,9 @@ class RegP extends Page {
       DB.insertUser(this.email, this.username, this.password, "user");
       console.log("save data in DB");
       this.warmUser = false;
+      console.log(DB.userMap)
+      this.nextPage=3
+
     }
   }
   setName(username) {

@@ -1,4 +1,4 @@
-Feature: Feature name
+Feature: Business Account
 
     Scenario: Calendar and Scheduling
         Given the user is on Business Account page
@@ -10,7 +10,7 @@ Feature: Feature name
         When select "venue" options in Business Account page
         Then send user to venue page
 
-    Scenario: Calendar and Scheduling
+    Scenario: Expense tracking and categorization
         Given the user is on Business Account page
         When select "Expense tracking and categorization" options in Business Account page
         Then display all Expense tracking and categorization
