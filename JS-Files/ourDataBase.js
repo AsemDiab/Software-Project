@@ -16,7 +16,14 @@ const eventData=`{
 
 const Reservation=`{
     "Rev-0":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"} 
+    
 }`
+
+const BussinessAccount=`{
+    "buss-0":{"email":"asemhesham@gamil.com","PageName":"Asem Hesham" ,"PhoneNumber":"0598138847","BussinessType":"Paatata"}    
+}`
+
+
 
 class DataHandler{
     static user;
@@ -36,13 +43,13 @@ class DataHandler{
             DataHandler.venueMap=new Map()
             DataHandler.eventMap=new Map()
             DataHandler.reservationMap=new Map()
+            DataHandler.BussinessAccountMap=new Map()
             // console.log(typeof (DataHandler.userMap))
 
             let user=JSON.parse(userData);
             this.isreadUsers=true;
             for ( let key  in user){
                 DataHandler.userMap.set(key,{username:user[key].username,email:user[key].email,password:user[key].password,type : user[key].type})
-
             }
             let venue=JSON.parse(venueData);
             for ( let key  in venue)
@@ -57,9 +64,12 @@ class DataHandler{
             for ( let key  in reservation){
                 DataHandler.insertReservation(key,reservation[key].email,reservation[key].id
                                                 ,reservation[key].startDate,reservation[key].endDate,
-                                                    reservation[key].startTime,reservation[key].endTime)
+                                                 reservation[key].startTime,reservation[key].endTime)
             }
 
+            let bussiness=JSON.parse(BussinessAccount)
+            for( let key in bussiness)
+                DataHandler.insertBussinessAccount(bussiness[key].email,bussiness[key].PageName,bussiness[key].PhoneNumber,bussiness[key].BussinessType,key)
         } catch (err) {
             console.error('Error reading JSON files:', err);
         }
@@ -134,7 +144,20 @@ class DataHandler{
 
 
     }
+    static insertBussinessAccount(email,pageName,phoneNumber,type,key){
+        if(key==undefined)
+            key='buss-'+DataHandler.eventMap.size;
 
+        var x= {
+           email:email,
+            PageName:pageName,
+            PhoneNumber:phoneNumber,
+            BussinessType:type
+        }
+
+        DataHandler.BussinessAccountMap.set(key,x)
+
+    }
    static updateUser(_email,username,password,type){
 
     if(_email!=undefined) {
@@ -186,5 +209,8 @@ class DataHandler{
 
 
 }
+
+// DataHandler.init()
+// console.log(DataHandler.BussinessAccountMap)
 
 module.exports=DataHandler;
