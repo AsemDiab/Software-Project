@@ -8,14 +8,14 @@ Given("the user is on the login page", function () {
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  login.setEmail("sayed@gmail.com");
+  login.setEmail("sayed@hotmail.com");
   login.setPassword("1234");
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    login.setEmail("sayed@gmail.com");
+    login.setEmail("sayed@hotmail.com");
     login.setPassword("1234");
   }
 );

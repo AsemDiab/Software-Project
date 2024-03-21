@@ -68,8 +68,13 @@ class LoginP extends Page {
   run() {
     let tempState = this.getState();
     console.log(this.tempState);
-    let user = DB.userMap.get(this.email.trim().toLowerCase());
-    console.log(typeof(user) + "//////////////////////");
+    console.log(this.email);
+    let user = DB.userMap.get(this.email.trim().toLowerCase()); // check here
+    // let user = DB.userMap.get("asemhesham@gmail.com");
+    console.log(user);
+    console.log(
+      "//////////////////// " + typeof user + " //////////////////////"
+    );
     if (tempState == "admin") {
       if (this.password == user.password) {
         console.log("Admin Successfully Login");
@@ -165,3 +170,4 @@ class LoginP extends Page {
 }
 
 module.exports = LoginP;
+
