@@ -2,11 +2,11 @@ const fs=require('fs')
 
 
 const userData=`{
-    "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"admin"},
+    "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"user"},
     "sayed@hotmail.com":{"username":"Sayed","email": "sayed@hotmail.com","password": "123456","type":"admin"}
 }`;
 const venueData=`{ 
-    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":[],"url":"101"},
+    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":["chairs","bathroom"],"url":"101"},
     "102" :   { "id": 102, "name": "Venue B", "location": "City Y" ,"capcity":"100","price":"100$","Amenities":[],"url":"102"}
 }`
 const eventData=`{
@@ -14,9 +14,9 @@ const eventData=`{
     "event-002" :{ "id": "event-002", "name": "Event 2", "date": "2024-03-15", "venueId": "102", "time":"4:00","theme":"gray", "Description":"","Count":"100","type":"party" }
 }`
 
-const Reservation=`
-    "asemhesham@gmail.com":{"email": "asemhesham@gmail.com","id": "event-001","time":"4:00",date,"date": "2024-03-15"},] 
-`
+const Reservation=`{
+    "Rev-0":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"} 
+}`
 
 class DataHandler{
     static user;
@@ -46,7 +46,7 @@ class DataHandler{
             }
             let venue=JSON.parse(venueData);
             for ( let key  in venue)
-                DataHandler.insertVenue(key,venue[key].name,venue[key].location)
+                DataHandler.insertVenue(key,venue[key].name,venue[key].location,venue[key].capcity,venue[key].price,venue[key].Amenities,venue[key].url)
             this.isreadvenue=true;
             let event=JSON.parse(eventData);
             this.isreadevent=true;
@@ -55,10 +55,11 @@ class DataHandler{
             }
             let  reservation=JSON.parse(Reservation);
             for ( let key  in reservation){
-                DataHandler.insertReservation(key,event[key].id ,event[key].date,event[key].time)
+                DataHandler.insertReservation(key,reservation[key].email,reservation[key].id
+                                                ,reservation[key].startDate,reservation[key].endDate,
+                                                    reservation[key].startTime,reservation[key].endTime)
             }
 
-            // console.log(DataHandler.userMap)
         } catch (err) {
             console.error('Error reading JSON files:', err);
         }
@@ -80,7 +81,7 @@ class DataHandler{
     }
 
 
-    static insertVenue(id,name,location,capcity,price,Amenities){
+    static insertVenue(id,name,location,capcity,price,Amenities,url){
         
         var x= {
             id: id,
@@ -88,24 +89,28 @@ class DataHandler{
              location:location
             ,capcity:capcity,
             price:price,
-            Amenities:String(Amenities)
+            Amenities:String(Amenities),
+            url:url
                 }
 
              DataHandler.venueMap.set(id,x)
        
     }
-    static insertReservation(email,id,date,time ){
+    static insertReservation(rid,email,id,startDate,endDate,startTime,endTime ){
 
-        if(email==undefined)
+        if(rid==undefined)
             return
 
         var x= {
+            rev_Id:rid,
             id: id,
-            date: date
-            ,time:time
+            startDate: startDate,
+            endDate: endDate
+            ,startTime:startTime
+            ,endTime:endTime
             ,email:email                }
 
-        DataHandler.reservationMap.set(email,x)
+        DataHandler.reservationMap.set(rid,x)
 
 
     }

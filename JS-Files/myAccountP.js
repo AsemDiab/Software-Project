@@ -1,6 +1,7 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page.js");
+const Server=require("../main")
 
 class myAccount extends Page{
 
@@ -11,11 +12,15 @@ class myAccount extends Page{
     init(){
         this.creatAccount = false;
         this.loginAccount = false;
-        returnFlage = false
+        this.returnFlage = false
     }
 
     userProfileInfo(){
         console.log('display user account info');
+        console.log(Server.UserEmail)
+        console.log( DB.userMap.get(Server.UserEmail))
+
+        DB.userMap.get(Server.UserEmail)
     }
 
     creatBusinessAccount(){

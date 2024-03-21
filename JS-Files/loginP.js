@@ -1,8 +1,7 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page");
-DB.init();
-
+const  Server=require("../main")
 class LoginP extends Page {
   state = "admin";
   // option = -1;
@@ -73,6 +72,7 @@ class LoginP extends Page {
     if (tempState == "admin") {
       if (this.password == user.password) {
         console.log("Admin Successfully Login");
+        this.nextPage=7
         this.goToAdminPage();
       } else {
         console.log("Failed To Login");
@@ -81,12 +81,17 @@ class LoginP extends Page {
     } else {
       if (this.email == user.email) {
         console.log("User Successfullu Login");
+        this.nextPage=6
         this.goToUserPage();
       } else {
         console.log("Failed To Login");
         this.goToLoginPage();
+        Server.username=this.email
+
       }
     }
+
+
   }
 
   clicks(scenario) {
@@ -107,6 +112,7 @@ class LoginP extends Page {
   }
 
   readOption() {
+    this.nextPage=0
     return this.nextPage;
   }
 
@@ -119,12 +125,14 @@ class LoginP extends Page {
     this.goToLogin = 0;
     this.goToAdmin = 0;
     this.nextPage = 4;
+    Server.username=this.email
   }
   goToAdminPage() {
     this.goToUser = 0;
     this.goToLogin = 0;
     this.goToAdmin = 1;
     this.nextPage = 7;
+    Server.username=this.email
   }
   goToLoginPage() {
     this.goToUser = 0;
@@ -156,12 +164,16 @@ class LoginP extends Page {
     this.option = readlineSync.question("Enter Your Option: ");
   }
   getOption() {
-    cl;
     return this.option;
   }
   // emailDoesntExist(email) {
   //   return DB.userMap.get(email) == undefined;
   // }
+  readOption(){
+    this.nextPage=0
+    this.enterEmailAndPassword();
+    return this.nextPage
+  }
 }
 
 module.exports = LoginP;

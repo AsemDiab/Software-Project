@@ -10,6 +10,8 @@ class ProfilePage extends Page {
   isLogout = false;
   isReturnToUserHome = false;
   isuserWarned = false;
+  systemMsg=''
+  nextPage=0
 
   constructor() {
     super();
@@ -22,6 +24,17 @@ class ProfilePage extends Page {
     this.isReturnToUserHome = false;
   }
 
+  readOption(){
+    this.nextPage=0
+    let option=readlineSync.question('')
+    switch (option){
+      case 0: this.displayRevelation()
+        case 1: this.myAccount()
+        case 2: this.displayNotification()
+        case 3: this.nextPage=1
+        case 4: this.nextPage=4
+    }
+  }
   logout() {
     this.isLogout = true;
   }
@@ -30,6 +43,7 @@ class ProfilePage extends Page {
   }
   myAccount() {
     this.isMyAccountOpened = true;
+    this.nextPage=8
   }
   displayNotification() {
     this.isNotificstion = true;
