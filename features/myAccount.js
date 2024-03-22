@@ -2,7 +2,7 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const myAccountP = require("../JS-Files/myAccountP");
 const DB = require("../JS-Files/ourDataBase");
-var account = new myAccountP();
+let account = new myAccountP();
 DB.init();
 
 Given("the user in my account page", function () {

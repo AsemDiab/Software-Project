@@ -1,7 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const UserP = require("../JS-Files/userP");
-var user = new UserP();
+let user = new UserP();
 
 Given("the User navicates into User page", function () {
   user.openPage();

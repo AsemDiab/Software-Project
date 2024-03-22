@@ -1,7 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const LoginP = require("../JS-Files/loginP");
-var login = new LoginP();
+let login = new LoginP();
 
 Given("the user is on the login page", function () {
   login.openPage();
