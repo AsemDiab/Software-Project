@@ -2,7 +2,7 @@ const readlineSync = require("readline-sync");
 const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
 
-class cpaP extends Page {
+class CpaP extends Page {
   pageName = null;
   phoneNumber = null;
   businessType = null;
@@ -38,5 +38,5 @@ class cpaP extends Page {
     }
   }
 }
-module.exports = cpaP;
+module.exports = CpaP;
 

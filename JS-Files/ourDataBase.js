@@ -50,7 +50,7 @@ class DataHandler{
             DataHandler.eventMap=new Map()
             DataHandler.reservationMap=new Map()
             DataHandler.BussinessAccountMap=new Map()
-            // console.log(typeof (DataHandler.userMap))
+
 
             let user=JSON.parse(userData);
             this.isreadUsers=true;
@@ -216,7 +216,5 @@ class DataHandler{
 
 
 }
-
-
 
 module.exports=DataHandler;
