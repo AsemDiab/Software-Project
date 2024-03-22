@@ -56,10 +56,10 @@ class Server{
 }
 
 Server.buildServer()
-module.exports=Server
+module.exports=Server;
 
 
-}
+
 
 Server.buildServer()
 module.exports=Server

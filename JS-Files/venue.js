@@ -209,11 +209,6 @@ class VenuePage{
     }
 }
 
-// let entity=new VenuePage();
-// console.log(entity.searchByAtteibute(undefined,undefined,undefined,undefined,'100$'))
-// entity.viewVenue()
-
-// entity.bookVenue('asemhesham@gmail.com','100','4:00','7:00','2024-4-20','2024-4-20')
 
 module.exports = VenuePage
 

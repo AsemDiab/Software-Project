@@ -92,7 +92,6 @@ class DataHandler{
             type : type.trim()
          }
         DataHandler.userMap.set((_email.trim()).toLowerCase(),x)
-       // console.log(DataHandler.userMap)
 
     }
 
@@ -218,9 +217,6 @@ class DataHandler{
 
 }
 
-// DataHandler.init()
-// console.log(DataHandler.BussinessAccountMap)
 
-// console.log(new Date()<new Date(2003,3,20))
 
 module.exports=DataHandler;

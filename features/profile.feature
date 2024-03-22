@@ -10,16 +10,7 @@ Feature: Profile page
         When select "notification " option
         Then the system will display all notification for the user  
 
-    # Scenario: Booking Confirmation
-    #     Given the user in Profile page
-    #     When click on "Booking Confirmation" button
-    #     Then the system will display all booking Confirmation for user    
 
-    # Scenario: Open Billing Ditails
-    #     Given the user in Profile page
-    #     When he click on "Billing Ditails" button
-    #     Then the system will display all Billing ditails of budget
-        
     Scenario: show Reservation 
         Given the user in Profile page
         When select "Reservation" option

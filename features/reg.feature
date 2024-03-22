@@ -57,13 +57,3 @@ Feature: Register page
         Given user is in the registerion page
         When the user clicks on the return option
         Then redirect him to Start Page
-
-#     Scenario Outline: invalid input
-#         Given the user is in the Register page
-#         When the user enters any invalid input
-#         Then the system should display a message to warn him
-#         And reture to the Register page
-#
-#         Examples:
-#             | arr   |
-#             | 'idk' |
