@@ -206,6 +206,5 @@ class VenuePage{
         DB.venueMap.delete(id)
     }
 }
-
 module.exports = VenuePage
 

@@ -75,19 +75,15 @@ class StartP extends Page{
     // userChoice=Start.getOption()
     switch (String(this.option)){
       case "1":
-        // console.log("User chose option 1. Performing actions for option 1...");
         this.goToReg();
         break;
       case "2":
-        // console.log("User chose option 2. Performing actions for option 2...");
         this.goToLogin();
         break;
       case "3":
-        // console.log("User chose option 3. Performing actions for option 3...");
         this.goToExit();
         break;
       default:
-        // console.log("Invalid option. Please choose 1, 2, or 3.");
         this.reopenPage()
         break;
     }

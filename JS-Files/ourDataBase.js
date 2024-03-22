@@ -217,7 +217,4 @@ class DataHandler{
 
 }
 
-// DataHandler.init()
-// console.log(DataHandler.BussinessAccountMap)
-
 module.exports=DataHandler;
