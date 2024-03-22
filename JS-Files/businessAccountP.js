@@ -1,6 +1,8 @@
 const readlineSync = require("readline-sync");
 const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
+const SharedData = require("./SharedData");
+const VenuePage = require("./venue");
 
 class BusinessAccountP extends Page {
   isGoToVenue = false;
@@ -15,6 +17,14 @@ class BusinessAccountP extends Page {
     console.log(`--------------------------------------
 some info about Calendar and Scheduling
 ---------------------------------------`);
+
+    DB.reservationMap.forEach((value,key) => {
+      if(value.id==SharedData.bussinessID) {
+          console.log(` ${VenuePage.makeCol(key)}  | ${VenuePage.makeCol(value.email)} | ${VenuePage.makeCol(value.id)} | ${VenuePage.makeCol(value.startTime)} | ${VenuePage.makeCol(value.endTime)} | ${VenuePage.makeCol(value.startDate)} |  ${VenuePage.makeCol(value.endDate)} |\n`)
+        }
+    });
+
+
   }
   goToVenuePage() {
     this.isGoToVenue = true;
