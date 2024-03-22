@@ -9,6 +9,7 @@ const Page =require('./JS-Files/Page.js')
 const adminPage =require('./JS-Files/Page.js')
 const DB=require('./JS-Files/ourDataBase')
 const readlineSync = require("readline-sync");
+const MyAccount=require("./JS-Files/myAccountP")
 
 
 class Server{
