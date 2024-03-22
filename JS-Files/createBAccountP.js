@@ -34,7 +34,7 @@ class cpaP extends Page {
       case "return":
         break;
       default:
-        console.log("Invalid option. Please choose an existed option");
+        console.log("Invalid option. Please choose an existed options");
     }
   }
 }
