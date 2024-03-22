@@ -42,7 +42,10 @@ class Server{
     }
 
 }
-DB.init();
-Server.buildServer();
+
+
+Server.buildServer()
 module.exports=Server;
+
+
 

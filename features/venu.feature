@@ -51,4 +51,3 @@ Feature: place manegment
         Then operation failed
         And display massege "invalid input"
 
- #didn't finish it yet

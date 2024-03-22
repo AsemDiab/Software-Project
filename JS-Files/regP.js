@@ -46,7 +46,6 @@ class RegP extends Page {
   }
 
   emailValidity(email) {
-    // console.log("the is ",email)
     if (
       email.includes("@") &&
       email.endsWith(".com") &&
@@ -85,7 +84,6 @@ class RegP extends Page {
 
 
   fillData() {
-    // this.chickOnTheData(username,email,password)
     this.warmUser = true;
     if (
       this.emailValidity(this.cache.email) &&
@@ -138,20 +136,15 @@ class RegP extends Page {
 
   submitManu(option) {
     this.option = option;
-    // readlineSync.question("Enter Your choise:");
-    // console.log(this.option);
-    // console.log(typeof this.option);
     switch (String(this.option)) {
       case "1":
         this.fillData();
         this.run();
         break;
       case "2":
-        // console.log('cancel operation');
         break;
       default:
         break;
-      // console.log('invalid input')
     }
   }
   printSubmitManu() {
@@ -170,19 +163,16 @@ class RegP extends Page {
   }
 
   goToLoginPage() {
-    // this.goToLogin = 0;
     this.goToLogin = 1;
     this.nextPage = 3;
   }
 
   goToStartPage() {
-    // this.goToLogin = 1;
     this.goToLogin = 0;
     this.nextPage = 1;
   }
 
   clicks(scenario) {
-    // userChoice=Start.getOption()
     switch (scenario.toLowerCase().trim()) {
       case "submit":
         this.submitManu(1);

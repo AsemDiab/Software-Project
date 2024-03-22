@@ -178,9 +178,7 @@ class LoginP extends Page {
   getOption() {
     return this.option;
   }
-  // emailDoesntExist(email) {
-  //   return DB.userMap.get(email) == undefined;
-  // }
+
   readOption() {
     this.nextPage = 0;
     this.enterEmailAndPassword();
