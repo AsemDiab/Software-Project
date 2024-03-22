@@ -115,7 +115,7 @@ class EventManagementPage extends Page {
   selectToDelete() {
     console.log('-----------------------------------');
     let ID = readlineSync.question("Enter ID To Delete:");
-    if(this.checkEventID(ID) == false){
+    if(!this.checkEventID(ID)){
       DB.eventMap.delete(ID);
       console.log(DB.eventMap);
     }else{
@@ -126,7 +126,7 @@ class EventManagementPage extends Page {
  
   selectToUpdate() {
     let ID = readlineSync.question("Enter ID To Update:");
-    if(this.checkEventID(ID) == false){
+    if(!this.checkEventID(ID) ){
       console.log('---event---updated---');
       this.readData();
       this.cacheSubmit();

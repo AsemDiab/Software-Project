@@ -15,7 +15,13 @@ const eventData=`{
 }`
 
 const Reservation=`{
-    "Rev-0":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"} 
+    "Rev-0":{"rev_Id":"Rev-0","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"},
+    "Rev-1":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "102","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-2":{"rev_Id":"Rev-2","email": "asemhesham@gmail.com","id": "103","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} ,
+    "Rev-3":{"rev_Id":"Rev-3","email": "asemhesham@gmail.com","id": "104","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-25"},
+    "Rev-4":{"rev_Id":"Rev-4","email": "asemhesham@gmail.com","id": "105","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-5":{"rev_Id":"Rev-5","email": "asemhesham@gmail.com","id": "106","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} 
+ 
     
 }`
 
@@ -79,7 +85,7 @@ class DataHandler{
 
         if(DataHandler.userMap.get((_email.trim()).toLowerCase())!=undefined&& !DataHandler.isUpadte)
             return;
-        var x={
+        let x={
             username:username.trim(),
             email:_email.trim(),
             password:password.trim(),
@@ -93,7 +99,7 @@ class DataHandler{
 
     static insertVenue(id,name,location,capcity,price,Amenities,url){
         
-        var x= {
+        let x= {
             id: id,
              name: name,
              location:location
@@ -111,7 +117,7 @@ class DataHandler{
         if(rid==undefined)
             return
 
-        var x= {
+        let x= {
             rev_Id:rid,
             id: id,
             startDate: startDate,
@@ -129,7 +135,7 @@ class DataHandler{
         if(id==undefined)
             id=DataHandler.eventMap.size;
 
-        var x= {
+        let x= {
             id: id,
              name: name,
              date: date,
@@ -148,7 +154,7 @@ class DataHandler{
         if(key==undefined)
             key='buss-'+DataHandler.eventMap.size;
 
-        var x= {
+        let x= {
            email:email,
             PageName:pageName,
             PhoneNumber:phoneNumber,
@@ -160,7 +166,8 @@ class DataHandler{
     }
    static updateUser(_email,username,password,type){
 
-    if(_email!=undefined) {
+    if(_email==undefined)
+        return;
             let row = DataHandler.userMap.get(_email);
             if(row==undefined)
                 return;
@@ -172,7 +179,7 @@ class DataHandler{
         DataHandler.isUpdate=true
             DataHandler.insertUser(_email,newUsername,newPassword,newType)
         DataHandler.isUpdate=false
-        }
+
     }
    static updateEvent(id,name,date,venue,time, theme,Description, Count, type){
        
@@ -196,8 +203,9 @@ class DataHandler{
    static updateVenue( id, name,location,capcity,price,Amenities){
     if(id!=undefined) {
         let row = DataHandler.venueMap.get(id);
-        if(row==undefined)
+        if(row==undefined) {
             return;
+        }
             let newID = row.id;
             let newName= (name != undefined ? name :row.name);
             let newLocation= (location != undefined ? location.trim() :row.location);
@@ -212,5 +220,7 @@ class DataHandler{
 
 // DataHandler.init()
 // console.log(DataHandler.BussinessAccountMap)
+
+// console.log(new Date()<new Date(2003,3,20))
 
 module.exports=DataHandler;
