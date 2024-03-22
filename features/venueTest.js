@@ -26,7 +26,6 @@ Then('the system display all venue', function () {
 
 Given('user search for venue attribute', function () {
     // Write code here that turns the phrase above into concrete actions
-    let tempMap=page.searchByAtteibute();
 });
 
 
