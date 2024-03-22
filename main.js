@@ -10,18 +10,6 @@ const adminPage =require('./JS-Files/Page.js')
 const DB=require('./JS-Files/ourDataBase')
 const readlineSync = require("readline-sync");
 
-const StartPage = require("./JS-Files/startP.js");
-const loginPage = require("./JS-Files/loginP");
-const regPage = require("./JS-Files/regP");
-const EventManagementPage = require("./JS-Files/EventManagementPage");
-const UserPage = require("./JS-Files/userP");
-const ProfilePage = require("./JS-Files/profileP");
-const Page = require("./JS-Files/Page.js");
-const adminPage = require("./JS-Files/Page.js");
-const DB = require("./JS-Files/ourDataBase.js");
-const readlineSync = require("readline-sync");
-
-
 class Server{
     static currentPage=new Page();
      static PageName;
@@ -30,7 +18,7 @@ class Server{
     static venderID;
     static buildServer(){
        Server.currentPage=new StartPage();
-       Server.excute()
+       Server.excute();
     }
     static excute(){
         DB.init()
@@ -55,12 +43,9 @@ class Server{
 
 }
 
+
 Server.buildServer()
 module.exports=Server;
 
 
-
-
-Server.buildServer()
-module.exports=Server
 

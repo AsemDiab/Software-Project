@@ -5,53 +5,51 @@ DB.init()
 class VenuePage{
 
     nextPage=0
-    constructor() {
-    }
 
-    clickButton(String){
+    clickButton(option){
 
-        switch (String){
+        switch (option){
             case "view venue":this.viewVenue();break;
             case "delete":
-                let id=readlineSync.question('enter id to delete')
+                let id=readlineSync.question('enter id to delete');
                 this.deleteVenue(id);
                 break;
             case "add":
-                let idV=readlineSync.question('enter id ')
-                let name=readlineSync.question('enter name')
-                let location=readlineSync.question('enter location')
-                let capacity=readlineSync.question('enter capcity')
-                let price=readlineSync.question('enter price ')
-                let Amenities=readlineSync.question('enter Amenities sprater by , ')
-                Amenities=Amenities.split(',')
-                this.DB.insertVenue(idV,name,location,capacity,price,Amenities,idV)
+                let idV=readlineSync.question('enter id ');
+                let name=readlineSync.question('enter name');
+                let location=readlineSync.question('enter location');
+                let capacity=readlineSync.question('enter capcity');
+                let price=readlineSync.question('enter price ');
+                let Amenities=readlineSync.question('enter Amenities sprater by , ');
+                Amenities=Amenities.split(',');
+                this.DB.insertVenue(idV,name,location,capacity,price,Amenities,idV);
                 break;
             case  "book":
-                idV=readlineSync.question('enter venue id ')
-                let startDate=readlineSync.question('enter start Date of booking in formate (yyyy-mm-dd)')
-                let endDate=readlineSync.question('enter end Date of booking in formate (yyyy-mm-dd)')
-                let startTime=readlineSync.question('enter start time of booking in formate (HH:mm)')
-                let endTime=readlineSync.question('enter start time of booking in formate (HH:mm)')
-                this.bookVenue(Server.email,idv,startTime,endTime,startDate,endDate)
+                idV=readlineSync.question('enter venue id ');
+                let startDate=readlineSync.question('enter start Date of booking in formate (yyyy-mm-dd)');
+                let endDate=readlineSync.question('enter end Date of booking in formate (yyyy-mm-dd)');
+                let startTime=readlineSync.question('enter start time of booking in formate (HH:mm)');
+                let endTime=readlineSync.question('enter start time of booking in formate (HH:mm)');
+                this.bookVenue(Server.email,idv,startTime,endTime,startDate,endDate);
                 break;
 
         }
 
     }
-   static makeCol(String,size=10){
+   static makeCol(option,size=10){
         let whiteSpace=''
-        if(String==undefined) {
+        if(option==undefined) {
             for (let i = 0; i < size; i += 1)
-                whiteSpace += ' '
+                whiteSpace += ' ';
 
-            return  whiteSpace
+            return  whiteSpace;
         }
-            let actualSize=String.length
+            let actualSize=option.length
         while (actualSize<size){
             whiteSpace+=' '
             actualSize+=1
         }
-        return String+whiteSpace
+        return option+whiteSpace
     }
     viewVenue(){
         DB.venueMap.forEach((value,key)=>{
@@ -190,7 +188,7 @@ class VenuePage{
 
 
         })
-        return boolAnswer; // Time slot available
+        return boolAnswer; 
 
     }
 
@@ -208,7 +206,5 @@ class VenuePage{
         DB.venueMap.delete(id)
     }
 }
-
-
 module.exports = VenuePage
 
