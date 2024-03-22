@@ -15,18 +15,17 @@ const eventData=`{
 }`
 
 const Reservation=`{
-    "Rev-0":{"rev_Id":"Rev-0","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"},
+    "Rev-0":{"rev_Id":"Rev-0","email": "asemhesham@gmail.com","id": "asemhesham@gmail.com","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"},
     "Rev-1":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "102","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
     "Rev-2":{"rev_Id":"Rev-2","email": "asemhesham@gmail.com","id": "103","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} ,
     "Rev-3":{"rev_Id":"Rev-3","email": "asemhesham@gmail.com","id": "104","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-25"},
-    "Rev-4":{"rev_Id":"Rev-4","email": "asemhesham@gmail.com","id": "105","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
-    "Rev-5":{"rev_Id":"Rev-5","email": "asemhesham@gmail.com","id": "106","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} 
+    "Rev-4":{"rev_Id":"Rev-4","email": "AhamadDardok@gmail.com","id": "105","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-5":{"rev_Id":"Rev-5","email": "AhamadDardok@gmail.com","id": "106","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-23"} 
  
-    
 }`
 
 const BussinessAccount=`{
-    "buss-0":{"email":"asemhesham@gamil.com","PageName":"Asem Hesham" ,"PhoneNumber":"0598138847","BussinessType":"Paatata"}    
+    "buss-0":{"email":"asemhesham@gamil.com","PageName":"AsemHesham" ,"PhoneNumber":"0598138847","BussinessType":"Paatata"}    
 }`
 
 
@@ -216,5 +215,8 @@ class DataHandler{
 
 
 }
+
+// DataHandler.init()
+// console.log(DataHandler.BussinessAccountMap)
 
 module.exports=DataHandler;
