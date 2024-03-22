@@ -10,6 +10,7 @@ const adminPage =require('./JS-Files/Page.js')
 const DB=require('./JS-Files/ourDataBase')
 const readlineSync = require("readline-sync");
 
+
 class Server{
     static currentPage=new Page();
      static PageName;
@@ -18,7 +19,7 @@ class Server{
     static venderID;
     static buildServer(){
        Server.currentPage=new StartPage();
-       Server.excute();
+       Server.excute()
     }
     static excute(){
         DB.init()
@@ -26,7 +27,8 @@ class Server{
             Server.currentPage.printMenu();
             let status=Server.currentPage.readOption();
             console.log(status)
-            let password = readlineSync.question("Enter Your Password:");
+            if(status==undefined)
+            console.log('not work')
             switch (String(status)){
                 case "0":break;
                 case "1":Server.currentPage=new StartPage();break;
@@ -43,9 +45,12 @@ class Server{
 
 }
 
-
 Server.buildServer()
 module.exports=Server;
 
 
+
+
+Server.buildServer()
+module.exports=Server
 
