@@ -1,6 +1,7 @@
 const readlineSync = require("readline-sync");
 const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
+const sharedD = require("./SharedData.js");
 
 class CpaP extends Page {
   pageName = null;
@@ -42,15 +43,15 @@ class CpaP extends Page {
     this.email = email;
   }
 
-  readData(pageName, phoneNumber, businessType,email) {
+  readData(pageName, phoneNumber, businessType) {
     this.setName(pageName);
     this.setPhone(phoneNumber);
     this.setType(businessType);
-    this.setEmail(email);
-    if(pageNameValid(pageName)){
-      DB.insertBussinessAccount();
+    this.setEmail(sharedD.email);
+    if(this.pageNameValid(pageName)){
+      DB.insertBussinessAccount(this.email,pageName,phoneNumber,businessType);
+      console.log(DB.BussinessAccountMap);
     }
-
   }
   printMenu() {
     console.log(`
@@ -63,7 +64,6 @@ class CpaP extends Page {
   clicks(option) {
     switch (option.trim()) {
       case "create Business Account":
-        // pageNameValid(this.pageName);
         console.log("create business account case!!");
         break;
       case "return":
@@ -74,8 +74,5 @@ class CpaP extends Page {
     }
   }
 }
-DB.init();
-var cpa = new CpaP();
-cpa.clicks("22");
-cpa.pageNameValid('Asemdsham');
+
 module.exports = CpaP;

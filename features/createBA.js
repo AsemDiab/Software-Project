@@ -2,6 +2,7 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const createBA = require("../JS-Files/createBAccountP");
 const DB = require("../JS-Files/ourDataBase");
+const sharedD = require("../JS-Files/SharedData.js");
 let createBAccount = new createBA();
 DB.init();
 
@@ -18,8 +19,8 @@ When("the user enters valid data page", function () {
   namePage = 'Al-Najah-UNI';
   phoneNumber = '0599989199';
   pageType = 'company';
-  email = 'ahmad@gmail.com';
-  createBAccount.readData(namePage, phoneNumber ,pageType,email);
+  sharedD.email = 'ahmad@gmail.com';
+  createBAccount.readData(namePage, phoneNumber ,pageType);
   
 });
 
@@ -28,19 +29,19 @@ Then("redirect him to myAccount page", function () {
 });
 
 When("the user enters valid name page that already exist", function () {
-  namePage = 'Asem Hesham';
+  namePage = 'Asem-Hesham';
   phoneNumber = '0599989199';
   pageType = 'company';
-  email = 'ahmad@gmail.com';
-  createBAccount.readData(namePage, phoneNumber ,pageType,email);
+  sharedD.email = 'ahmad@gmail.com';
+  createBAccount.readData(namePage, phoneNumber ,pageType);
 });
 
 When("the user enters invalid data page like null", function () {
   namePage = '';
   phoneNumber = '0599989199';
   pageType = 'company';
-  email = 'ahmad@gmail.com';
-  createBAccount.readData(namePage, phoneNumber ,pageType,email);
+  sharedD.email = 'ahmad@gmail.com';
+  createBAccount.readData(namePage, phoneNumber ,pageType);
 });
 
 When(
