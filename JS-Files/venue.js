@@ -15,22 +15,22 @@ class VenuePage{
                 this.deleteVenue(id);
                 break;
             case "add":
-                let idV=readlineSync.question('enter id ');
-                let name=readlineSync.question('enter name');
-                let location=readlineSync.question('enter location');
-                let capacity=readlineSync.question('enter capcity');
-                let price=readlineSync.question('enter price ');
-                let Amenities=readlineSync.question('enter Amenities sprater by , ');
+                let idValue=readlineSync.question('Enter ID: ');
+                let name=readlineSync.question('Enter name: ');
+                let location=readlineSync.question('Enter location: ');
+                let capacity=readlineSync.question('Enter capcity: ');
+                let price=readlineSync.question('Enter price: ');
+                let Amenities=readlineSync.question('Introducing sprater amenities by: ');
                 Amenities=Amenities.split(',');
-                this.DB.insertVenue(idV,name,location,capacity,price,Amenities,idV);
+                this.DB.insertVenue(idValue,name,location,capacity,price,Amenities,idValue);
                 break;
             case  "book":
-                idV=readlineSync.question('enter venue id ');
-                let startDate=readlineSync.question('enter start Date of booking in formate (yyyy-mm-dd)');
-                let endDate=readlineSync.question('enter end Date of booking in formate (yyyy-mm-dd)');
-                let startTime=readlineSync.question('enter start time of booking in formate (HH:mm)');
-                let endTime=readlineSync.question('enter start time of booking in formate (HH:mm)');
-                this.bookVenue(Server.email,idv,startTime,endTime,startDate,endDate);
+                let idVenue=readlineSync.question('enter venue id: ');
+                let startDate=readlineSync.question('enter start Date of booking in formate (yyyy-mm-dd): ');
+                let endDate=readlineSync.question('enter end Date of booking in formate (yyyy-mm-dd): ');
+                let startTime=readlineSync.question('enter start time of booking in formate (HH:mm): ');
+                let endTime=readlineSync.question('enter start time of booking in formate (HH:mm): ');
+                this.bookVenue(Server.email,idVenue,startTime,endTime,startDate,endDate);
                 break;
 
         }
