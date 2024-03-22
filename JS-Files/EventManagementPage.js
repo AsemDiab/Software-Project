@@ -1,7 +1,7 @@
 const Page = require("../JS-Files/Page.js");
 const DB = require("../JS-Files/ourDataBase.js");
 const readlineSync = require("readline-sync");
-// DB.init();
+
 class EventManagementPage extends Page {
   eventID = null;
   eventName = null;

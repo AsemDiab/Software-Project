@@ -44,7 +44,7 @@ class DataHandler{
             DataHandler.eventMap=new Map()
             DataHandler.reservationMap=new Map()
             DataHandler.BussinessAccountMap=new Map()
-            // console.log(typeof (DataHandler.userMap))
+
 
             let user=JSON.parse(userData);
             this.isreadUsers=true;
@@ -79,21 +79,20 @@ class DataHandler{
 
         if(DataHandler.userMap.get((_email.trim()).toLowerCase())!=undefined&& !DataHandler.isUpadte)
             return;
-        var x={
+        let x={
             username:username.trim(),
             email:_email.trim(),
             password:password.trim(),
             type : type.trim()
          }
         DataHandler.userMap.set((_email.trim()).toLowerCase(),x)
-       // console.log(DataHandler.userMap)
 
     }
 
 
     static insertVenue(id,name,location,capcity,price,Amenities,url){
         
-        var x= {
+        let x= {
             id: id,
              name: name,
              location:location
@@ -111,7 +110,7 @@ class DataHandler{
         if(rid==undefined)
             return
 
-        var x= {
+        let x= {
             rev_Id:rid,
             id: id,
             startDate: startDate,
@@ -129,7 +128,7 @@ class DataHandler{
         if(id==undefined)
             id=DataHandler.eventMap.size;
 
-        var x= {
+        let x= {
             id: id,
              name: name,
              date: date,
@@ -148,7 +147,7 @@ class DataHandler{
         if(key==undefined)
             key='buss-'+DataHandler.eventMap.size;
 
-        var x= {
+        let x= {
            email:email,
             PageName:pageName,
             PhoneNumber:phoneNumber,
@@ -209,8 +208,5 @@ class DataHandler{
 
 
 }
-
-// DataHandler.init()
-// console.log(DataHandler.BussinessAccountMap)
 
 module.exports=DataHandler;
