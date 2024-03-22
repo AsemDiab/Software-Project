@@ -26,7 +26,7 @@ const Reservation=`{
 }`
 
 const BussinessAccount=`{
-    "buss-0":{"email":"asemhesham@gamil.com","PageName":"Asem Hesham" ,"PhoneNumber":"0598138847","BussinessType":"Paatata"}    
+    "buss-0":{"email":"asemhesham@gamil.com","PageName":"Asem-Hesham" ,"PhoneNumber":"0598138847","BussinessType":"Paatata"}    
 }`
 
 
@@ -76,7 +76,7 @@ class DataHandler{
             let bussiness=JSON.parse(BussinessAccount)
             for( let key in bussiness)
                 DataHandler.insertBussinessAccount(bussiness[key].email,bussiness[key].PageName,bussiness[key].PhoneNumber,bussiness[key].BussinessType,key)
-        } catch (err) {
+            } catch (err) {
             console.error('Error reading JSON files:', err);
         }
     }
@@ -216,5 +216,4 @@ class DataHandler{
 
 
 }
-
 module.exports=DataHandler;
