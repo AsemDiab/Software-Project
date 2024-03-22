@@ -3,7 +3,7 @@ const Page=require('./Page.js')
 
 const RegisitionPage=require('../JS-Files/regP')
 const LoginPage=require('../JS-Files/loginP')
-var process = require('process');
+let process = require('process');
 
 class StartP extends Page{
 
@@ -16,21 +16,16 @@ class StartP extends Page{
   option = -1;
   nextPage=0
   systemMsg=''
-  constructor() {
-    // this.printmanu();
-    super()
-  }
+
   printMenu() {
-    // console.clear()
+
     console.log("Options:");
     console.log("1. Register To Your Account");
     console.log("2. Login to Your Acount");
     console.log("3. Exit");
   }
   setOption(_option) {
-    // this.option = readlineSync.question("Enter your option:");
     this.option = _option;
-    // console.log(typeof (this.option))
   }
   getOption() {
     return this.option;
@@ -51,7 +46,6 @@ class StartP extends Page{
     this.go_to_reg = 0;
     this.go_to_login = 1;
     this._exit = 0;
-    // Server.currentPage=new LoginPage();
     this.nextPage=3
   }
   goToExit(){
@@ -72,7 +66,6 @@ class StartP extends Page{
       return  3;
   }
   run() {
-    // userChoice=Start.getOption()
     switch (String(this.option)){
       case "1":
         this.goToReg();
