@@ -2,7 +2,7 @@ const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page.js");
 const Server = require("../main");
-
+const SharedMemory=require("../JS-Files/SharedData")
 class MyAccount extends Page {
   creatAccount = false;
   loginAccount = false;
@@ -17,14 +17,15 @@ class MyAccount extends Page {
 
   userProfileInfo() {
     console.log("display user account info");
-    console.log(Server.UserEmail);
-    console.log(DB.userMap.get(Server.UserEmail));
+    console.log(SharedMemory.email);
+    console.log(DB.userMap.get(SharedMemory.email));
 
     DB.userMap.get(Server.UserEmail);
   }
 
   creatBusinessAccount() {
     this.creatAccount = true;
+    this.nextPage=9
   }
   isNamePageExist(name) {
     if (name == "facebook") {
@@ -40,6 +41,8 @@ class MyAccount extends Page {
     } else if (pageName != null && pageName != undefined && pageName != "") {
       console.log("user enter: " + pageName);
       console.log("sorry ,we could not found your page");
+      SharedMemory.bussinessID=SharedMemory.email
+      this.nextPage=10;
     } else {
       console.log("invalid name input");
     }
@@ -81,9 +84,11 @@ class MyAccount extends Page {
     }
   }
   readOption(){
+     this.nextPage=0;
     let option=readlineSync.question('enter option number')
     if (option<4)
     this.run(this.instructions[option])
+    return this.nextPage
 
 
   }

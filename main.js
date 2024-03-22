@@ -10,7 +10,9 @@ const adminPage =require('./JS-Files/Page.js')
 const DB=require('./JS-Files/ourDataBase')
 const readlineSync = require("readline-sync");
 const MyAccount=require("./JS-Files/myAccountP")
-
+ const CreateBussinessAccount=require('./JS-Files/createBAccountP')
+ const BussinessAccount=require('./JS-Files/businessAccountP')
+const VenuePage=require('./JS-Files/venue')
 
 class Server{
     static currentPage=new Page();
@@ -39,7 +41,10 @@ class Server{
                 case "5":Server.currentPage=new EventManagementPage();break;
                 case "6":Server.currentPage=new ProfilePage();break;
                 case "7":Server.currentPage=new adminPage();break;
-                case "8":Server.currentPage=new MyAccount()
+                case "8":Server.currentPage=new MyAccount();break;
+                case "9":Server.currentPage=new CreateBussinessAccount();break;
+                case "10":Server.currentPage=new BussinessAccount();break;
+                case "11":Server.currentPage=new VenuePage();break;
             }
         }
     }

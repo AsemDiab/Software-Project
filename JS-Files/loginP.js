@@ -2,6 +2,7 @@ const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page");
 const  Server=require("../main")
+const SharedMemory=require("../JS-Files/SharedData")
 class LoginP extends Page {
   state = "admin";
   // option = -1;
@@ -80,6 +81,7 @@ class LoginP extends Page {
         this.systemMsg = "Admin Successfully Login";
         console.log(this.systemMsg);
         this.goToAdminPage();
+        SharedMemory.email=this.email
       } else {
         // console.log("Failed To Login");
         this.systemMsg = "Wrong Email or Password, Failed To Login";
@@ -92,12 +94,12 @@ class LoginP extends Page {
         this.systemMsg = "User Successfullu Login";
         console.log(this.systemMsg);
         this.goToUserPage();
+        SharedMemory.email=this.email
       } else {
         // console.log("Failed To Login");
         this.systemMsg = "Wrong Email or Password, Failed To Login";
         console.log(this.systemMsg);
         this.goToLoginPage();
-        Server.username=this.email
 
       }
     }
