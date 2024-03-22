@@ -26,9 +26,6 @@ class ProfilePage extends Page {
   systemMsg=''
   nextPage=0
 
-  constructor() {
-    super();
-  }
   init() {
     this.isManuDisplaied = false;
     this.isRevelitionDisplaied = false;

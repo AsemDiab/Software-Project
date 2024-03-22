@@ -2,7 +2,7 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const myAccountP = require("../JS-Files/myAccountP");
 const DB = require("../JS-Files/ourDataBase");
-var account = new myAccountP();
+let account = new myAccountP();
 DB.init();
 
 Given("the user in my account page", function () {
@@ -15,6 +15,19 @@ When("select {string} options", function (string) {
     console.log("-----"+string);
     account.run(string);
 });
+
+When('the user enter his page name', function () {
+    account.loginBusinessAccount('facebook');
+});
+
+When('the user enter unexisted page name', function () {
+    account.loginBusinessAccount('hakonaa matataa');
+  });
+
+When('the user enter invalid page name', function () {
+    account.loginBusinessAccount('');
+});
+
 
 Then("display all user information", function () {
     account.userProfileInfo();

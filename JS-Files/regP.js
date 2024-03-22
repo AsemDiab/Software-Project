@@ -41,7 +41,7 @@ class RegP extends Page {
   emailAlreadyTaken(email) {
     if (DB.userMap.get(email) == undefined) return true;
 
-    this.systemMsg = "this email already taken";
+    this.systemMsg = "this email already taken" ;
     return false;
   }
 
@@ -98,9 +98,7 @@ class RegP extends Page {
       DB.insertUser(this.email, this.username, this.password, "user");
       console.log("save data in DB");
       this.warmUser = false;
-      console.log(DB.userMap)
-      this.nextPage=3
-
+      this.nextPage = 1;
     }
   }
   setName(username) {

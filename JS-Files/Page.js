@@ -16,12 +16,6 @@ class Page{
     getOpen(){
         return this.isOpen
     }
-    invalidOption(){
-
-    }
-    readOption(){
-
-    }
 }
 
 module.exports = Page
