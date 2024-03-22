@@ -22,11 +22,18 @@ Given("user search for venue attribute", function () {
   let tempMap = page.searchByAtteibute();
 });
 
+<<<<<<< HEAD
 When("the system display all venues", function () {
   assert.equal(
     page.searchByAtteibute("101"),
     "101        | Venue A    | City X     | 100        | 100$       | chairs,bathroom |  101        |\n"
   );
+=======
+
+
+Given('user search for venue attribute', function () {
+    // Write code here that turns the phrase above into concrete actions
+>>>>>>> 76c93cac2c482e59090e1fe46603409b537e659c
 });
 
 When("choose vailable venue to book", function () {

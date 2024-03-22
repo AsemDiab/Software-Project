@@ -15,7 +15,13 @@ const eventData=`{
 }`
 
 const Reservation=`{
-    "Rev-0":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"} 
+    "Rev-0":{"rev_Id":"Rev-0","email": "asemhesham@gmail.com","id": "101","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"},
+    "Rev-1":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "102","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-2":{"rev_Id":"Rev-2","email": "asemhesham@gmail.com","id": "103","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} ,
+    "Rev-3":{"rev_Id":"Rev-3","email": "asemhesham@gmail.com","id": "104","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-25"},
+    "Rev-4":{"rev_Id":"Rev-4","email": "asemhesham@gmail.com","id": "105","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-5":{"rev_Id":"Rev-5","email": "asemhesham@gmail.com","id": "106","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} 
+ 
     
 }`
 
@@ -159,7 +165,8 @@ class DataHandler{
     }
    static updateUser(_email,username,password,type){
 
-    if(_email!=undefined) {
+    if(_email==undefined)
+        return;
             let row = DataHandler.userMap.get(_email);
             if(row==undefined)
                 return;
@@ -171,7 +178,7 @@ class DataHandler{
         DataHandler.isUpdate=true
             DataHandler.insertUser(_email,newUsername,newPassword,newType)
         DataHandler.isUpdate=false
-        }
+
     }
    static updateEvent(id,name,date,venue,time, theme,Description, Count, type){
        
@@ -195,8 +202,9 @@ class DataHandler{
    static updateVenue( id, name,location,capcity,price,Amenities){
     if(id!=undefined) {
         let row = DataHandler.venueMap.get(id);
-        if(row==undefined)
+        if(row==undefined) {
             return;
+        }
             let newID = row.id;
             let newName= (name != undefined ? name :row.name);
             let newLocation= (location != undefined ? location.trim() :row.location);
@@ -208,5 +216,8 @@ class DataHandler{
 
 
 }
+
+// DataHandler.init()
+// console.log(DataHandler.BussinessAccountMap)
 
 module.exports=DataHandler;

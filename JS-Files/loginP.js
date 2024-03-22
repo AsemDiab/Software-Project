@@ -154,8 +154,9 @@ class LoginP extends Page {
     console.log("Login Seccussfully");
   }
   getState() {
-    // return DB.userMap.get("asemhesham@gmail.com").type;
-    return "admin";
+
+    return DB.userMap.get(this.email).type;
+
     // userObject["asemhesham@gmail.com"].type;
   }
   setPassword(password) {

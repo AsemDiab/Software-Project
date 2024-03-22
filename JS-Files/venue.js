@@ -2,7 +2,7 @@ const DB= require('../JS-Files/ourDataBase')
 const readlineSync = require("readline-sync");
 const Server=require("../main")
 DB.init()
-class venuePage{
+class VenuePage{
 
     nextPage=0
     constructor() {
@@ -38,7 +38,7 @@ class venuePage{
         }
 
     }
-    makeCol(String,size=10){
+   static makeCol(String,size=10){
         let whiteSpace=''
         if(String==undefined) {
             for (let i = 0; i < size; i += 1)
@@ -55,7 +55,7 @@ class venuePage{
     }
     viewVenue(){
         DB.venueMap.forEach((value,key)=>{
-            console.log(`${this.makeCol(key) } | ${this.makeCol(key) } | ${this.makeCol(DB.venueMap.get(key).name) } | ${this.makeCol(DB.venueMap.get(key).location) } | ${this.makeCol(DB.venueMap.get(key).capcity) } | ${this.makeCol(DB.venueMap.get(key).price) } | ${this.makeCol(DB.venueMap.get(key).Amenities) } |  ${this.makeCol(DB.venueMap.get(key).url) } |`)
+            console.log(`${VenuePage.makeCol(key) } | ${VenuePage.makeCol(key) } | ${VenuePage.makeCol(DB.venueMap.get(key).name) } | ${VenuePage.makeCol(DB.venueMap.get(key).location) } | ${VenuePage.makeCol(DB.venueMap.get(key).capcity) } | ${VenuePage.makeCol(DB.venueMap.get(key).price) } | ${VenuePage.makeCol(DB.venueMap.get(key).Amenities) } |  ${VenuePage.makeCol(DB.venueMap.get(key).url) } |`)
 
         })
     }
@@ -67,7 +67,7 @@ class venuePage{
         if(id!=undefined) {
             let key=id.toString()
 
-        return `${this.makeCol(key)} | ${this.makeCol(DB.venueMap.get(key).name)} | ${this.makeCol(DB.venueMap.get(key).location)} | ${this.makeCol(DB.venueMap.get(key).capcity)} | ${this.makeCol(DB.venueMap.get(key).price)} | ${this.makeCol(DB.venueMap.get(key).Amenities)} |  ${this.makeCol(DB.venueMap.get(key).url)} |\n`
+        return `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(DB.venueMap.get(key).name)} | ${VenuePage.makeCol(DB.venueMap.get(key).location)} | ${VenuePage.makeCol(DB.venueMap.get(key).capcity)} | ${VenuePage.makeCol(DB.venueMap.get(key).price)} | ${VenuePage.makeCol(DB.venueMap.get(key).Amenities)} |  ${VenuePage.makeCol(DB.venueMap.get(key).url)} |\n`
 
         }
         if (name!=undefined)
@@ -83,7 +83,7 @@ class venuePage{
             tempMap=this.selectByPrice(price,tempMap)
 
         tempMap.forEach((value,key)=>{
-            result+=`${this.makeCol(key) } | ${this.makeCol(DB.venueMap.get(key).name) } | ${this.makeCol(DB.venueMap.get(key).location) } | ${this.makeCol(DB.venueMap.get(key).capcity) } | ${this.makeCol(DB.venueMap.get(key).price) } | ${this.makeCol(DB.venueMap.get(key).Amenities,50) } |  ${this.makeCol(DB.venueMap.get(key).url) } |\n`
+            result+=`${VenuePage.makeCol(key) } | ${VenuePage.makeCol(DB.venueMap.get(key).name) } | ${VenuePage.makeCol(DB.venueMap.get(key).location) } | ${VenuePage.makeCol(DB.venueMap.get(key).capcity) } | ${VenuePage.makeCol(DB.venueMap.get(key).price) } | ${VenuePage.makeCol(DB.venueMap.get(key).Amenities,50) } |  ${VenuePage.makeCol(DB.venueMap.get(key).url) } |\n`
         })
         return result;
 
@@ -209,11 +209,11 @@ class venuePage{
     }
 }
 
-let entity=new venuePage();
+// let entity=new VenuePage();
 // console.log(entity.searchByAtteibute(undefined,undefined,undefined,undefined,'100$'))
 // entity.viewVenue()
 
 // entity.bookVenue('asemhesham@gmail.com','100','4:00','7:00','2024-4-20','2024-4-20')
 
-module.exports = venuePage
+module.exports = VenuePage
 
