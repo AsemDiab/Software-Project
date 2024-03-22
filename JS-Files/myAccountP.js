@@ -8,6 +8,7 @@ class MyAccount extends Page {
   loginAccount = false;
   returnFlage = false;
 
+   instructions=["user info","Create business account","login business account","return"]
   init() {
     this.creatAccount = false;
     this.loginAccount = false;
@@ -62,6 +63,7 @@ class MyAccount extends Page {
       case "user info":
         this.userProfileInfo();
         console.log("in user info case");
+        readlineSync.question()
         break;
       case "Create business account":
         this.creatBusinessAccount();
@@ -77,6 +79,13 @@ class MyAccount extends Page {
       default:
         console.log("invalid input");
     }
+  }
+  readOption(){
+    let option=readlineSync.question('enter option number')
+    if (option<4)
+    this.run(this.instructions[option])
+
+
   }
 }
 

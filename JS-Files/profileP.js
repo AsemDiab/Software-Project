@@ -55,6 +55,7 @@ class ProfilePage extends Page {
           readlineSync.question()
           break;
     }
+    return this.nextPage;
   }
   logout() {
     this.isLogout = true;
