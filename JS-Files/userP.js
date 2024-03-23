@@ -1,5 +1,5 @@
 const readlineSync = require("readline-sync");
-const Page =require('../JS-Files/Page')
+const Page =require('../JS-Files/Page');
 class UserP extends Page{
     isOpen = false;
     eventPage = 0;

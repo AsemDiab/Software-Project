@@ -1,27 +1,49 @@
-const DB= require('../JS-Files/ourDataBase')
+const DB= require('../JS-Files/ourDataBase');
 const readlineSync = require("readline-sync");
-const Server=require("../main")
-DB.init()
-class VenuePage{
+const Server=require("../main");
+const Page =require('../JS-Files/Page');
+DB.init();
+class VenuePage extends Page{
 
-    nextPage=0
+    nextPage=0;
+    instructions=["view venue","delete place","add new place","book","return"];
 
+    printMenu(){
+        console.log(`Enter your options:
+                        0. display all venues
+                        1. delete place
+                        2. add new place
+                        3. book place
+                        4. return`);
+    }   
+    deleteChecker(idValue){
+        return (DB.venueMap.get(idValue) != undefined);
+    }
+    isValidInput(value){
+        return value != null && value != undefined && value.toString().trim() != '';
+    }
+    allInputsValid(idValue, name, location, capacity, price, Amenities) {
+        return isValidInput(idValue) && isValidInput(name) && isValidInput(location) &&
+               isValidInput(capacity) && isValidInput(price) && isValidInput(Amenities);
+    }
+    
     clickButton(option){
 
         switch (option){
             case "view venue":this.viewVenue();break;
-            case "delete":
+            case "delete place":
                 let id=readlineSync.question('enter id to delete');
                 this.deleteVenue(id);
                 break;
-            case "add":
-                let idValue=readlineSync.question('Enter ID: ');
+            case "add new place":
+                let idValue=readlineSync.question('Enter your ID: ');
                 let name=readlineSync.question('Enter name: ');
                 let location=readlineSync.question('Enter location: ');
                 let capacity=readlineSync.question('Enter capcity: ');
                 let price=readlineSync.question('Enter price: ');
                 let Amenities=readlineSync.question('Introducing sprater amenities by: ');
                 Amenities=Amenities.split(',');
+
                 this.DB.insertVenue(idValue,name,location,capacity,price,Amenities,idValue);
                 break;
             case  "book":
@@ -31,6 +53,8 @@ class VenuePage{
                 let startTime=readlineSync.question('enter start time of booking in formate (HH:mm): ');
                 let endTime=readlineSync.question('enter start time of booking in formate (HH:mm): ');
                 this.bookVenue(Server.email,idVenue,startTime,endTime,startDate,endDate);
+                break;
+            case "return":
                 break;
 
         }
@@ -46,8 +70,8 @@ class VenuePage{
         }
             let actualSize=option.length
         while (actualSize<size){
-            whiteSpace+=' '
-            actualSize+=1
+            whiteSpace+=' ';
+            actualSize+=1;
         }
         return option+whiteSpace
     }
@@ -60,7 +84,7 @@ class VenuePage{
 
     searchByAtteibute(id,name,location ,capacity,price){
         let result=''
-       let tempMap=DB.venueMap
+       let tempMap=DB.venueMap;
 
         if(id!=undefined) {
             let key=id.toString()
@@ -203,7 +227,19 @@ class VenuePage{
 
     deleteVenue(id){
         this.viewVenue()
-        DB.venueMap.delete(id)
+        if(this.deleteChecker(id)){
+            DB.venueMap.delete(id)
+            console.log('Complete deletion');
+        }else{
+            console.log('Error: the ID does not exist');
+        }
+        
+    }
+    
+    readOption(){
+        let option=readlineSync.question('enter option number')
+        if (option<5)
+        this.run(this.instructions[option]);
     }
 }
 module.exports = VenuePage
