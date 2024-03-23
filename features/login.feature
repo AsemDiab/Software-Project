@@ -9,7 +9,7 @@ Feature: Login page
             | email                    | password      |
             | 'sayed@hotmail.com'      | 123456        |
             | 'asemhesham55@gmail.com' | 'Saitama@123' |
-
+            
 
     Scenario Outline: incorrect email or password
         Given the user is on the login page
@@ -49,12 +49,12 @@ Feature: Login page
     Scenario: return
         Given the user is on the login page
         When user select "return" options in login page
-        Then back to starting page
+        Then back to starting page  
 
     Scenario Outline: Invalid input
         Given the user is on the login page
         When the user enters invalid integer in login Page <input>
-        Then display a message "invalid input enterd, please inter again"
+        Then display a message "invalid input enterd, please inter again" 
         And return him to login page
         Examples:
             | input |
