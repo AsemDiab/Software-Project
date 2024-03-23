@@ -242,5 +242,8 @@ class VenuePage extends Page{
         this.run(this.instructions[option]);
     }
 }
+let venue =new VenuePage()
+// venue.deleteVenue();
+console.log(venue.searchByAtteibute());
 module.exports = VenuePage
 

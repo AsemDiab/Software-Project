@@ -62,7 +62,7 @@ When("the user enters any invalid integer", function () {
 When('the user enters incorrect {string} and\\/or {string}', function (string, string2) {
 
 });
-
+ 
 Then("display message {string}", function (string) {
   console.log(string);
 });
