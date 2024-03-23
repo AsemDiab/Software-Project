@@ -19,11 +19,8 @@ When(
     login.setPassword(string2);
   }
 );
-
-//i'am not sure of this one
 Then("redirect him to user or admin home page", function () {
   login.clicks("Enter Your Email And Password");
-  // assert.equal(login.nextPage, 3);
 });
 
 When(
@@ -43,26 +40,28 @@ Then("refresh login page", function () {
 });
 
 When("the user enters invalid data", function () {
-  // assert.equal(
-  //   login.systemMsg,
-  //   "Wrong Email or Password, Failed To Login",
-  //   "Wrong Email or Password, Failed To Login"
-  // );
   console.log("unfinished");
 });
 
-When("click on registerion page option", function () {
-  console.log("unfinished");
-});
+Then("back to starting page", function () {});
 
 Then("send the user to registerion page", function () {
   login.clicks("Go To Registerion Page");
 });
+When('user select {string} options in login page', function (string) {
+
+});
+When("the user enters invalid integer in login Page {int}", function (int) {});
+Then("return him to login page", function () {});
+When(
+  "the user enters invalid integer in login Page {string}",
+  function (string) {}
+);
 
 When("the user enters any invalid integer", function () {
   console.log("incalid input");
 });
 
 Then("display message {string}", function (string) {
-  console.log("Invalid Input");
+  console.log(string);
 });

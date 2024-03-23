@@ -5,11 +5,11 @@ Feature: Login page
         When the user enters valid data <email> and <password>
         And clicks on submit option
         Then redirect him to user or admin home page
-
         Examples:
             | email                    | password      |
             | 'sayed@hotmail.com'      | 123456        |
             | 'asemhesham55@gmail.com' | 'Saitama@123' |
+            
 
     Scenario Outline: incorrect email or password
         Given the user is on the login page
@@ -46,13 +46,18 @@ Feature: Login page
         Then display an message "Invalid Data Input"
         And refresh login page
 
-    Scenario: register a new account
+    Scenario: return
         Given the user is on the login page
-        When click on registerion page option
-        Then send the user to registerion page
+        When user select "return" options in login page
+        Then back to starting page  
 
-    Scenario: Invalid input
+    Scenario Outline: Invalid input
         Given the user is on the login page
-        When the user enters any invalid integer
-        Then display message "Invalid Option"
-        And refresh login page
+        When the user enters invalid integer in login Page <input>
+        Then display a message "invalid input enterd, please inter again" 
+        And return him to login page
+        Examples:
+            | input |
+            | 13    |
+            | 'f'   |
+            | -13   |
