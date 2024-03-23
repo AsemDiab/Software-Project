@@ -6,6 +6,8 @@ DB.init();
 class VenuePage extends Page{
 
     nextPage=0;
+    userPage = 0;
+    nextPage = 0;
     instructions=["view venue","delete place","add new place","book","return"];
 
     printMenu(){
@@ -16,6 +18,10 @@ class VenuePage extends Page{
                         3. book place
                         4. return`);
     }   
+    openUserPage(){
+        userPage = 1;
+        nextPage = 8;
+    }
     deleteChecker(idValue){
         return (DB.venueMap.get(idValue) != undefined);
     }
@@ -55,6 +61,7 @@ class VenuePage extends Page{
                 this.bookVenue(Server.email,idVenue,startTime,endTime,startDate,endDate);
                 break;
             case "return":
+                this.openUserPage();
                 break;
 
         }
