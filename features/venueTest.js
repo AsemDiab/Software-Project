@@ -29,16 +29,16 @@
 //   );
 // });
 
-When("choose vailable venue to book", function () {
-  page.bookVenue(
-    "asemhesham@gmail.com",
-    "101",
-    "3:00",
-    "4:00",
-    "20/04/2003",
-    "20/04/2003"
-  );
-});
+// When("choose vailable venue to book", function () {
+//   page.bookVenue(
+//     "asemhesham@gmail.com",
+//     "101",
+//     "3:00",
+//     "4:00",
+//     "20/04/2003",
+//     "20/04/2003"
+//   );
+// });
 
 // Then("the venue booked", function () {});
 

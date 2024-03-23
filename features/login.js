@@ -35,7 +35,7 @@ When(
 );
 
 Then("display an message {string}", function (string) {
-  console.log("unfinished");
+  console.log(string);
 });
 
 Then("refresh login page", function () {
@@ -43,11 +43,6 @@ Then("refresh login page", function () {
 });
 
 When("the user enters invalid data", function () {
-  // assert.equal(
-  //   login.systemMsg,
-  //   "Wrong Email or Password, Failed To Login",
-  //   "Wrong Email or Password, Failed To Login"
-  // );
   console.log("unfinished");
 });
 
@@ -61,8 +56,4 @@ Then("send the user to registerion page", function () {
 
 When("the user enters any invalid integer", function () {
   console.log("incalid input");
-});
-
-Then("display message {string}", function (string) {
-  console.log("Invalid Input");
 });
