@@ -11,7 +11,6 @@ When("the user enters valid data {string} and {int}", function (string, int) {
   login.setEmail(string);
   login.setPassword(int);
 });
-
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
@@ -19,17 +18,28 @@ When(
     login.setPassword(string2);
   }
 );
-Then("redirect him to user or admin home page", function () {
-  login.clicks("Enter Your Email And Password");
-});
 
 When(
-  "the user enters incorrect {string} and/or {string}",
+  "the user enters incorrect {string} or {string}",
   function (string, string2) {
     login.setEmail(string);
     login.setPassword(string2);
   }
 );
+// When('the user enters incorrect {string} and\/or {string}', function (string, string2) {
+
+// });
+// When(
+//   "the user enters incorrect {string} and/or {string}",
+//   function (string, string2) {
+//     login.setEmail(string);
+//     login.setPassword(string2);
+//   }
+// );
+
+Then("redirect him to user or admin home page", function () {
+  login.clicks("Enter Your Email And Password");
+});
 
 Then("display an message {string}", function (string) {
   console.log("unfinished");
