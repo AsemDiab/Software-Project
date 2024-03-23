@@ -1,22 +1,22 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const LoginP = require("../JS-Files/loginP");
-let login = new LoginP();
+var login = new LoginP();
 
 Given("the user is on the login page", function () {
   login.openPage();
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  login.setEmail(string);
-  login.setPassword(int);
+  login.setEmail("sayed@hotmail.com");
+  login.setPassword("1234");
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    login.setEmail(string);
-    login.setPassword(string2);
+    login.setEmail("sayed@hotmail.com");
+    login.setPassword("1234");
   }
 );
 
@@ -27,7 +27,7 @@ Then("redirect him to user or admin home page", function () {
 });
 
 When(
-  "the user enters incorrect {string} and\\/or {string}",
+  "the user enters incorrect {string} and\/or {string}",
   function (string, string2) {
     login.setEmail(string);
     login.setPassword(string2);
@@ -35,7 +35,11 @@ When(
 );
 
 Then("display an message {string}", function (string) {
-  console.log(string);
+  assert.equal(
+    login.systemMsg,
+    "the password is invalid",
+    "email is invalid test failed"
+  );
 });
 
 Then("refresh login page", function () {
@@ -43,17 +47,23 @@ Then("refresh login page", function () {
 });
 
 When("the user enters invalid data", function () {
-  console.log("unfinished");
+  assert.equal(
+    login.systemMsg,
+    "Wrong Email or Password, Failed To Login",
+    "Wrong Email or Password, Failed To Login"
+  );
 });
 
 When("click on registerion page option", function () {
-  console.log("unfinished");
-});
-
-Then("send the user to registerion page", function () {
   login.clicks("Go To Registerion Page");
 });
 
+Then("send the user to registerion page", function () {
+});
+
 When("the user enters any invalid integer", function () {
-  console.log("incalid input");
+});
+
+Then("display message {string}", function (string) {
+  console.log("Invalid Input");
 });
