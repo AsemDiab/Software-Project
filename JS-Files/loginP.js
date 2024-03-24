@@ -1,10 +1,10 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page");
-const  Server=require("../main")
+const Server = require("../main");
 class LoginP extends Page {
   state = "admin";
-  // option = -1;
+
   password = "password";
   email = "name@example.com";
 
@@ -24,11 +24,6 @@ class LoginP extends Page {
   nextPage = 0;
   systemMsg = "";
 
-  constructor() {
-    super();
-    // this.enterEmailAndPassword();
-  }
-
   printSubmitManu() {
     console.log("Options:");
     console.log("1. submit");
@@ -42,11 +37,11 @@ class LoginP extends Page {
         this.run();
         break;
       case "2":
-        // console.log('cancel operation');
+        console.log("in case 2");
         break;
       default:
+        console.log("in case 3");
         break;
-      // console.log('invalid input')
     }
   }
 
@@ -68,47 +63,37 @@ class LoginP extends Page {
     let tempState = this.getState();
     console.log(tempState);
     console.log(this.cache.email);
-    // let user = DB.userMap.get(this.email.trim().toLowerCase()); // check here
+
     let user = DB.userMap.get("asemhesham@gmail.com");
     console.log(user);
     console.log(
-      "//////////////////// " + typeof(user) + " //////////////////////"
+      "//////////////////// " + typeof user + " //////////////////////"
     );
     if (tempState == "admin") {
       if (this.cache.password == user.password) {
-        // console.log("Admin Successfully Login");
         this.systemMsg = "Admin Successfully Login";
         console.log(this.systemMsg);
         this.goToAdminPage();
       } else {
-        // console.log("Failed To Login");
         this.systemMsg = "Wrong Email or Password, Failed To Login";
         console.log(this.systemMsg);
         this.goToLoginPage();
       }
     } else {
       if (this.cache.password == user.password) {
-        // console.log("User Successfullu Login");
         this.systemMsg = "User Successfullu Login";
         console.log(this.systemMsg);
         this.goToUserPage();
       } else {
-        // console.log("Failed To Login");
         this.systemMsg = "Wrong Email or Password, Failed To Login";
         console.log(this.systemMsg);
         this.goToLoginPage();
-        Server.username=this.email
-
+        Server.username = this.email;
       }
     }
-
-
   }
 
-  
-
   clicks(scenario) {
-    // userChoice=Start.getOption()
     switch (scenario.toLowerCase().trim()) {
       case "submit":
         this.submitManu(1);
@@ -132,14 +117,14 @@ class LoginP extends Page {
     this.goToLogin = 0;
     this.goToAdmin = 0;
     this.nextPage = 4;
-    Server.username=this.email
+    Server.username = this.email;
   }
   goToAdminPage() {
     this.goToUser = 0;
     this.goToLogin = 0;
     this.goToAdmin = 1;
     this.nextPage = 7;
-    Server.username=this.email
+    Server.username = this.email;
   }
   goToLoginPage() {
     this.goToUser = 0;
@@ -154,10 +139,8 @@ class LoginP extends Page {
     console.log("Login Seccussfully");
   }
   getState() {
-
     return DB.userMap.get(this.email).type;
 
-    // userObject["asemhesham@gmail.com"].type;
   }
   setPassword(password) {
     this.password = password;

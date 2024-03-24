@@ -55,7 +55,6 @@ Feature: place manegment
         Then display masseg "error: cant find this place to delete"
         And return user to venue page
 
-
     Scenario: return
         Given the user logged into venue page
         When the user click on "return" button

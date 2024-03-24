@@ -1,6 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const LoginP = require("../JS-Files/loginP");
+const { cpSync } = require("fs");
 let login = new LoginP();
 
 Given("the user is on the login page", function () {
@@ -25,17 +26,7 @@ When(
     login.setEmail(string);
     login.setPassword(string2);
   }
-);
-// When('the user enters incorrect {string} and\/or {string}', function (string, string2) {
-
-// });
-// When(
-//   "the user enters incorrect {string} and/or {string}",
-//   function (string, string2) {
-//     login.setEmail(string);
-//     login.setPassword(string2);
-//   }
-// );
+);  
 
 Then("redirect him to user or admin home page", function () {
   login.clicks("Enter Your Email And Password");
@@ -53,22 +44,29 @@ When("the user enters invalid data", function () {
   console.log("unfinished");
 });
 
-Then("back to starting page", function () {});
+Then("back to starting page", function () {  console.log('on progress');});
 
 Then("send the user to registerion page", function () {
   login.clicks("Go To Registerion Page");
 });
-When("user select {string} options in login page", function (string) {});
-When("the user enters invalid integer in login Page {int}", function (int) {});
-Then("return him to login page", function () {});
+When("user select {string} options in login page", function (string) {  console.log('on progress');});
+When("the user enters invalid integer in login Page {int}", function (int) {  console.log('on progress');});
+Then("return him to login page", function () {  console.log('on progress');});
 When(
   "the user enters invalid integer in login Page {string}",
-  function (string) {}
+  function (string) {  console.log('on progress');}
 );
 
 When("the user enters any invalid integer", function () {
   console.log("incalid input");
 });
+<<<<<<< HEAD
+=======
+When('the user enters incorrect {string} and\\/or {string}', function (string, string2) {
+  console.log('on progress');
+});
+ 
+>>>>>>> cacb67a718f9b6cff2414afd47d6aaca8b98bbe5
 Then("display message {string}", function (string) {
   console.log(string);
 });
