@@ -12,6 +12,7 @@ When("the user enters valid data {string} and {int}", function (string, int) {
   login.setEmail(string);
   login.setPassword(int);
 });
+
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
@@ -60,13 +61,10 @@ When(
 When("the user enters any invalid integer", function () {
   console.log("incalid input");
 });
-<<<<<<< HEAD
-=======
 When('the user enters incorrect {string} and\\/or {string}', function (string, string2) {
   console.log('on progress');
 });
  
->>>>>>> cacb67a718f9b6cff2414afd47d6aaca8b98bbe5
 Then("display message {string}", function (string) {
   console.log(string);
 });
