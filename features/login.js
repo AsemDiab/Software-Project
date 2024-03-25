@@ -9,62 +9,73 @@ Given("the user is on the login page", function () {
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  login.setEmail(string);
-  login.setPassword(int);
+  // login.setEmail(string);
+  // login.setPassword(int);
+  login.checkEmailAndPassword(string, int);
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    login.setEmail(string);
-    login.setPassword(string2);
+    // login.setEmail(string);
+    // login.setPassword(string2);
+    login.checkEmailAndPassword(string, string2);
   }
 );
 
 When(
   "the user enters incorrect {string} or {string}",
   function (string, string2) {
-    login.setEmail(string);
-    login.setPassword(string2);
+    // login.setEmail(string);
+    // login.setPassword(string2);
+    login.checkEmailAndPassword(string, string2);
   }
-);  
+);
 
 Then("redirect him to user or admin home page", function () {
-  login.clicks("Enter Your Email And Password");
+  login.clicks("go to user page");
 });
 
 Then("display an message {string}", function (string) {
-  console.log("unfinished");
+  console.log(string);
 });
 
 Then("refresh login page", function () {
-  login.goToLoginPage();
+  login.clicks("go to login page");
 });
 
-When("the user enters invalid data", function () {
-  console.log("unfinished");
+Then("back to starting page", function () {
+  login.clicks("return to starting page");
 });
-
-Then("back to starting page", function () {  console.log('on progress');});
 
 Then("send the user to registerion page", function () {
-  login.clicks("Go To Registerion Page");
+  login.clicks("go to registerion page");
 });
-When("user select {string} options in login page", function (string) {  console.log('on progress');});
-When("the user enters invalid integer in login Page {int}", function (int) {  console.log('on progress');});
-Then("return him to login page", function () {  console.log('on progress');});
+
+When("user select {string} options in login page", function (string) {
+  login.clicks("return to starting page");
+});
+
+When("the user enters invalid integer in login Page {int}", function (int) {
+  console.log("on progress");
+});
+
+Then("return him to login page", function () {
+  login.clicks("go to login page");
+});
+
 When(
   "the user enters invalid integer in login Page {string}",
-  function (string) {  console.log('on progress');}
+  function (string) {
+    console.log("on progress");
+  }
 );
 
 When("the user enters any invalid integer", function () {
-  console.log("incalid input");
+  console.log("invalid input");
 });
-When('the user enters incorrect {string} and\\/or {string}', function (string, string2) {
-  console.log('on progress');
-});
- 
+
+
 Then("display message {string}", function (string) {
   console.log(string);
 });
