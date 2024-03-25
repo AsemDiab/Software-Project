@@ -8,7 +8,7 @@ class MyAccount extends Page {
   loginAccount = false;
   returnFlage = false;
 
-   instructions=["user info","Create business account","login business account","return"]
+  instructions=["user info","Create business account","login business account","return"];
   init() {
     this.creatAccount = false;
     this.loginAccount = false;
@@ -84,8 +84,6 @@ class MyAccount extends Page {
     let option=readlineSync.question('enter option number')
     if (option<4)
     this.run(this.instructions[option])
-
-
   }
 }
 
