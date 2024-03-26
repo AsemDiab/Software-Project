@@ -9,16 +9,12 @@ Given("the user is on the login page", function () {
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  // login.setEmail(string);
-  // login.setPassword(int);
   login.checkEmailAndPassword(string, int);
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    // login.setEmail(string);
-    // login.setPassword(string2);
     login.checkEmailAndPassword(string, string2);
   }
 );
@@ -26,8 +22,6 @@ When(
 When(
   "the user enters incorrect {string} or {string}",
   function (string, string2) {
-    // login.setEmail(string);
-    // login.setPassword(string2);
     login.checkEmailAndPassword(string, string2);
   }
 );
@@ -56,7 +50,7 @@ When("user select {string} options in login page", function (string) {
   login.clicks("return to starting page");
 });
 
-When("the user enters invalid integer in login Page {int}", function (int) {
+When("userthe  enters invalid integer in login Page {int}", function (int) {
   console.log("on progress");
 });
 
