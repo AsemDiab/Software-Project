@@ -43,7 +43,7 @@ class CpaP extends Page {
     this.email = email;
   }
 
-  readData(pageName, phoneNumber, businessType) {
+  writeData(pageName, phoneNumber, businessType) {
     this.setName(pageName);
     this.setPhone(phoneNumber);
     this.setType(businessType);
@@ -53,6 +53,12 @@ class CpaP extends Page {
       console.log(DB.BussinessAccountMap);
     }
   }
+  readData(){
+    let namePage = readlineSync.question("Enter Your Page Name:");
+    let phoneNumber = readlineSync.question("Enter Your Phone Number:");
+    let businessType = readlineSync.question("Enter Your Business Type:");
+  }
+  
   printMenu() {
     console.log(`
     select the button by enter the number: 
@@ -74,5 +80,5 @@ class CpaP extends Page {
     }
   }
 }
-
+let eve = 
 module.exports = CpaP;
