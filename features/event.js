@@ -106,6 +106,7 @@ When("the user fill data to update with invalid data", function () {
 
 When("the user enter ID to delete", function () {
   eventManagmentPage.deleteEvent("event-001");
+  console.log(DB.eventMap)
 });
 
 When("the user enter unexisted ID to delete", function () {

@@ -344,15 +344,15 @@ class EventManagementPage extends Page {
     }
   }
 }
-const eve = new EventManagementPage();
-// eve.fillDataToAdd();
-// eve.selectToUpdate();
-// eve.selectToDelete();
-// eve.readOption();
+// const eve = new EventManagementPage();
+// // eve.fillDataToAdd();
+// // eve.selectToUpdate();
+// // eve.selectToDelete();
+// // eve.readOption();
 
-DB.init();
-console.log("here");
-// eve.printData(DB.eventMap.string());
-eve.printData(DB.eventMap);
+// DB.init();
+// console.log("here");
+// // eve.printData(DB.eventMap.string());
+// eve.printData(DB.eventMap);
 
 module.exports = EventManagementPage;
