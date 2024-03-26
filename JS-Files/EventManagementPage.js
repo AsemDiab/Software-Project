@@ -2,8 +2,41 @@ const Page = require("../JS-Files/Page.js");
 const DB = require("../JS-Files/ourDataBase.js");
 const readlineSync = require("readline-sync");
 const Server = require("../main");
+
 DB.init();
 class EventManagementPage extends Page {
+
+  // printDataaa(data) {
+  //   console.log(data);
+
+  //     const formattedData = Object.values(data).map((event) => ({
+  //         "ID": event.id,
+  //         "Name": event.name,
+  //         "Date": event.date,
+  //         "Time": event.time,
+  //         "Venue ID": event.venueId,
+  //         "Theme": event.theme,
+  //         "Description": event.Description,
+  //         "Count": event.Count,
+  //         "Type": event.type
+  //     }));
+  //     console.table(formattedData);
+  // }
+  // printData(eventDataString) {
+  //   console.log("| ID | Name | Date | Venue ID | Time | Theme | Description | Count | Type |");
+  //   console.log("|----|------|------|----------|------|-------|-------------|-------|------|");
+  //   console.log(eventDataString)
+  //   const eventData = JSON.stringify(eventDataString);
+  //   for (const eventId in eventData) {
+  //     const event = eventData[eventId];
+  //     console.log(event); // Add this line for debugging
+  //     console.log(
+  //         `| ${event.id.padEnd(5)} | ${event.name.padEnd(6)} | ${event.date.padEnd(6)} | ${event.venueId.padEnd(10)} | ${event.time.padEnd(5)} | ${event.theme.padEnd(6)} | ${event.Description.padEnd(13)} | ${event.Count.padEnd(5)} | ${event.type.padEnd(5)} |`
+  //     );
+
+  //   }
+  // }
+
   eventID = null;
   eventName = null;
   eventDate = null;
@@ -23,6 +56,7 @@ class EventManagementPage extends Page {
                         3. delete event
                         4. return`);
   }
+
   userPage = 0;
   nextPage = 0;
   goToUserPage() {
@@ -310,9 +344,15 @@ class EventManagementPage extends Page {
     }
   }
 }
-let eve = new EventManagementPage();
+const eve = new EventManagementPage();
 // eve.fillDataToAdd();
 // eve.selectToUpdate();
 // eve.selectToDelete();
 // eve.readOption();
+
+DB.init();
+console.log("here");
+// eve.printData(DB.eventMap.string());
+eve.printData(DB.eventMap);
+
 module.exports = EventManagementPage;
