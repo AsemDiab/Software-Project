@@ -327,7 +327,7 @@ const printEvent = new PrintData();
 // eve.readOption();
 
 DB.init();
-event.readOption();
+// event.readOption();
 // printEvent.printUserData(DB.userMap);
 // printEvent.printVenueData(DB.venueMap);
 // printEvent.printEventData(DB.eventMap);

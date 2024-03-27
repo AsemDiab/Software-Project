@@ -7,6 +7,7 @@ const VenuePage = require("./venue");
 class BusinessAccountP extends Page {
   isGoToVenue = false;
   isReturn = false;
+  nextPage=0
 
   init() {
     this.isGoToVenue = false;
@@ -34,6 +35,7 @@ some info about Calendar and Scheduling
   }
   goToVenuePage() {
     this.isGoToVenue = true;
+    this.nextPage=11
   }
   displayExpenseTracking() {
     console.log(`--------------------------------------------
@@ -42,6 +44,7 @@ in Expense tracking and categorization case!!
   }
   backspace() {
     this.isReturn = true;
+    this.nextPage=10
   }
 
   printMenue() {
@@ -63,6 +66,7 @@ in Expense tracking and categorization case!!
         this.goToVenuePage();
         break;
       case "Expense tracking and categorization":
+        this.displayExpenseTracking()
         console.log(
           this.displayExpenseTracking();
         );

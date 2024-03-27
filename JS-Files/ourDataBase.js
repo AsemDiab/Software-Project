@@ -6,21 +6,21 @@ const userData=`{
     "sayed@hotmail.com":{"username":"Sayed","email": "sayed@hotmail.com","password": "123456","type":"admin"}
 }`;
 const venueData=`{ 
-    "101" :   { "id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":["chairs","bathroom"],"url":"101"},
-    "102" :   { "id": 102, "name": "Venue B", "location": "City Y" ,"capcity":"100","price":"100$","Amenities":[],"url":"102"}
+    "101" :   { "venue_id": 101, "name": "Venue A", "location": "City X" ,"capcity":"100","price":"100$","Amenities":["chairs","bathroom"],"url":"101"},
+    "102" :   { "venue_id": 102, "name": "Venue B", "location": "City Y" ,"capcity":"100","price":"100$","Amenities":[],"url":"102"}
 }`
 const eventData=`{
-    "event-001" :{ "id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101", "time":"3:00","theme":"black","Description":"D/D/D","Count":"100","type":"party" },
-    "event-002" :{ "id": "event-002", "name": "Event 2", "date": "2024-03-15", "venueId": "102", "time":"4:00","theme":"gray", "Description":"D/D/D","Count":"100","type":"party" }
+    "event-001" :{ "event_id": "event-001", "name": "Event 1", "date": "2024-03-01", "venueId": "101", "time":"3:00","theme":"black","Description":"D/D/D","Count":"100","type":"party" },
+    "event-002" :{ "event_id": "event-002", "name": "Event 2", "date": "2024-03-15", "venueId": "102", "time":"4:00","theme":"gray", "Description":"D/D/D","Count":"100","type":"party" }
 }`
 
 const Reservation=`{
-    "Rev-0":{"rev_Id":"Rev-0","email": "asemhesham@gmail.com","id": "asemhesham@gmail.com","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"},
-    "Rev-1":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","id": "102","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
-    "Rev-2":{"rev_Id":"Rev-2","email": "asemhesham@gmail.com","id": "103","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} ,
-    "Rev-3":{"rev_Id":"Rev-3","email": "asemhesham@gmail.com","id": "104","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-25"},
-    "Rev-4":{"rev_Id":"Rev-4","email": "AhamadDardok@gmail.com","id": "105","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
-    "Rev-5":{"rev_Id":"Rev-5","email": "AhamadDardok@gmail.com","id": "106","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-23"} 
+    "Rev-0":{"rev_Id":"Rev-0","email": "asemhesham@gmail.com","reservation_id": "asemhesham@gmail.com","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-15"},
+    "Rev-1":{"rev_Id":"Rev-1","email": "asemhesham@gmail.com","reservation_id": "102","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-2":{"rev_Id":"Rev-2","email": "asemhesham@gmail.com","reservation_id": "103","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-22"} ,
+    "Rev-3":{"rev_Id":"Rev-3","email": "asemhesham@gmail.com","reservation_id": "104","startTime":"4:00","endTime":"5:00","startDate": "2024-03-15","endDate": "2024-03-25"},
+    "Rev-4":{"rev_Id":"Rev-4","email": "AhamadDardok@gmail.com","reservation_id": "105","startTime":"4:00","endTime":"5:00","startDate": "2024-03-23","endDate": "2024-03-25"} ,
+    "Rev-5":{"rev_Id":"Rev-5","email": "AhamadDardok@gmail.com","reservation_id": "106","startTime":"4:00","endTime":"5:00","startDate": "2024-03-20","endDate": "2024-03-23"} 
  
 }`
 

@@ -1,7 +1,9 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page");
-const Server = require("../main");
+const  Server=require("../main")
+const SharedMemory=require("../JS-Files/SharedData")
+
 class LoginP extends Page {
   state = "admin";
 
@@ -56,6 +58,7 @@ class LoginP extends Page {
     this.checkEmailAndPassword();
   }
 
+  
   clicks(scenario) {
     switch (scenario.toLowerCase().trim()) {
       case "submit":
