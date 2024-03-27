@@ -53,16 +53,16 @@ class VenuePage extends Page {
         this.viewVenue();
         break;
       case "delete place":
-        let id = readlineSync.question("enter id to delete");
+        const id = readlineSync.question("enter id to delete");
         this.deleteVenue(id);
         break;
       case "add new place":
-        let idValue = readlineSync.question("Enter your ID: ");
-        let name = readlineSync.question("Enter name: ");
-        let location = readlineSync.question("Enter location: ");
-        let capacity = readlineSync.question("Enter capcity: ");
-        let price = readlineSync.question("Enter price: ");
-        let Amenities = readlineSync.question(
+        const idValue = readlineSync.question("Enter your ID: ");
+        const name = readlineSync.question("Enter name: ");
+        const location = readlineSync.question("Enter location: ");
+        const capacity = readlineSync.question("Enter capcity: ");
+        const price = readlineSync.question("Enter price: ");
+        const Amenities = readlineSync.question(
           "Introducing sprater amenities by: "
         );
         Amenities = Amenities.split(",");
@@ -131,8 +131,8 @@ class VenuePage extends Page {
     if (id != undefined) {
       let key = id.toString();
       let row = new Map();
-      row.set(key,tempMap.get(key))
-    printData.printVenueData(row);
+      row.set(key, tempMap.get(key));
+      printData.printVenueData(row);
 
       return `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(
         DB.venueMap.get(key).name
@@ -310,7 +310,7 @@ class VenuePage extends Page {
   }
 
   readOption() {
-    let option = readlineSync.question("enter option number");
+    const option = readlineSync.question("enter option number");
     if (option < 5) this.run(this.instructions[option]);
   }
 }

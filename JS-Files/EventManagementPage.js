@@ -192,7 +192,7 @@ class EventManagementPage extends Page {
   }
 
   selectToDelete() {
-    let ID = readlineSync.question("Enter ID To Delete:");
+    const ID = readlineSync.question("Enter ID To Delete:");
     if (!this.checkEventID(ID)) {
       this.deleteEvent(ID);
     } else {
@@ -241,15 +241,15 @@ class EventManagementPage extends Page {
   };
 
   readData() {
-    let ID = readlineSync.question("Enter Your ID: ");
-    let name = readlineSync.question("Enter Your Name: ");
-    let date = readlineSync.question("Enter Your Date: ");
-    let time = readlineSync.question("Enter Your Time: ");
-    let theme = readlineSync.question("Enter Your Theme: ");
-    let description = readlineSync.question("Enter Your Discription: ");
-    let count = readlineSync.question("Enter Your Count: ");
-    let type = readlineSync.question("Enter Your Type: ");
-    let venueID = readlineSync.question("Enter Your Venue-ID: ");
+    const ID = readlineSync.question("Enter Your ID: ");
+    const name = readlineSync.question("Enter Your Name: ");
+    const date = readlineSync.question("Enter Your Date: ");
+    const time = readlineSync.question("Enter Your Time: ");
+    const theme = readlineSync.question("Enter Your Theme: ");
+    const description = readlineSync.question("Enter Your Discription: ");
+    const count = readlineSync.question("Enter Your Count: ");
+    const type = readlineSync.question("Enter Your Type: ");
+    const venueID = readlineSync.question("Enter Your Venue-ID: ");
     this.setID(ID);
     this.setName(name);
     this.setDate(date);
@@ -277,7 +277,7 @@ class EventManagementPage extends Page {
   }
 
   selectToUpdate() {
-    let ID = readlineSync.question("Enter ID To Update:");
+    const ID = readlineSync.question("Enter ID To Update:");
     if (this.isValidInput(ID)) {
       this.readData();
       this.editEvent(
@@ -298,7 +298,7 @@ class EventManagementPage extends Page {
   }
   readOption() {
     this.printMenu();
-    let option = readlineSync.question("enter option number");
+    const option = readlineSync.question("enter option number");
     if (option < 5) this.run(this.instructions[option]);
   }
 
@@ -324,5 +324,4 @@ class EventManagementPage extends Page {
     }
   }
 }
-
 module.exports = EventManagementPage;

@@ -74,8 +74,8 @@ class CpaP extends Page {
     );
   }
   readData() {
-    let namePage = readlineSync.question("Enter Your Page Name:");
-    let phoneNumber = readlineSync.question("Enter Your Phone Number:");
+    const namePage = readlineSync.question("Enter Your Page Name:");
+    const phoneNumber = readlineSync.question("Enter Your Phone Number:");
     this.selectType();
     if (
       this.allInputsValid(namePage, phoneNumber, this.businessType) &&
@@ -102,7 +102,7 @@ class CpaP extends Page {
                   3. Market place.
                   4. Mobile Apps.
                   5. Education and Training.`);
-    let option = readlineSync.question("Enter Your Option: ");
+    const option = readlineSync.question("Enter Your Option: ");
     switch (option) {
       case "1":
         this.setType("Art Design");
@@ -138,7 +138,7 @@ class CpaP extends Page {
   }
 
   readOption() {
-    let option = readlineSync.question("enter option number");
+    const option = readlineSync.question("enter option number");
     if (option < 2) this.clicks(this.instructions[option]);
   }
 }

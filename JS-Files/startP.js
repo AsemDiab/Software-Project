@@ -54,7 +54,7 @@ class StartP extends Page {
   }
   
   readOption() {
-    let tempOP = readlineSync.question("what's your option");
+    const tempOP = readlineSync.question("What is your option");
     this.setOption(tempOP);
     this.run();
 

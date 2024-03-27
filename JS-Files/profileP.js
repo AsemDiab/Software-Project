@@ -144,7 +144,6 @@ class ProfilePage extends Page {
   }
   printMenu() {
     super.printMenu();
-    // super.printMenu()
     console.log(`
         select the button by enter the number: 
             0: Revelation
@@ -187,8 +186,4 @@ class ProfilePage extends Page {
     this.isuserWarned = true;
   }
 }
-
-// SharedData.email = "AhamadDardok@gmail.com";
-// let profile = new ProfilePage();
-
 module.exports = ProfilePage;

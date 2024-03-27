@@ -90,7 +90,7 @@ class MyAccount extends Page {
   }
   readOption() {
     this.nextPage = 0;
-    let option = readlineSync.question("enter option number");
+    const option = readlineSync.question("enter option number");
     if (option < 4) this.run(this.instructions[option]);
     return this.nextPage;
   }
