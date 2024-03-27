@@ -21,7 +21,6 @@ When("the user enters valid data page", function () {
   pageType = 'company';
   sharedD.email = 'ahmad@gmail.com';
   createBAccount.writeData(namePage, phoneNumber ,pageType);
-  
 });
 
 Then("redirect him to myAccount page", function () {

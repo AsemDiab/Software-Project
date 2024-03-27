@@ -3,6 +3,7 @@ const DB = require("../JS-Files/ourDataBase.js");
 const readlineSync = require("readline-sync");
 const Server = require("../main");
 const PrintData = require("../JS-Files/printData.js");
+let printData = new PrintData();
 
 DB.init();
 class EventManagementPage extends Page {
@@ -17,14 +18,15 @@ class EventManagementPage extends Page {
   eventType = null;
   venueID = null;
 
-  instructions = ["add new event", "update event", "delete event", "return"];
+  instructions = ["show event","add new event", "update event", "delete event", "return"];
 
   printMenu() {
     console.log(`options:
-                        1. add event
-                        2. update event
-                        3. delete event
-                        4. return`);
+                        0. show event.
+                        1. add event.
+                        2. update event.
+                        3. delete event.
+                        4. return.`);
   }
 
   userPage = 0;
@@ -41,7 +43,7 @@ class EventManagementPage extends Page {
 
   setID(id) {
     this.cache.ID = id;
-    return this.idValidity(id);
+    // return this.idValidity(id);
   }
   setName(name) {
     this.cache.name = name;
@@ -291,12 +293,16 @@ class EventManagementPage extends Page {
     }
   }
   readOption() {
+    this.printMenu();
     let option = readlineSync.question("enter option number");
-    if (option < 4) this.run(this.instructions[option]);
+    if (option < 5) this.run(this.instructions[option]);
   }
 
   run(theAction) {
     switch (theAction.trim()) {
+      case "show event":
+        printData.printEventData(DB.eventMap);
+        break;
       case "add new event":
         this.fillDataToAdd();
         break;
@@ -317,16 +323,17 @@ class EventManagementPage extends Page {
 const event = new EventManagementPage();
 const printEvent = new PrintData();
 // event.fillDataToAdd();
-// // eve.selectToUpdate();
-// // eve.selectToDelete();
-// // eve.readOption();
+// eve.selectToUpdate();
+// eve.selectToDelete();
+// eve.readOption();
 
 DB.init();
-printEvent.printUserData(DB.userMap);
-printEvent.printVenueData(DB.venueMap);
-printEvent.printEventData(DB.eventMap);
-printEvent.printReservationData(DB.reservationMap);
-printEvent.printBussinessAccountData(DB.BussinessAccountMap);
+event.readOption();
+// printEvent.printUserData(DB.userMap);
+// printEvent.printVenueData(DB.venueMap);
+// printEvent.printEventData(DB.eventMap);
+// printEvent.printReservationData(DB.reservationMap);
+// printEvent.printBussinessAccountData(DB.BussinessAccountMap);
 
 module.exports = EventManagementPage;
 
