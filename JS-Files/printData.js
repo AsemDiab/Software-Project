@@ -77,9 +77,8 @@ class PrintData {
 
     const obj = Object.fromEntries(mergedMap);
     
-
     const formattedData = Object.values(obj).map((event) => ({
-      ID: event.id,
+      ID: event.event_id,
       PageNumber: event.PageName,
       PhoneNumber: event.PhoneNumber,
       BussinessType: event.BussinessType,
