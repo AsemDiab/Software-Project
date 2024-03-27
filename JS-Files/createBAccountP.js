@@ -1,12 +1,13 @@
 const readlineSync = require("readline-sync");
 const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
-const sharedD = require("./SharedData.js");
+const sharedD=require('./SharedData')
 DB.init();
 class CpaP extends Page {
   pageName = null;
   phoneNumber = null;
   businessType = null;
+
   email = null;
   myAccountPage = 0;
   nextPage = 0;
@@ -21,6 +22,7 @@ class CpaP extends Page {
       let nameCheck = namePage;
       if (value.PageName == nameCheck) boolAnswer = false;
     });
+
     console.log("Error: this name was already taken");
     return boolAnswer;
   }
@@ -95,6 +97,7 @@ class CpaP extends Page {
       `);
   }
 
+
   selectType() {
     console.log(`select your business type
                   1. Art Design.
@@ -127,6 +130,7 @@ class CpaP extends Page {
   clicks(option) {
     switch (option.trim()) {
       case "create Business Account":
+
         this.readData();
         break;
       case "return":
@@ -147,3 +151,4 @@ let eve = new CpaP();
 eve.readData();
 
 module.exports = CpaP;
+

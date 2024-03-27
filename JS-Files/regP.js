@@ -15,7 +15,7 @@ class RegP extends Page {
   isValidPassword = false;
 
   goToLogin = 0;
-  goToLogin = 0;
+
   cache = {
     email: "",
     username: "",

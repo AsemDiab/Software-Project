@@ -7,6 +7,7 @@ const VenuePage = require("./venue");
 class BusinessAccountP extends Page {
   isGoToVenue = false;
   isReturn = false;
+  nextPage=0
 
   init() {
     this.isGoToVenue = false;
@@ -28,6 +29,7 @@ some info about Calendar and Scheduling
   }
   goToVenuePage() {
     this.isGoToVenue = true;
+    this.nextPage=11
   }
   displayExpenseTracking() {
     console.log(`--------------------------------------------
@@ -36,6 +38,7 @@ in Expense tracking and categorization case!!
   }
   backspace() {
     this.isReturn = true;
+    this.nextPage=10
   }
 
   printMenue() {
@@ -52,16 +55,21 @@ in Expense tracking and categorization case!!
     switch (option.trim()) {
       case "Calendar and Scheduling":
         console.log("-----------in Calendar and Scheduling case!!-----------");
+        this.displayCalendar()
+          readlineSync.question()
         break;
       case "venue":
+        this.goToVenuePage()
         console.log("-----------in go to Venue case!!-----------");
         break;
       case "Expense tracking and categorization":
+        this.displayExpenseTracking()
         console.log(
           "-----------in Expense tracking and categorization case!!-----------"
         );
         break;
       case "return":
+        this.backspace()
         console.log("-----------in return case!!-----------");
         break;
       default:
@@ -69,6 +77,13 @@ in Expense tracking and categorization case!!
           "-----------Invalid option. Please choose an existed option-----------"
         );
     }
+  }
+  readOption(){
+    this.instruction=["Calendar and Scheduling","venue","Expense tracking and categorization","return"]
+    let option=readlineSync.question('enter option')
+    if(option<4)
+      this.run(this.instruction[option])
+    return this.nextPage
   }
 }
 module.exports = BusinessAccountP;
