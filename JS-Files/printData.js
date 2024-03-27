@@ -69,6 +69,23 @@ class PrintData {
     }));
     console.table(formattedData);
   }
+
+  printBudgetExpenses(data1,data2,data3) {
+
+    const mergedMap = new Map([...data1, ...data2, ...data3]);
+    console.log(mergedMap);
+
+    const obj = Object.fromEntries(mergedMap);
+    
+
+    const formattedData = Object.values(obj).map((event) => ({
+      ID: event.id,
+      PageNumber: event.PageName,
+      PhoneNumber: event.PhoneNumber,
+      BussinessType: event.BussinessType,
+    }));
+    console.table(formattedData);
+  }
 }
 
 module.exports = PrintData;
