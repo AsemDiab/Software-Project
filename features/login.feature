@@ -20,7 +20,7 @@ Feature: Login page
         Examples:
             | email                    | password      |
             | 'asemhesham55gmail.com'  | 'Saitama@123' |
-            | 'sayed@hotmail.com'      | '123'        |
+            | 'sayed@hotmail.com'      | '123'         |
             | 'asemhesham55@gmailcom'  | 'Saitama@123' |
             | 'asemhesham55gmailcom'   | 'Saitama@123' |
             | 'asemhesham55@gmail.com' | 'Saitama@123' |
@@ -38,14 +38,6 @@ Feature: Login page
             | ''                       | ''            |
             | 'asemhesham55@gmail.com' | ''            |
             | ''                       | ''            |
-
-
-    # Scenario: invalid data input
-    #     Given the user is on the login page
-    #     When the user enters invalid data
-    #     And clicks on submit option
-    #     Then display an message "Invalid Data Input"
-    #     And refresh login page
 
     Scenario: return
         Given the user is on the login page

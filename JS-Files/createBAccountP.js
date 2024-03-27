@@ -10,7 +10,7 @@ class CpaP extends Page {
   email = null;
   myAccountPage = 0;
   nextPage = 0;
-  instructions=["create Business Accoun",,"return"];
+  instructions = ["create Business Accoun", , "return"];
   pageNameValid(namePage) {
     if (namePage.trim() == "" || namePage == undefined || namePage == null)
       return false;
@@ -60,7 +60,7 @@ class CpaP extends Page {
         phoneNumber,
         businessType
       );
-      console.log(DB.BussinessAccountMap);
+      console.log("Your Page is created 100%");
     }
   }
   isValidInput(value) {
@@ -76,7 +76,6 @@ class CpaP extends Page {
   readData() {
     let namePage = readlineSync.question("Enter Your Page Name:");
     let phoneNumber = readlineSync.question("Enter Your Phone Number:");
-    // let businessType = readlineSync.question("Enter Your Business Type:");
     this.selectType();
     if (
       this.allInputsValid(namePage, phoneNumber, this.businessType) &&
@@ -137,11 +136,10 @@ class CpaP extends Page {
         console.log("Invalid option. Please choose an existed option");
     }
   }
-  
-  readOption(){
-    let option=readlineSync.question('enter option number')
-    if (option<5)
-    this.run(this.instructions[option]);
+
+  readOption() {
+    let option = readlineSync.question("enter option number");
+    if (option < 5) this.run(this.instructions[option]);
   }
 }
 

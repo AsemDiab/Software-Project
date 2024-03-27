@@ -51,17 +51,17 @@ When("user select {string} options in login page", function (string) {
 });
 
 When("userthe  enters invalid integer in login Page {int}", function (int) {
-  console.log("on progress");
+  login.clicks(String(int));
 });
 
 Then("return him to login page", function () {
-  login.clicks("go to login page");
+  login.openPage();
 });
 
 When(
   "the user enters invalid integer in login Page {string}",
   function (string) {
-    console.log("on progress");
+    login.clicks(string)
   }
 );
 

@@ -8,11 +8,7 @@ class LoginP extends Page {
   password = "password";
   email = "name@example.com";
 
-  is_open = false;
 
-  // goToUser = 0;
-  // goToLogin = 1;
-  // goToAdmin = 0;
 
   userObject = "";
 
@@ -59,15 +55,6 @@ class LoginP extends Page {
     this.submitManu(this.option);
     this.checkEmailAndPassword();
   }
-
-  // run() {
-  //   let user = DB.userMap.get("asemhesham@gmail.com");
-  //   console.log(user);
-  //   console.log(
-  //     "//////////////////// " + typeof user + " //////////////////////"
-  //   );
-  //   checkEmailAndPassword();
-  // }
 
   clicks(scenario) {
     switch (scenario.toLowerCase().trim()) {
@@ -123,47 +110,26 @@ class LoginP extends Page {
     console.log(this.systemMsg);
   }
 
-  openPage() {
-    this.is_open = true;
-  }
-
   goToStartingPage() {
-    // this.goToUser = 1;
-    // this.goToLogin = 0;
-    // this.goToAdmin = 0;
-    this.nextPage = 4;
+    this.nextPage = 1;
     Server.username = this.email;
   }
 
   goToUserPage() {
-    // this.goToUser = 1;
-    // this.goToLogin = 0;
-    // this.goToAdmin = 0;
-    this.nextPage = 1;
+    this.nextPage = 4;
     Server.username = this.email;
   }
   goToAdminPage() {
-    // this.goToUser = 0;
-    // this.goToLogin = 0;
-    // this.goToAdmin = 1;
     this.nextPage = 7;
     Server.username = this.email;
   }
   goToLoginPage() {
-    // this.goToUser = 0;
-    // this.goToLogin = 1;
-    // this.goToAdmin = 0;
     this.nextPage = 3;
   }
   goToRegPage() {
-    // this.goToUser = 0;
-    // this.goToLogin = 1;
-    // this.goToAdmin = 0;
     this.nextPage = 2;
   }
-  // goToAdminRegPage() {
-  //   this.nextPage = 2;
-  // }
+
   welcomeMessage() {
     console.log("Login Seccussfully");
   }
