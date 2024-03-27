@@ -188,7 +188,7 @@ class ProfilePage extends Page {
   }
 }
 
-SharedData.email = "AhamadDardok@gmail.com";
-let profile = new ProfilePage();
+// SharedData.email = "AhamadDardok@gmail.com";
+// let profile = new ProfilePage();
 
 module.exports = ProfilePage;

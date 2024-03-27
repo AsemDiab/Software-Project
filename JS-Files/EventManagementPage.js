@@ -4,10 +4,9 @@ const readlineSync = require("readline-sync");
 const Server = require("../main");
 const PrintData = require("../JS-Files/printData.js");
 let printData = new PrintData();
-
 DB.init();
+
 class EventManagementPage extends Page {
-  
   eventID = null;
   eventName = null;
   eventDate = null;
@@ -18,7 +17,13 @@ class EventManagementPage extends Page {
   eventType = null;
   venueID = null;
 
-  instructions = ["show event","add new event", "update event", "delete event", "return"];
+  instructions = [
+    "show event",
+    "add new event",
+    "update event",
+    "delete event",
+    "return",
+  ];
 
   printMenu() {
     console.log(`options:
@@ -319,21 +324,5 @@ class EventManagementPage extends Page {
     }
   }
 }
-const event = new EventManagementPage();
-const printEvent = new PrintData();
-// event.fillDataToAdd();
-// eve.selectToUpdate();
-// eve.selectToDelete();
-// eve.readOption();
-
-DB.init();
-// event.readOption();
-// printEvent.printUserData(DB.userMap);
-// printEvent.printVenueData(DB.venueMap);
-// printEvent.printEventData(DB.eventMap);
-// printEvent.printReservationData(DB.reservationMap);
-// printEvent.printBussinessAccountData(DB.BussinessAccountMap);
 
 module.exports = EventManagementPage;
-
-

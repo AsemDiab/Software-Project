@@ -2,13 +2,18 @@ const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page.js");
 const Server = require("../main");
-const SharedMemory=require("../JS-Files/SharedData")
+const SharedMemory = require("../JS-Files/SharedData");
 class MyAccount extends Page {
   creatAccount = false;
   loginAccount = false;
   returnFlage = false;
 
-  instructions=["user info","Create business account","login business account","return"];
+  instructions = [
+    "user info",
+    "Create business account",
+    "login business account",
+    "return",
+  ];
   init() {
     this.creatAccount = false;
     this.loginAccount = false;
@@ -25,7 +30,7 @@ class MyAccount extends Page {
 
   creatBusinessAccount() {
     this.creatAccount = true;
-    this.nextPage=9
+    this.nextPage = 9;
   }
   isNamePageExist(name) {
     if (name == "facebook") {
@@ -41,8 +46,8 @@ class MyAccount extends Page {
     } else if (pageName != null && pageName != undefined && pageName != "") {
       console.log("user enter: " + pageName);
       console.log("sorry ,we could not found your page");
-      SharedMemory.bussinessID=SharedMemory.email
-      this.nextPage=10;
+      SharedMemory.bussinessID = SharedMemory.email;
+      this.nextPage = 10;
     } else {
       console.log("invalid name input");
     }
@@ -66,7 +71,7 @@ class MyAccount extends Page {
       case "user info":
         this.userProfileInfo();
         console.log("in user info case");
-        readlineSync.question()
+        readlineSync.question();
         break;
       case "Create business account":
         this.creatBusinessAccount();
@@ -83,13 +88,11 @@ class MyAccount extends Page {
         console.log("invalid input");
     }
   }
-  readOption(){
-     this.nextPage=0;
-    let option=readlineSync.question('enter option number')
-    if (option<4)
-    this.run(this.instructions[option])
-    return this.nextPage
-
+  readOption() {
+    this.nextPage = 0;
+    let option = readlineSync.question("enter option number");
+    if (option < 4) this.run(this.instructions[option]);
+    return this.nextPage;
   }
 }
 

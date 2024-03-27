@@ -51,7 +51,9 @@ When(
   }
 );
 
-Then("return him to create Business Account page", function () {});
+Then("return him to create Business Account page", function () {
+  createBAccount.openPage();
+});
 
 When(
   "the user enters invalid integer in create Business Account Page {string}",

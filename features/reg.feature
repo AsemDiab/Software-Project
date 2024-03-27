@@ -42,18 +42,18 @@ Feature: Register page
         And user should remain on the registerion page
 
     Scenario: weak password
-        Given user is in the registerion page
+        Given the user is in the registerion page
         When user enters a valid email
         And user enters a weak password
         Then the system should display a message 'the password is invalid' to warn him
         And user should remain on the registerion page
 
     Scenario: go to login page
-        Given the user is on the registerion page
+        Given the user is in the registerion page
         When clicks on login page button
         Then send the user to login page
 
     Scenario: return to Start Page
-        Given user is in the registerion page
+        Given the user is in the registerion page
         When the user clicks on the return option
         Then redirect him to Start Page
