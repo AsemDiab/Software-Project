@@ -18,13 +18,19 @@ class BusinessAccountP extends Page {
 some info about Calendar and Scheduling
 ---------------------------------------`);
 
-    DB.reservationMap.forEach((value,key) => {
-      if(value.id==SharedData.bussinessID) {
-          console.log(` ${VenuePage.makeCol(key)}  | ${VenuePage.makeCol(value.email)} | ${VenuePage.makeCol(value.id)} | ${VenuePage.makeCol(value.startTime)} | ${VenuePage.makeCol(value.endTime)} | ${VenuePage.makeCol(value.startDate)} |  ${VenuePage.makeCol(value.endDate)} |\n`)
-        }
+    DB.reservationMap.forEach((value, key) => {
+      if (value.id == SharedData.bussinessID) {
+        console.log(
+          ` ${VenuePage.makeCol(key)}  | ${VenuePage.makeCol(
+            value.email
+          )} | ${VenuePage.makeCol(value.id)} | ${VenuePage.makeCol(
+            value.startTime
+          )} | ${VenuePage.makeCol(value.endTime)} | ${VenuePage.makeCol(
+            value.startDate
+          )} |  ${VenuePage.makeCol(value.endDate)} |\n`
+        );
+      }
     });
-
-
   }
   goToVenuePage() {
     this.isGoToVenue = true;
@@ -51,23 +57,21 @@ in Expense tracking and categorization case!!
   run(option) {
     switch (option.trim()) {
       case "Calendar and Scheduling":
-        console.log("-----------in Calendar and Scheduling case!!-----------");
+        this.displayCalendar();
         break;
       case "venue":
-        console.log("-----------in go to Venue case!!-----------");
+        this.goToVenuePage();
         break;
       case "Expense tracking and categorization":
         console.log(
-          "-----------in Expense tracking and categorization case!!-----------"
+          this.displayExpenseTracking();
         );
         break;
       case "return":
-        console.log("-----------in return case!!-----------");
+        
         break;
       default:
-        console.log(
-          "-----------Invalid option. Please choose an existed option-----------"
-        );
+        console.log("invalid data input");
     }
   }
 }

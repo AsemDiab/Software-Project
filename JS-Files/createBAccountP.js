@@ -21,7 +21,7 @@ class CpaP extends Page {
       let nameCheck = namePage;
       if (value.PageName == nameCheck) boolAnswer = false;
     });
-    console.log("Error: this name was already taken");
+    
     return boolAnswer;
   }
 

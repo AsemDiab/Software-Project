@@ -43,7 +43,6 @@ class EventManagementPage extends Page {
 
   setID(id) {
     this.cache.ID = id;
-    // return this.idValidity(id);
   }
   setName(name) {
     this.cache.name = name;

@@ -122,23 +122,6 @@ class VenuePage extends Page {
   viewVenue() {
     console.log(DB.venueMap);
     printData.printVenueData(DB.venueMap);
-    // DB.venueMap.forEach((value, key) => {
-    //   console.log(
-    //     `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(
-    //       key
-    //     )} | ${VenuePage.makeCol(
-    //       DB.venueMap.get(key).name
-    //     )} | ${VenuePage.makeCol(
-    //       DB.venueMap.get(key).location
-    //     )} | ${VenuePage.makeCol(
-    //       DB.venueMap.get(key).capcity
-    //     )} | ${VenuePage.makeCol(
-    //       DB.venueMap.get(key).price
-    //     )} | ${VenuePage.makeCol(
-    //       DB.venueMap.get(key).Amenities
-    //     )} |  ${VenuePage.makeCol(DB.venueMap.get(key).url)} |`
-    //   );
-    // });
   }
 
   searchByAtteibute(id, name, location, capacity, price) {
@@ -147,6 +130,9 @@ class VenuePage extends Page {
 
     if (id != undefined) {
       let key = id.toString();
+      let row = new Map();
+      row.set(key,tempMap.get(key))
+    printData.printVenueData(row);
 
       return `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(
         DB.venueMap.get(key).name
@@ -184,6 +170,7 @@ class VenuePage extends Page {
         50
       )} |  ${VenuePage.makeCol(DB.venueMap.get(key).url)} |\n`;
     });
+    printData.printVenueData(tempMap);
     return result;
   }
   selectByname(name, table) {
@@ -330,5 +317,5 @@ class VenuePage extends Page {
 let venue = new VenuePage();
 // venue.deleteVenue();
 venue.viewVenue();
-// console.log(venue.searchByAtteibute());
+venue.searchByAtteibute(undefined,'venue a',undefined,undefined,undefined,undefined);
 module.exports = VenuePage;

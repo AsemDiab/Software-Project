@@ -13,7 +13,7 @@
 
 // class Server{
 //     static currentPage=new Page();
-//      static PageName;
+//     static PageName;
 //     static UserEmail;
 //     static venueID;
 //     static venderID;

@@ -1,83 +1,76 @@
 const readlineSync = require("readline-sync");
-const Page =require('../JS-Files/Page');
-class UserP extends Page{
-    isOpen = false;
-    eventPage = 0;
-    profilePage = 0;
-    startingPage = 0;
-    option = -1;
-    warnTheUser=false
+const Page = require("../JS-Files/Page");
+class UserP extends Page {
+  isOpen = false;
+  eventPage = 0;
+  profilePage = 0;
+  startingPage = 0;
+  option = -1;
 
-    systemMsg=''
-    nextPage=0
-
+  systemMsg = "";
+  nextPage = 0;
+  instructions = ["event management page", "profile page", "return"];
   constructor() {
     super();
-    this.openPage()
+    this.openPage();
   }
-  printMenu(){
-    console.log("Options:");
-    console.log("1. event management page");
-    console.log("2. profile page");
-    console.log("3. return to Start Page");
+  printMenu() {
+    console.log(`Options: 
+                  1. event management page
+                  2. profile page
+                  3. return to Start Page`);
   }
 
-  readOption(){
-      let op=readlineSync.question()
-    this.setOPtion(op)
-      this.run();
-      return this.nextPage
+  openPage() {
+    this.isOpen = true;
   }
-  openPage(){
-    this.isOpen= true;
-  }
-  setOPtion(option){
+  setOPtion(option) {
     this.option = option;
   }
-  goToEventPage(){
+  goToEventPage() {
     this.eventPage = 1;
-    this.profilePage  = 0;
+    this.profilePage = 0;
     this.startingPage = 0;
-    this.nextPage=5
+    this.nextPage = 5;
   }
-  goToProfilePage(){
+  goToProfilePage() {
     this.eventPage = 0;
-    this.profilePage  = 1;
+    this.profilePage = 1;
     this.startingPage = 0;
-    this.nextPage=6
+    this.nextPage = 6;
   }
-  goToStartingPage(){
+  goToStartingPage() {
     this.eventPage = 0;
-    this.profilePage  = 0;
+    this.profilePage = 0;
     this.startingPage = 1;
 
-    this.nextPage=1
+    this.nextPage = 1;
   }
-  run() {
-
-    switch (String(this.option)){
-      case "1":
-        console.log("User chose option 1. event page");
+  run(theAction) {
+    switch (theAction) {
+      case "event management page":
         this.goToEventPage();
         break;
-      case "2":
-        console.log("User chose option 2. Profile page");
+      case "delete place":
         this.goToProfilePage();
         break;
-      case "3":
-        console.log("User chose option 3. start page");
+      case "return":
         this.goToStartingPage();
         break;
       default:
-        console.log("Invalid option. Please choose 1, 2, or 3.");
         this.reopenPage();
-        this.warnTheUser=true
         break;
     }
   }
-  reopenPage(){
+
+  readOption() {
+    let option = readlineSync.question("enter option number");
+    if (option < 3) this.run(this.instructions[option]);
+  }
+
+  reopenPage() {
     this.eventPage = 0;
-    this.profilePage  = 0;
+    this.profilePage = 0;
     this.startingPage = 0;
     this.isOpen = true;
   }
