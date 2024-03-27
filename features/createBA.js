@@ -20,8 +20,7 @@ When("the user enters valid data page", function () {
   phoneNumber = '0599989199';
   pageType = 'company';
   sharedD.email = 'ahmad@gmail.com';
-  createBAccount.readData(namePage, phoneNumber ,pageType);
-  
+  createBAccount.writeData(namePage, phoneNumber ,pageType);
 });
 
 Then("redirect him to myAccount page", function () {
@@ -33,7 +32,7 @@ When("the user enters valid name page that already exist", function () {
   phoneNumber = '0599989199';
   pageType = 'company';
   sharedD.email = 'ahmad@gmail.com';
-  createBAccount.readData(namePage, phoneNumber ,pageType);
+  createBAccount.writeData(namePage, phoneNumber ,pageType);
 });
 
 When("the user enters invalid data page like null", function () {
@@ -41,7 +40,7 @@ When("the user enters invalid data page like null", function () {
   phoneNumber = '0599989199';
   pageType = 'company';
   sharedD.email = 'ahmad@gmail.com';
-  createBAccount.readData(namePage, phoneNumber ,pageType);
+  createBAccount.writeData(namePage, phoneNumber ,pageType);
 });
 
 When(

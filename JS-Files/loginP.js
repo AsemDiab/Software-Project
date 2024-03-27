@@ -3,17 +3,14 @@ const DB = require("../JS-Files/ourDataBase");
 const Page = require("../JS-Files/Page");
 const  Server=require("../main")
 const SharedMemory=require("../JS-Files/SharedData")
+
 class LoginP extends Page {
   state = "admin";
-  // option = -1;
+
   password = "password";
   email = "name@example.com";
 
-  is_open = false;
 
-  goToUser = 0;
-  goToLogin = 1;
-  goToAdmin = 0;
 
   userObject = "";
 
@@ -25,11 +22,6 @@ class LoginP extends Page {
   nextPage = 0;
   systemMsg = "";
 
-  constructor() {
-    super();
-    // this.enterEmailAndPassword();
-  }
-
   printSubmitManu() {
     console.log("Options:");
     console.log("1. submit");
@@ -40,14 +32,14 @@ class LoginP extends Page {
     this.option = option;
     switch (String(this.option)) {
       case "1":
-        this.run();
+        this.enterEmailAndPassword();
         break;
       case "2":
-        // console.log('cancel operation');
+        console.log("in case 2");
         break;
       default:
+        console.log("in case 3");
         break;
-      // console.log('invalid input')
     }
   }
 
@@ -63,54 +55,11 @@ class LoginP extends Page {
     this.printSubmitManu();
     this.option = readlineSync.question();
     this.submitManu(this.option);
-  }
-
-  run() {
-    let tempState = this.getState();
-    console.log(tempState);
-    console.log(this.cache.email);
-    // let user = DB.userMap.get(this.email.trim().toLowerCase()); // check here
-    let user = DB.userMap.get("asemhesham@gmail.com");
-    console.log(user);
-    console.log(
-      "//////////////////// " + typeof(user) + " //////////////////////"
-    );
-    if (tempState == "admin") {
-      if (this.cache.password == user.password) {
-        // console.log("Admin Successfully Login");
-        this.systemMsg = "Admin Successfully Login";
-        console.log(this.systemMsg);
-        this.goToAdminPage();
-        SharedMemory.email=this.email
-      } else {
-        // console.log("Failed To Login");
-        this.systemMsg = "Wrong Email or Password, Failed To Login";
-        console.log(this.systemMsg);
-        this.goToLoginPage();
-      }
-    } else {
-      if (this.cache.password == user.password) {
-        // console.log("User Successfullu Login");
-        this.systemMsg = "User Successfullu Login";
-        console.log(this.systemMsg);
-        this.goToUserPage();
-        SharedMemory.email=this.email
-      } else {
-        // console.log("Failed To Login");
-        this.systemMsg = "Wrong Email or Password, Failed To Login";
-        console.log(this.systemMsg);
-        this.goToLoginPage();
-
-      }
-    }
-
-
+    this.checkEmailAndPassword();
   }
 
   
-
   clicks(scenario) {
-    // userChoice=Start.getOption()
     switch (scenario.toLowerCase().trim()) {
       case "submit":
         this.submitManu(1);
@@ -118,57 +67,83 @@ class LoginP extends Page {
       case "go to login page":
         this.goToLoginPage();
         break;
-      case "return to start page":
-        this.goToStartPage();
+      case "go to registerion page":
+        this.goToRegPage();
+        break;
+      case "return to starting page":
+        this.goToStartingPage();
+        break;
+      case "go to user page":
+        this.goToUserPage();
         break;
       default:
         console.log("Invalid option. Please choose an existed option");
     }
   }
-  openPage() {
-    this.is_open = true;
+
+  checkEmailAndPassword(email, password) {
+    this.cache.email = email;
+    console.log("the email is ------>" + this.cache.email);
+    this.cache.password = password;
+    console.log("the pass is ------>" + this.cache.password);
+    let user = DB.userMap.get(this.cache.email);
+
+    if (user != undefined) {
+      if (this.cache.password == user.password) {
+        let tempState = this.getState();
+        switch (tempState) {
+          case "admin":
+            this.systemMsg = "Admin Successfully Login\n";
+            this.goToAdminPage();
+            break;
+          case "user":
+            this.systemMsg = "User Successfully Login\n";
+            this.goToUserPage();
+            break;
+          default:
+            temMsg = "";
+            break;
+        }
+      } else {
+        this.systemMsg = "incorrect password\n";
+      }
+    } else {
+      this.systemMsg = "this email doesnt exist\n";
+    }
+    console.log(this.systemMsg);
+  }
+
+  goToStartingPage() {
+    this.nextPage = 1;
+    Server.username = this.email;
   }
 
   goToUserPage() {
-    this.goToUser = 1;
-    this.goToLogin = 0;
-    this.goToAdmin = 0;
     this.nextPage = 4;
-    Server.username=this.email
+    Server.username = this.email;
   }
   goToAdminPage() {
-    this.goToUser = 0;
-    this.goToLogin = 0;
-    this.goToAdmin = 1;
     this.nextPage = 7;
-    Server.username=this.email
+    Server.username = this.email;
   }
   goToLoginPage() {
-    this.goToUser = 0;
-    this.goToLogin = 1;
-    this.goToAdmin = 0;
     this.nextPage = 3;
   }
-  goToAdminRegPage() {
+  goToRegPage() {
     this.nextPage = 2;
   }
+
   welcomeMessage() {
     console.log("Login Seccussfully");
   }
   getState() {
-
-    return DB.userMap.get(this.email).type;
-
-    // userObject["asemhesham@gmail.com"].type;
+    return DB.userMap.get(this.cache.email).type;
   }
   setPassword(password) {
-    this.password = password;
-  }
-  getPassword() {
-    return this.getPassword;
+    this.cache.password = password;
   }
   setEmail(email) {
-    this.email = email;
+    this.cache.email = email;
   }
   getEmail() {
     return this.email;

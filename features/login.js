@@ -1,6 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const LoginP = require("../JS-Files/loginP");
+const { cpSync } = require("fs");
 let login = new LoginP();
 
 Given("the user is on the login page", function () {
@@ -8,61 +9,67 @@ Given("the user is on the login page", function () {
 });
 
 When("the user enters valid data {string} and {int}", function (string, int) {
-  login.setEmail(string);
-  login.setPassword(int);
+  login.checkEmailAndPassword(string, int);
 });
 
 When(
   "the user enters valid data {string} and {string}",
   function (string, string2) {
-    login.setEmail(string);
-    login.setPassword(string2);
+    login.checkEmailAndPassword(string, string2);
   }
 );
-
-//i'am not sure of this one
-Then("redirect him to user or admin home page", function () {
-  login.clicks("Enter Your Email And Password");
-  // assert.equal(login.nextPage, 3);
-});
 
 When(
-  "the user enters incorrect {string} and\\/or {string}",
+  "the user enters incorrect {string} or {string}",
   function (string, string2) {
-    login.setEmail(string);
-    login.setPassword(string2);
+    login.checkEmailAndPassword(string, string2);
   }
 );
 
+Then("redirect him to user or admin home page", function () {
+  login.clicks("go to user page");
+});
+
 Then("display an message {string}", function (string) {
-  console.log("unfinished");
+  console.log(string);
 });
 
 Then("refresh login page", function () {
-  login.goToLoginPage();
+  login.clicks("go to login page");
 });
 
-When("the user enters invalid data", function () {
-  // assert.equal(
-  //   login.systemMsg,
-  //   "Wrong Email or Password, Failed To Login",
-  //   "Wrong Email or Password, Failed To Login"
-  // );
-  console.log("unfinished");
-});
-
-When("click on registerion page option", function () {
-  console.log("unfinished");
+Then("back to starting page", function () {
+  login.clicks("return to starting page");
 });
 
 Then("send the user to registerion page", function () {
-  login.clicks("Go To Registerion Page");
+  login.clicks("go to registerion page");
 });
+
+When("user select {string} options in login page", function (string) {
+  login.clicks("return to starting page");
+});
+
+When("userthe  enters invalid integer in login Page {int}", function (int) {
+  login.clicks(String(int));
+});
+
+Then("return him to login page", function () {
+  login.openPage();
+});
+
+When(
+  "the user enters invalid integer in login Page {string}",
+  function (string) {
+    login.clicks(string)
+  }
+);
 
 When("the user enters any invalid integer", function () {
-  console.log("incalid input");
+  console.log("invalid input");
 });
 
+
 Then("display message {string}", function (string) {
-  console.log("Invalid Input");
+  console.log(string);
 });

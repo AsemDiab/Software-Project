@@ -2,22 +2,28 @@ const readlineSync = require("readline-sync");
 const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
 const sharedD=require('./SharedData')
+DB.init();
 class CpaP extends Page {
   pageName = null;
   phoneNumber = null;
   businessType = null;
-  nextPage=0
+
+  email = null;
+  myAccountPage = 0;
+  nextPage = 0;
+  instructions = ["create Business Accoun", , "return"];
   pageNameValid(namePage) {
-    if(namePage.trim() == '' || namePage == undefined || namePage == null)return false;
+    if (namePage.trim() == "" || namePage == undefined || namePage == null)
+      return false;
 
-    let tempMap=DB.BussinessAccountMap;
+    let tempMap = DB.BussinessAccountMap;
     let boolAnswer = true;
-
     tempMap.forEach((value, key) => {
       let nameCheck = namePage;
       if (value.PageName == nameCheck) boolAnswer = false;
     });
-    console.log(boolAnswer+"<--");
+
+    console.log("Error: this name was already taken");
     return boolAnswer;
   }
 
@@ -38,17 +44,51 @@ class CpaP extends Page {
   setEmail(email) {
     this.email = email;
   }
+  isValidPhoneNumber(phoneNumber) {
+    const pattern =
+      /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
-  readData(pageName, phoneNumber, businessType) {
+    return pattern.test(phoneNumber);
+  }
+  writeData(pageName, phoneNumber, businessType) {
     this.setName(pageName);
     this.setPhone(phoneNumber);
     this.setType(businessType);
     this.setEmail(sharedD.email);
-    if(this.pageNameValid(pageName)){
-      DB.insertBussinessAccount(this.email,pageName,phoneNumber,businessType);
-      console.log(DB.BussinessAccountMap);
+    if (this.pageNameValid(pageName)) {
+      DB.insertBussinessAccount(
+        this.email,
+        pageName,
+        phoneNumber,
+        businessType
+      );
+      console.log("Your Page is created 100%");
     }
   }
+  isValidInput(value) {
+    return value != null && value != undefined && value.toString().trim() != "";
+  }
+  allInputsValid(pageName, phoneNumber, businessType) {
+    return (
+      this.isValidInput(pageName) &&
+      this.isValidInput(phoneNumber) &&
+      this.isValidInput(businessType)
+    );
+  }
+  readData() {
+    let namePage = readlineSync.question("Enter Your Page Name:");
+    let phoneNumber = readlineSync.question("Enter Your Phone Number:");
+    this.selectType();
+    if (
+      this.allInputsValid(namePage, phoneNumber, this.businessType) &&
+      this.isValidPhoneNumber(phoneNumber)
+    ) {
+      this.writeData(namePage, phoneNumber, this.businessType);
+    } else {
+      console.log("Error: invalid data input");
+    }
+  }
+
   printMenu() {
     console.log(`
     select the button by enter the number: 
@@ -57,38 +97,58 @@ class CpaP extends Page {
       `);
   }
 
-  // make this functon to read type and return string that indcate the type
-  readType(){
-    console.log(`----types---
-                  0:  `)
+
+  selectType() {
+    console.log(`select your business type
+                  1. Art Design.
+                  2. Health and Wellness.
+                  3. Market place.
+                  4. Mobile Apps.
+                  5. Education and Training.`);
+    let option = readlineSync.question("Enter Your Option: ");
+    switch (option) {
+      case "1":
+        this.setType("Art Design");
+        break;
+      case "2":
+        this.setType("Health and Wellness");
+        break;
+      case "3":
+        this.setType("Market place");
+        break;
+      case "4":
+        this.setType("Mobile Apps");
+        break;
+      case "5":
+        this.setType("Education and Training");
+        break;
+      default:
+        console.log("Invalid data inbut, blease try again.");
+    }
   }
 
   clicks(option) {
     switch (option.trim()) {
       case "create Business Account":
-        let pageNAme=readlineSync.question('enter page Name')
-         let phoneNumber=readlineSync.question('enter phone number')
-          // let bussinessType=this.readType();
-          let bussinessType=readlineSync.question('enter Type')
-        this.readData(pageNAme,phoneNumber,bussinessType)
-        console.log("create business account case!!");
+
+        this.readData();
         break;
       case "return":
-        this.myAccountPage();
-        console.log("return!!");
+        this.openMyAccountPage();
         break;
       default:
         console.log("Invalid option. Please choose an existed option");
     }
   }
 
-  readOption(){
-    this.insturctions=["create Business Account","return"]
-    let option=readlineSync.question('enter option')
-    if(option<2)
-      this.clicks(this.insturctions[option])
-    return this.nextPage;
+  readOption() {
+    let option = readlineSync.question("enter option number");
+    if (option < 5) this.run(this.instructions[option]);
   }
 }
+
+let eve = new CpaP();
+eve.readData();
+
 module.exports = CpaP;
 
