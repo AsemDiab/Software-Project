@@ -66,10 +66,7 @@ in Expense tracking and categorization case!!
         this.goToVenuePage();
         break;
       case "Expense tracking and categorization":
-        this.displayExpenseTracking()
-        console.log(
-          this.displayExpenseTracking();
-        );
+        this.displayExpenseTracking();
         break;
       case "return":
         

@@ -98,7 +98,7 @@ class DataHandler{
     static insertVenue(id,name,location,capcity,price,Amenities,url){
         
         let x= {
-            id: id,
+            venue_id: id,
              name: name,
              location:location
             ,capcity:capcity,
@@ -134,7 +134,7 @@ class DataHandler{
             id=DataHandler.eventMap.size;
 
         let x= {
-            id: id,
+            event_id: id,
              name: name,
              date: date,
              venueId: venue
