@@ -143,7 +143,7 @@ class CpaP extends Page {
   }
 }
 
-let eve = new CpaP();
-eve.readOption();
+// let eve = new CpaP();
+// eve.readOption();
 
 module.exports = CpaP;
