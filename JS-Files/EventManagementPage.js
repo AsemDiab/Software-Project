@@ -4,10 +4,9 @@ const readlineSync = require("readline-sync");
 const Server = require("../main");
 const PrintData = require("../JS-Files/printData.js");
 let printData = new PrintData();
-
 DB.init();
+
 class EventManagementPage extends Page {
-  
   eventID = null;
   eventName = null;
   eventDate = null;
@@ -18,7 +17,13 @@ class EventManagementPage extends Page {
   eventType = null;
   venueID = null;
 
-  instructions = ["show event","add new event", "update event", "delete event", "return"];
+  instructions = [
+    "show event",
+    "add new event",
+    "update event",
+    "delete event",
+    "return",
+  ];
 
   printMenu() {
     console.log(`options:
@@ -187,7 +192,7 @@ class EventManagementPage extends Page {
   }
 
   selectToDelete() {
-    let ID = readlineSync.question("Enter ID To Delete:");
+    const ID = readlineSync.question("Enter ID To Delete:");
     if (!this.checkEventID(ID)) {
       this.deleteEvent(ID);
     } else {
@@ -236,15 +241,15 @@ class EventManagementPage extends Page {
   };
 
   readData() {
-    let ID = readlineSync.question("Enter Your ID: ");
-    let name = readlineSync.question("Enter Your Name: ");
-    let date = readlineSync.question("Enter Your Date: ");
-    let time = readlineSync.question("Enter Your Time: ");
-    let theme = readlineSync.question("Enter Your Theme: ");
-    let description = readlineSync.question("Enter Your Discription: ");
-    let count = readlineSync.question("Enter Your Count: ");
-    let type = readlineSync.question("Enter Your Type: ");
-    let venueID = readlineSync.question("Enter Your Venue-ID: ");
+    const ID = readlineSync.question("Enter Your ID: ");
+    const name = readlineSync.question("Enter Your Name: ");
+    const date = readlineSync.question("Enter Your Date: ");
+    const time = readlineSync.question("Enter Your Time: ");
+    const theme = readlineSync.question("Enter Your Theme: ");
+    const description = readlineSync.question("Enter Your Discription: ");
+    const count = readlineSync.question("Enter Your Count: ");
+    const type = readlineSync.question("Enter Your Type: ");
+    const venueID = readlineSync.question("Enter Your Venue-ID: ");
     this.setID(ID);
     this.setName(name);
     this.setDate(date);
@@ -272,7 +277,7 @@ class EventManagementPage extends Page {
   }
 
   selectToUpdate() {
-    let ID = readlineSync.question("Enter ID To Update:");
+    const ID = readlineSync.question("Enter ID To Update:");
     if (this.isValidInput(ID)) {
       this.readData();
       this.editEvent(
@@ -293,7 +298,7 @@ class EventManagementPage extends Page {
   }
   readOption() {
     this.printMenu();
-    let option = readlineSync.question("enter option number");
+    const option = readlineSync.question("enter option number");
     if (option < 5) this.run(this.instructions[option]);
   }
 
@@ -319,21 +324,4 @@ class EventManagementPage extends Page {
     }
   }
 }
-const event = new EventManagementPage();
-const printEvent = new PrintData();
-// event.fillDataToAdd();
-// eve.selectToUpdate();
-// eve.selectToDelete();
-// eve.readOption();
-
-DB.init();
-// event.readOption();
-// printEvent.printUserData(DB.userMap);
-// printEvent.printVenueData(DB.venueMap);
-// printEvent.printEventData(DB.eventMap);
-// printEvent.printReservationData(DB.reservationMap);
-// printEvent.printBussinessAccountData(DB.BussinessAccountMap);
-
 module.exports = EventManagementPage;
-
-

@@ -1,17 +1,16 @@
 const readlineSync = require("readline-sync");
 const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
-const sharedD=require('./SharedData')
+const sharedD = require("./SharedData.js");
 DB.init();
 class CpaP extends Page {
   pageName = null;
   phoneNumber = null;
   businessType = null;
-
   email = null;
   myAccountPage = 0;
   nextPage = 0;
-  instructions = ["create Business Accoun", , "return"];
+  instructions = ["create Business Accoun", "return"];
   pageNameValid(namePage) {
     if (namePage.trim() == "" || namePage == undefined || namePage == null)
       return false;
@@ -75,8 +74,8 @@ class CpaP extends Page {
     );
   }
   readData() {
-    let namePage = readlineSync.question("Enter Your Page Name:");
-    let phoneNumber = readlineSync.question("Enter Your Phone Number:");
+    const namePage = readlineSync.question("Enter Your Page Name:");
+    const phoneNumber = readlineSync.question("Enter Your Phone Number:");
     this.selectType();
     if (
       this.allInputsValid(namePage, phoneNumber, this.businessType) &&
@@ -96,7 +95,6 @@ class CpaP extends Page {
       `);
   }
 
-
   selectType() {
     console.log(`select your business type
                   1. Art Design.
@@ -104,7 +102,7 @@ class CpaP extends Page {
                   3. Market place.
                   4. Mobile Apps.
                   5. Education and Training.`);
-    let option = readlineSync.question("Enter Your Option: ");
+    const option = readlineSync.question("Enter Your Option: ");
     switch (option) {
       case "1":
         this.setType("Art Design");
@@ -127,9 +125,8 @@ class CpaP extends Page {
   }
 
   clicks(option) {
-    switch (option.trim()) {
+    switch (option) {
       case "create Business Account":
-
         this.readData();
         break;
       case "return":
@@ -141,13 +138,12 @@ class CpaP extends Page {
   }
 
   readOption() {
-    let option = readlineSync.question("enter option number");
-    if (option < 5) this.run(this.instructions[option]);
+    const option = readlineSync.question("enter option number");
+    if (option < 2) this.clicks(this.instructions[option]);
   }
 }
 
 let eve = new CpaP();
-eve.readData();
+eve.readOption();
 
 module.exports = CpaP;
-

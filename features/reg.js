@@ -92,10 +92,6 @@ Then("redirect him to Start Page", function () {
   assert.equal(registerion.nextPage, 1);
 });
 
-Given("the user is in the Register page", function () {});
-
-When("the user enters any invalid input", function () {});
-
 Then("reture to the Register page", function () {
   assert.equal(registerion.nextPage, 0, "invalid test failed ");
 });

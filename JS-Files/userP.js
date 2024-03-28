@@ -64,7 +64,7 @@ class UserP extends Page {
   }
 
   readOption() {
-    let option = readlineSync.question("enter option number");
+    const option = readlineSync.question("enter option number");
     if (option < 3) this.run(this.instructions[option]);
   }
 
