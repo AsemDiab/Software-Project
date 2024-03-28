@@ -14,10 +14,6 @@ class BusinessAccountP extends Page {
   }
 
   displayCalendar() {
-    console.log(`--------------------------------------
-  some info about Calendar and Scheduling
-  ---------------------------------------`);
-
     DB.reservationMap.forEach((value, key) => {
       if (value.id == SharedData.bussinessID) {
         console.log(

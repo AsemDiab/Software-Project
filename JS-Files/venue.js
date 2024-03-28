@@ -314,8 +314,5 @@ class VenuePage extends Page {
     if (option < 5) this.run(this.instructions[option]);
   }
 }
-// let venue = new VenuePage();
-// venue.deleteVenue();
-// venue.viewVenue();
-// venue.searchByAtteibute(undefined,'venue a',undefined,undefined,undefined,undefined);
+
 module.exports = VenuePage;

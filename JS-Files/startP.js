@@ -50,7 +50,7 @@ class StartP extends Page {
     this.go_to_reg = 0;
     this.go_to_login = 0;
     this._exit = 1;
-    process.exit(0);
+    // process.exit(0);
   }
   
   readOption() {
@@ -82,6 +82,7 @@ class StartP extends Page {
     this.go_to_login = 0;
     this.is_open = true;
     this._exit = 0;
+    this.nextPage = 0;
   }
 }
 

@@ -1,7 +1,7 @@
 const readlineSync = require("readline-sync");
 const Page = require("../JS-Files/Page");
 class UserP extends Page {
-  isOpen = false;
+  // isOpen = false;
   eventPage = 0;
   profilePage = 0;
   startingPage = 0;
@@ -21,9 +21,9 @@ class UserP extends Page {
                   3. return to Start Page`);
   }
 
-  openPage() {
-    this.isOpen = true;
-  }
+  // openPage() {
+  //   this.isOpen = true;
+  // }
   setOPtion(option) {
     this.option = option;
   }
