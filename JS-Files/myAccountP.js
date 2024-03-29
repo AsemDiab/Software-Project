@@ -22,7 +22,7 @@ class MyAccount extends Page {
 
   userProfileInfo() {
     console.log("display user account info");
-    console.log(SharedMemory.email);
+    console.log("|welcome "+SharedMemory.email+"|");
     console.log(DB.userMap.get(SharedMemory.email));
 
     DB.userMap.get(Server.UserEmail);
@@ -33,21 +33,19 @@ class MyAccount extends Page {
     this.nextPage = 9;
   }
   isNamePageExist(name) {
-    let theFinalResult=false
-    if(name==undefined || name==null || name.trim()=='')
-      return false
-    DB.BussinessAccountMap.forEach((value,key)=>{
-          if (name.trim() == value.PageName.trim()) {
-            theFinalResult= true;
-          }
-    }
-    )
+    let theFinalResult = false;
+    if (name == undefined || name == null || name.trim() == "") return false;
+    DB.BussinessAccountMap.forEach((value, key) => {
+      if (name.trim() == value.PageName.trim()) {
+        theFinalResult = true;
+      }
+    });
     return theFinalResult;
   }
   loginBusinessAccount(pageName) {
     this.loginAccount = true;
-    console.log(pageName)
-    console.log(this.isNamePageExist(pageName))
+    console.log(pageName);
+    console.log(this.isNamePageExist(pageName));
     if (this.isNamePageExist(pageName)) {
       console.log("user enter: " + pageName);
       console.log("page was found , welcome to your business");
@@ -62,7 +60,7 @@ class MyAccount extends Page {
   }
   returnBack() {
     this.returnFlage = true;
-    this.nextPage=6;
+    this.nextPage = 6;
   }
 
   printMenu() {
@@ -79,21 +77,16 @@ class MyAccount extends Page {
     switch (theAction.trim()) {
       case "user info":
         this.userProfileInfo();
-        console.log("in user info case");
-        // readlineSync.question();
         break;
       case "Create business account":
         this.creatBusinessAccount();
-        console.log("in create business account case");
         break;
       case "login business account":
-        const pageName=readlineSync.question('Enter page Name ')
-        this.loginBusinessAccount(pageName)
-        console.log("in login business account case");
+        const pageName = readlineSync.question("Enter page Name ");
+        this.loginBusinessAccount(pageName);
         break;
       case "return":
         this.returnBack();
-        console.log("in return case");
         break;
       default:
         console.log("invalid input");
@@ -106,7 +99,5 @@ class MyAccount extends Page {
     return this.nextPage;
   }
 }
-DB.init()
-// lo=new MyAccount()
-// lo.loginBusinessAccount("Sayed-Qutob")
+
 module.exports = MyAccount;

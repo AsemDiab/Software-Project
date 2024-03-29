@@ -215,7 +215,5 @@ class DataHandler{
 
 
 }
-// DataHandler.init()
-// DataHandler.updateEvent('event-002','event5')
-// console.log(DataHandler.eventMap)
+
 module.exports=DataHandler;

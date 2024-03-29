@@ -47,7 +47,7 @@ class UserP extends Page {
     this.nextPage = 1;
   }
   run(theAction) {
-    console.log(theAction)
+    console.log(theAction);
     switch (theAction) {
       case "event management page":
         this.goToEventPage();
@@ -67,7 +67,7 @@ class UserP extends Page {
   readOption() {
     const option = readlineSync.question("enter option number");
     if (option < 3) this.run(this.instructions[option]);
-    return this.nextPage
+    return this.nextPage;
   }
 
   reopenPage() {

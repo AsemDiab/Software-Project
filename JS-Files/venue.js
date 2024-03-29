@@ -120,7 +120,7 @@ class VenuePage extends Page {
     return option + whiteSpace;
   }
   viewVenue() {
-    console.log(DB.venueMap);
+    
     printData.printVenueData(DB.venueMap);
   }
 
@@ -315,8 +315,5 @@ class VenuePage extends Page {
     return this.nextPage
   }
 }
-// let venue = new VenuePage();
-// venue.deleteVenue();
-// venue.viewVenue();
-// venue.searchByAtteibute(undefined,'venue a',undefined,undefined,undefined,undefined);
+
 module.exports = VenuePage;

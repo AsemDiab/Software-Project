@@ -7,7 +7,7 @@ const VenuePage = require("./venue");
 class BusinessAccountP extends Page {
   isGoToVenue = false;
   isReturn = false;
-  nextPage=0
+  nextPage = 0;
 
   init() {
     this.isGoToVenue = false;
@@ -15,10 +15,6 @@ class BusinessAccountP extends Page {
   }
 
   displayCalendar() {
-    console.log(`--------------------------------------
-  some info about Calendar and Scheduling
-  ---------------------------------------`);
-
     DB.reservationMap.forEach((value, key) => {
       if (value.id == SharedData.bussinessID) {
         console.log(
@@ -35,7 +31,7 @@ class BusinessAccountP extends Page {
   }
   goToVenuePage() {
     this.isGoToVenue = true;
-    this.nextPage=11
+    this.nextPage = 11;
   }
   displayExpenseTracking() {
     console.log(`--------------------------------------------
@@ -44,7 +40,7 @@ in Expense tracking and categorization case!!
   }
   backspace() {
     this.isReturn = true;
-    this.nextPage=8;
+    this.nextPage = 8;
   }
 
   printMenu() {
@@ -69,7 +65,7 @@ in Expense tracking and categorization case!!
         this.displayExpenseTracking();
         break;
       case "return":
-        this.backspace()
+        this.backspace();
         break;
       default:
         console.log("invalid data input");
@@ -82,11 +78,9 @@ in Expense tracking and categorization case!!
     "return",
   ];
   readOption() {
-    this.nextPage=0
-    this.printMenu();
     const option = readlineSync.question("enter option number");
     if (option < 4) this.run(this.instructions[option]);
-    return this.nextPage
+    return this.nextPage;
   }
 }
 module.exports = BusinessAccountP;

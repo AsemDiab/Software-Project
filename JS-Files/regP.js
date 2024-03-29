@@ -1,18 +1,12 @@
 const readlineSync = require("readline-sync");
 const DB = require("../JS-Files/ourDataBase");
 const Page = require("./Page.js");
-
+DB.init();
 class RegP extends Page {
   username = null;
   email = null;
   password = null;
   option = 0;
-  warmUser = false;
-
-  isOpen = false;
-  isValidName = false;
-  isValidEmail = false;
-  isValidPassword = false;
 
   goToLogin = 0;
 
@@ -23,25 +17,19 @@ class RegP extends Page {
   };
 
   nextPage = 0;
-  systemMsg = "";
-  constructor() {
-    super();
-  }
+  instructions = ["submit", "go to login page", "return to start page"];
 
   usernameValidity(username) {
     if (username.length > 3) {
-      this.isValidName = true;
+      return true;
     } else {
-      this.isValidName = false;
-      this.systemMsg = "invalid username";
+      return false;
       console.log("Try to enter a username with more than 3 characters.");
     }
-    return this.isValidName;
   }
   emailAlreadyTaken(email) {
     if (DB.userMap.get(email) == undefined) return true;
 
-    this.systemMsg = "This email already taken" ;
     return false;
   }
 
@@ -51,14 +39,14 @@ class RegP extends Page {
       email.endsWith(".com") &&
       this.emailAlreadyTaken(email)
     ) {
-      this.isValidEmail = true;
+      return true;
     } else if (this.emailAlreadyTaken(email)) {
-      this.systemMsg = "this email is invalid";
-      this.isValidEmail = false;
+      console.log("Error: this email already taken");
+      return false;
     } else {
-      this.isValidEmail = false;
+      console.log("Error: invalid data input");
+      return false;
     }
-    return this.isValidEmail;
   }
   passwordValidity(password) {
     const minLength = 8;
@@ -73,33 +61,28 @@ class RegP extends Page {
       hasNumber &&
       hasSpecialChar
     ) {
-      this.isValidPassword = true;
+      return true;
     } else {
-      this.isValidPassword = false;
-      this.systemMsg = "the password is invalid";
+      console.log(`"Warning: Your password is weak!
+                   For a stronger password:
+                   - Use a combination of uppercase and lowercase letters.
+                   - Include numbers and special characters (e.g., !@#$%^&*()).
+                   - Aim for at least 8 characters in length.`);
+      return false;
     }
-    return this.isValidPassword;
   }
 
-
-
   fillData() {
-    console.log(this.cache)
-    this.warmUser = true;
-    if (
-      this.emailValidity(this.cache.email) &&
-      this.usernameValidity(this.cache.username) &&
-      this.passwordValidity(this.cache.password)
-    ) {
-      this.email = this.cache.email;
-      this.username = this.cache.username;
-      this.password = this.cache.password;
-      DB.insertUser(this.email, this.username, this.password, "user");
-      console.log("save data in DB");
-      this.warmUser = false;
-      this.nextPage = 1;
+    this.readTheData();
+    this.email = this.cache.email;
+    this.username = this.cache.username;
+    this.password = this.cache.password;
+    if(this.password != '' && this.username != '' && this.email != ''){
+    DB.insertUser(this.email, this.username, this.password, "user");
+    console.log(DB.userMap);
+    this.nextPage = 1;
     }
-    // this.systemMsg='the operation failed'
+    this.nextPage = 0;
   }
   setName(username) {
     this.cache.username = username;
@@ -115,53 +98,42 @@ class RegP extends Page {
   }
 
   readTheData() {
-    let email = readlineSync.question("Enter Your Email:");
-    this.setEmail(email);
-    if (this.isValidEmail) {
-      let username = readlineSync.question("Enter Your Name:");
+    let email = readlineSync.question("Enter Your Email: ");
+    let username = readlineSync.question("Enter Your Name: ");
+    let password = readlineSync.question("Enter Your Password: ");
 
+    if (
+      this.emailValidity(email) &&
+      this.usernameValidity(username) &&
+      this.passwordValidity(password)
+    ) {
       this.setName(username);
-      if (this.isValidName) {
-        let password = readlineSync.question("Enter Your Password:");
-
-        this.setPassword(password);
-        this.printSubmitManu();
-        this.option = readlineSync.question();
-        this.submitManu(this.option);
-      } else {
-        this.submitManu(1);
-      }
-    } else {
-      this.submitManu(1);
+      this.setPassword(password);
+      this.setEmail(email);
+      this.printSubmitManu();
+      const submit = readlineSync.question("Enter submit to complete: ");
+      this.submitMenu(submit);
     }
   }
 
-  submitManu(option) {
+  submitMenu(option) {
     this.option = option;
     switch (String(this.option)) {
       case "1":
         this.fillData();
-        this.run();
+
         break;
       case "2":
+        console.clear();
         break;
       default:
         break;
     }
   }
   printSubmitManu() {
-    console.log("Options:");
-    console.log("1. submit");
-    console.log("2. cancel");
-  }
-  run() {
-    if (this.warmUser) {
-      console.log(this.systemMsg);
-      this.nextPage = 0;
-    }
-  }
-  openPage() {
-    this.isOpen = true;
+    console.log(`Options:
+                  0. submit.
+                  1. cancel`);
   }
 
   goToLoginPage() {
@@ -174,12 +146,10 @@ class RegP extends Page {
     this.nextPage = 1;
   }
 
-
-
   clicks(scenario) {
     switch (scenario.toLowerCase().trim()) {
       case "submit":
-        this.submitManu(1);
+        this.submitMenu(1);
         break;
       case "go to login page":
         this.goToLoginPage();
@@ -193,37 +163,17 @@ class RegP extends Page {
   }
 
   readOption() {
-
-    console.log(this.systemMsg);
-    this.readTheData();
-    console.log('next Page',this.nextPage)
+    const option = readlineSync.question("Enter option number: ");
+    if (option < 3) this.clicks(this.instructions[option]);
     return this.nextPage;
   }
   printMenu() {
-    console.clear();
-    console.log('Registion page')
-    console.log(' * 0 : start Reg        |\n * 1 : go login page    |\n * 2 : go start  |')
+    console.log(`Options:
+                  0. Start Reg
+                  1. Go to login page
+                  2. Go to start page`);
   }
 }
-
+// let eve = new RegP();
+// eve.readOption();
 module.exports = RegP;
-
-
-
-/**
- * Registion page---|
- *                  |
- * start Reg        |
- * go login page    |
- * go start         |
- *                  |
- * email            |
- ** name            |
- * password         |
- *
- * submit or cancel
- *
- *
- *
- *
- * **/

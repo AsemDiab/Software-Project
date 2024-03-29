@@ -134,7 +134,6 @@ class EventManagementPage extends Page {
         eventType
       );
       console.log("*Event Added*");
-      console.log(DB.eventMap);
     } else if (
       this.checkEventID(id) == false &&
       this.allInputsValidPase1(id, name, date, time, theme) &&
@@ -179,7 +178,6 @@ class EventManagementPage extends Page {
         eventType
       );
       console.log("*Event Updated*");
-      console.log(DB.eventMap);
     } else if (
       this.checkEventID(id) &&
       this.allInputsValidPase1(id, name, date, time, theme) &&
@@ -198,7 +196,6 @@ class EventManagementPage extends Page {
     } else {
       console.log("error: try to delete event doesnt exist");
     }
-    console.log(DB.eventMap);
   }
 
   deleteEvent(id) {
@@ -291,14 +288,14 @@ class EventManagementPage extends Page {
         this.eventCount,
         this.eventType
       );
-      console.log(DB.eventMap);
     } else {
       console.log("Error: Invalid ID");
     }
   }
   readOption() {
-    const option = readlineSync.question("enter option number");
-    if (option < 5) this.run(this.instructions[option]);
+    const option = readlineSync.question("Enter option number: ");
+    if (option < 3) this.run(this.instructions[option]);
+    return this.nextPage;
   }
 
   run(theAction) {
@@ -316,7 +313,7 @@ class EventManagementPage extends Page {
         this.selectToDelete();
         break;
       case "return":
-        this.goToUserPage;
+        this.goToUserPage();
       default:
         console.log("invalid data input");
         break;
