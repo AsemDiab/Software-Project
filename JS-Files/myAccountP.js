@@ -33,27 +33,36 @@ class MyAccount extends Page {
     this.nextPage = 9;
   }
   isNamePageExist(name) {
-    if (name == "facebook") {
-      return true;
+    let theFinalResult=false
+    if(name==undefined || name==null || name.trim()=='')
+      return false
+    DB.BussinessAccountMap.forEach((value,key)=>{
+          if (name.trim() == value.PageName.trim()) {
+            theFinalResult= true;
+          }
     }
-    return false;
+    )
+    return theFinalResult;
   }
   loginBusinessAccount(pageName) {
     this.loginAccount = true;
+    console.log(pageName)
+    console.log(this.isNamePageExist(pageName))
     if (this.isNamePageExist(pageName)) {
       console.log("user enter: " + pageName);
       console.log("page was found , welcome to your business");
+      this.nextPage = 10;
     } else if (pageName != null && pageName != undefined && pageName != "") {
       console.log("user enter: " + pageName);
       console.log("sorry ,we could not found your page");
       SharedMemory.bussinessID = SharedMemory.email;
-      this.nextPage = 10;
     } else {
       console.log("invalid name input");
     }
   }
   returnBack() {
     this.returnFlage = true;
+    this.nextPage=6;
   }
 
   printMenu() {
@@ -71,13 +80,15 @@ class MyAccount extends Page {
       case "user info":
         this.userProfileInfo();
         console.log("in user info case");
-        readlineSync.question();
+        // readlineSync.question();
         break;
       case "Create business account":
         this.creatBusinessAccount();
         console.log("in create business account case");
         break;
       case "login business account":
+        const pageName=readlineSync.question('Enter page Name ')
+        this.loginBusinessAccount(pageName)
         console.log("in login business account case");
         break;
       case "return":
@@ -95,5 +106,7 @@ class MyAccount extends Page {
     return this.nextPage;
   }
 }
-
+DB.init()
+// lo=new MyAccount()
+// lo.loginBusinessAccount("Sayed-Qutob")
 module.exports = MyAccount;

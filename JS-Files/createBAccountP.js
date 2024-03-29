@@ -10,7 +10,7 @@ class CpaP extends Page {
   email = null;
   myAccountPage = 0;
   nextPage = 0;
-  instructions = ["create Business Accoun", "return"];
+  instructions = ["create Business Account", "return"];
   pageNameValid(namePage) {
     if (namePage.trim() == "" || namePage == undefined || namePage == null)
       return false;
@@ -126,7 +126,7 @@ class CpaP extends Page {
 
   clicks(option) {
     switch (option) {
-      case "create Business Account":
+      case "create Business Account" :
         this.readData();
         break;
       case "return":
@@ -140,6 +140,7 @@ class CpaP extends Page {
   readOption() {
     const option = readlineSync.question("enter option number");
     if (option < 2) this.clicks(this.instructions[option]);
+    return this.nextPage
   }
 }
 

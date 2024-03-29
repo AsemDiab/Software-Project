@@ -27,8 +27,8 @@ class VenuePage extends Page {
                         4. return`);
   }
   openUserPage() {
-    userPage = 1;
-    nextPage = 8;
+    this.userPage = 1;
+    this.nextPage = 8;
   }
   deleteChecker(idValue) {
     return DB.venueMap.get(idValue) != undefined;
@@ -65,15 +65,15 @@ class VenuePage extends Page {
         const Amenities = readlineSync.question(
           "Introducing sprater amenities by: "
         );
-        Amenities = Amenities.split(",");
+        let subAmenities = Amenities.split(",");
 
-        this.DB.insertVenue(
+        DB.insertVenue(
           idValue,
           name,
           location,
           capacity,
           price,
-          Amenities,
+          subAmenities,
           idValue
         );
         break;
@@ -311,8 +311,12 @@ class VenuePage extends Page {
 
   readOption() {
     const option = readlineSync.question("enter option number");
-    if (option < 5) this.run(this.instructions[option]);
+    if (option < 5) this.clickButton(this.instructions[option]);
+    return this.nextPage
   }
 }
-
+// let venue = new VenuePage();
+// venue.deleteVenue();
+// venue.viewVenue();
+// venue.searchByAtteibute(undefined,'venue a',undefined,undefined,undefined,undefined);
 module.exports = VenuePage;

@@ -84,6 +84,7 @@ class RegP extends Page {
 
 
   fillData() {
+    console.log(this.cache)
     this.warmUser = true;
     if (
       this.emailValidity(this.cache.email) &&
@@ -98,6 +99,7 @@ class RegP extends Page {
       this.warmUser = false;
       this.nextPage = 1;
     }
+    // this.systemMsg='the operation failed'
   }
   setName(username) {
     this.cache.username = username;
@@ -172,6 +174,8 @@ class RegP extends Page {
     this.nextPage = 1;
   }
 
+
+
   clicks(scenario) {
     switch (scenario.toLowerCase().trim()) {
       case "submit":
@@ -189,13 +193,37 @@ class RegP extends Page {
   }
 
   readOption() {
+
     console.log(this.systemMsg);
     this.readTheData();
+    console.log('next Page',this.nextPage)
     return this.nextPage;
   }
   printMenu() {
     console.clear();
+    console.log('Registion page')
+    console.log(' * 0 : start Reg        |\n * 1 : go login page    |\n * 2 : go start  |')
   }
 }
 
 module.exports = RegP;
+
+
+
+/**
+ * Registion page---|
+ *                  |
+ * start Reg        |
+ * go login page    |
+ * go start         |
+ *                  |
+ * email            |
+ ** name            |
+ * password         |
+ *
+ * submit or cancel
+ *
+ *
+ *
+ *
+ * **/

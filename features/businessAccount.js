@@ -7,9 +7,12 @@ DB.init();
 
 Given("the user is on Business Account page", function () {
   bAccount.openPage();
+  console.log("open page");
 });
 
 When("select {string} options in Business Account page", function (string) {
+  bAccount.printMenue();
+  console.log("user select option:" + string);
   bAccount.run(string);
 });
 
@@ -34,6 +37,7 @@ When(
 When(
   "user select {string} options in Business Account page",
   function (string) {
+    bAccount.printMenue();
     console.log("user select option:" + string);
     bAccount.run(string);
   }

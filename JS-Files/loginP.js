@@ -23,9 +23,9 @@ class LoginP extends Page {
   systemMsg = "";
 
   printSubmitManu() {
-    console.log("Options:");
-    console.log("1. submit");
-    console.log("2. cancel");
+    console.log(`Options: 
+                  0. submit.
+                  1. cancel`);
   }
 
   submitManu(option) {
@@ -55,7 +55,7 @@ class LoginP extends Page {
     this.printSubmitManu();
     this.option = readlineSync.question();
     this.submitManu(this.option);
-    this.checkEmailAndPassword();
+    this.checkEmailAndPassword(this.cache.email,this.cache.password);
   }
 
   
@@ -91,6 +91,7 @@ class LoginP extends Page {
     if (user != undefined) {
       if (this.cache.password == user.password) {
         let tempState = this.getState();
+        SharedMemory.email=email
         switch (tempState) {
           case "admin":
             this.systemMsg = "Admin Successfully Login\n";
@@ -101,7 +102,7 @@ class LoginP extends Page {
             this.goToUserPage();
             break;
           default:
-            temMsg = "";
+             this.tempMsg = "";
             break;
         }
       } else {

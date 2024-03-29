@@ -297,7 +297,6 @@ class EventManagementPage extends Page {
     }
   }
   readOption() {
-    this.printMenu();
     const option = readlineSync.question("enter option number");
     if (option < 5) this.run(this.instructions[option]);
   }

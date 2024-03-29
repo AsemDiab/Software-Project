@@ -18,9 +18,9 @@ class StartP extends Page {
   instructions = ["Register", "Login", "Exit"];
   printMenu() {
     console.log(`Options:
-                    1. Register To Your Account.
-                    2. Login to Your Acount.
-                    3. Exit`);
+                    0. Register To Your Account.
+                    1. Login to Your Acount.
+                    2. Exit`);
   }
   setOption(_option) {
     this.option = _option;
@@ -50,18 +50,21 @@ class StartP extends Page {
     this.go_to_reg = 0;
     this.go_to_login = 0;
     this._exit = 1;
-    // process.exit(0);
+    process.exit(0);
   }
   
   readOption() {
     const tempOP = readlineSync.question("What is your option");
     this.setOption(tempOP);
-    this.run();
+    let chioces=[ "Register","Login","Exit"]
+    this.run(chioces[tempOP]);
 
     if (this.go_to_reg) return 2;
     if (this.go_to_login) return 3;
+    return this.nextPage;
   }
   run(theAction) {
+    console.log(theAction)
     switch (theAction) {
       case "Register":
         this.goToReg();
@@ -82,7 +85,6 @@ class StartP extends Page {
     this.go_to_login = 0;
     this.is_open = true;
     this._exit = 0;
-    this.nextPage = 0;
   }
 }
 

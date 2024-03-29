@@ -37,7 +37,7 @@ DB.init();
 event.printMenu();
 // printData.printBudgetExpenses(DB.userMap, DB.venueMap, DB.eventMap);
 // printData.printBudgetExpenses(DB.venueMap, DB.eventMap);
-let mergedDetails = printData.mergeData(102, DB.venueMap, DB.eventMap);
+let mergedDetails = printData.mergeData(101, DB.venueMap, DB.eventMap);
 // let parsedMergedDetails = JSON.parse(mergedDetails);
 console.log(mergedDetails);
 printData.printMergedTable(mergedDetails);

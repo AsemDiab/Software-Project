@@ -71,6 +71,7 @@ class PrintData {
   }
 
   printMergedTable(data) {
+    console.log(data)
     const obj = Object.fromEntries(data);
 
     const formattedData = Object.values(obj).map((event) => ({
@@ -103,7 +104,7 @@ class PrintData {
   mergeData(venueId, venueObj, eventObj) {
     let venueDetails;
     let eventsAtVenue;
-    let newObj = new Map;
+    let newObj = new Map();
     venueObj.forEach((venueValue, key) => {
       console.log(venueValue.venue_id);
       let venue_ID = venueValue.venue_id;
@@ -122,13 +123,14 @@ class PrintData {
             // newObj.price = venueValue.price;
           }
         });
-        newObj = {
+
+        newObj.set( newObj.size,{
           "name" : eventsAtVenue.name,
           "date" : eventsAtVenue.date,
           "time" : eventsAtVenue.time,
           "location" : venueDetails.location,
           "price" : venueDetails.price,
-        }
+        })
       } else {
         console.log("Venue Doesn't Exist");
       }

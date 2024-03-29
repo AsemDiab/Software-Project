@@ -1,7 +1,7 @@
 const readlineSync = require("readline-sync");
 const Page = require("../JS-Files/Page");
 class UserP extends Page {
-  // isOpen = false;
+  isOpen = false;
   eventPage = 0;
   profilePage = 0;
   startingPage = 0;
@@ -16,14 +16,14 @@ class UserP extends Page {
   }
   printMenu() {
     console.log(`Options: 
-                  1. event management page
-                  2. profile page
-                  3. return to Start Page`);
+                  0. event management page
+                  1. profile page
+                  2. return to Start Page`);
   }
 
-  // openPage() {
-  //   this.isOpen = true;
-  // }
+  openPage() {
+    this.isOpen = true;
+  }
   setOPtion(option) {
     this.option = option;
   }
@@ -47,11 +47,12 @@ class UserP extends Page {
     this.nextPage = 1;
   }
   run(theAction) {
+    console.log(theAction)
     switch (theAction) {
       case "event management page":
         this.goToEventPage();
         break;
-      case "delete place":
+      case "profile page":
         this.goToProfilePage();
         break;
       case "return":
@@ -66,6 +67,7 @@ class UserP extends Page {
   readOption() {
     const option = readlineSync.question("enter option number");
     if (option < 3) this.run(this.instructions[option]);
+    return this.nextPage
   }
 
   reopenPage() {

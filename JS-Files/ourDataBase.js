@@ -2,7 +2,7 @@ const fs=require('fs')
 
 
 const userData=`{
-    "asemhesham@gmail.com":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "123456","type":"user"},
+    "a":{"username":"AsemDiab","email": "asemhesham@gmail.com","password": "1","type":"user"},
     "sayed@hotmail.com":{"username":"Sayed","email": "sayed@hotmail.com","password": "123456","type":"admin"}
 }`;
 const venueData=`{ 
@@ -166,7 +166,7 @@ class DataHandler{
 
     if(_email==undefined)
         return;
-            let row = DataHandler.userMap.get(_email);
+            let row = DataHandler.userMap.get(string(_email));
             if(row==undefined)
                 return;
                 let newUsername= (username != undefined ? username :row.username);
@@ -215,4 +215,7 @@ class DataHandler{
 
 
 }
+// DataHandler.init()
+// DataHandler.updateEvent('event-002','event5')
+// console.log(DataHandler.eventMap)
 module.exports=DataHandler;
