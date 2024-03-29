@@ -73,6 +73,7 @@ class PrintData {
   printMergedTable(data) {
     console.log(data)
     const obj = Object.fromEntries(data);
+    console.clear();
 
     const formattedData = Object.values(obj).map((event) => ({
       Name: event.name,
@@ -84,46 +85,24 @@ class PrintData {
     console.table(formattedData);
   }
 
-  // printBudgetExpenses(data1, data2, data3) {
-  //   // const mergedMap = new Map([...data1, ...data2, ...data3]);
-  //   const mergedMap = new Map([...data1, ...data2]);
-  //   console.log(mergedMap);
-
-  //   const obj = Object.fromEntries(mergedMap);
-
-  //   const formattedData = Object.values(obj).map((event) => ({
-  //     Event_ID: event.event_id,
-  //     Event_Name: event.name,
-  //     Price: event.price,
-  //     PhoneNumber: event.PhoneNumber,
-  //     BussinessType: event.BussinessType,
-  //   }));
-  //   console.table(formattedData);
-  // }
-
   mergeData(venueId, venueObj, eventObj) {
     let venueDetails;
     let eventsAtVenue;
     let newObj = new Map();
     venueObj.forEach((venueValue, key) => {
-      console.log(venueValue.venue_id);
       let venue_ID = venueValue.venue_id;
       if (venue_ID == venueId) {
-        console.log("-------->" + venueId);
         venueDetails = venueValue;
-        console.log(venueDetails);
         eventObj.forEach((eventValue, key) => {
           if (venue_ID == eventValue.venueId) {
             eventsAtVenue = eventValue;
-            
-            // newObj.name = eventValue.name;
-            // newObj.date = eventValue.date;
-            // newObj.time = eventValue.time;
-            // newObj.location = venueValue.location;
-            // newObj.price = venueValue.price;
+
           }
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 476117377c18e983a80fa9102cf10c439871c132
         newObj.set( newObj.size,{
           "name" : eventsAtVenue.name,
           "date" : eventsAtVenue.date,
@@ -131,12 +110,14 @@ class PrintData {
           "location" : venueDetails.location,
           "price" : venueDetails.price,
         })
+<<<<<<< HEAD
       } else {
         console.log("Venue Doesn't Exist");
+=======
+>>>>>>> 476117377c18e983a80fa9102cf10c439871c132
       }
     });
 
-    // console.log(venueDetails);
     if (!venueDetails) {
       console.error("Venue ID not found.");
       return;
