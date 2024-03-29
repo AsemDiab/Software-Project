@@ -182,19 +182,18 @@ class DataHandler{
    static updateEvent(id,name,date,venue,time, theme,Description, Count, type){
        
     if(id!=undefined) {
-        console.log("================"+Count)
         let row = DataHandler.eventMap.get(id);
             if(row==undefined)
             return;
+
             let newName = ((name != undefined && name != '') ? name :row.name);
             let newDate= ((date != undefined && date != '') ? date.trim() :row.date);
-            let newVenue= ((venue != undefined && venue != '') ? venue.trim() :row.venue);
+            let newVenue= ((venue != undefined && venue != '') ? venue.trim() :row.venueId);
             let newtime= ((time != undefined && time != '') ? time.trim() :row.time);
             let newtheme= ((theme != undefined && theme != '') ? theme.trim() :row.theme);
             let newDescription= ((Description != undefined && Description != '') ? Description.trim() :row.Description);
             let newCount= ((Count != undefined && Count != '')? Count.trim() :row.Count);
             let newtype= ((type != undefined &&type != '') ? type.trim() :row.type);
-
             DataHandler.insertEvent(id,newName,newDate,newVenue,newtime, newtheme ,newDescription, newCount, newtype);
         }
     }

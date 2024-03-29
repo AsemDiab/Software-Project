@@ -3,7 +3,7 @@ const DB = require("../JS-Files/ourDataBase.js");
 const readlineSync = require("readline-sync");
 const Server = require("../main");
 const PrintData = require("../JS-Files/printData.js");
-
+let printData = new PrintData();
 class EventBudgeting {
   printMenu() {
     console.log(
@@ -35,14 +35,4 @@ Track Your Event Expences, Vendor Payments and Venue Rental Fees.`
   }
 }
 
-let event = new EventBudgeting();
-let printData = new PrintData();
-DB.init();
-event.printMenu();
-// printData.printBudgetExpenses(DB.userMap, DB.venueMap, DB.eventMap);
-// printData.printBudgetExpenses(DB.venueMap, DB.eventMap);
-let mergedDetails = printData.mergeData(101, DB.venueMap, DB.eventMap);
-// let parsedMergedDetails = JSON.parse(mergedDetails);
-console.log(mergedDetails);
-printData.printMergedTable(mergedDetails);
-
+module.exports = EventBudgeting;

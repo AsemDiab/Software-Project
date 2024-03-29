@@ -3,6 +3,9 @@ const DB = require("./ourDataBase.js");
 const Page = require("./Page.js");
 const SharedData = require("./SharedData");
 const VenuePage = require("./venue");
+const EventBudgeting = require("./eventBudgeting");
+
+let eventBudgeting = new EventBudgeting();
 
 class BusinessAccountP extends Page {
   isGoToVenue = false;
@@ -34,9 +37,7 @@ class BusinessAccountP extends Page {
     this.nextPage = 11;
   }
   displayExpenseTracking() {
-    console.log(`--------------------------------------------
-in Expense tracking and categorization case!!
----------------------------------------------`);
+    eventBudgeting.printMenu();
   }
   backspace() {
     this.isReturn = true;
@@ -83,4 +84,5 @@ in Expense tracking and categorization case!!
     return this.nextPage;
   }
 }
+
 module.exports = BusinessAccountP;

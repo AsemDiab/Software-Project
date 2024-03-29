@@ -157,13 +157,7 @@ class EventManagementPage extends Page {
     eventType
   ) {
     if (
-      this.allInputsValidPase1(id, name, date, time, theme) &&
-      this.allInputsValidPase2(
-        description,
-        attendeeCount,
-        eventType,
-        venueId
-      ) &&
+
       this.checkEventID(id) == false
     ) {
       DB.updateEvent(
@@ -294,7 +288,7 @@ class EventManagementPage extends Page {
   }
   readOption() {
     const option = readlineSync.question("Enter option number: ");
-    if (option < 3) this.run(this.instructions[option]);
+    if (option < 5) this.run(this.instructions[option]);
     return this.nextPage;
   }
 
@@ -320,4 +314,8 @@ class EventManagementPage extends Page {
     }
   }
 }
+let eve =new EventManagementPage();
+printData.printEventData(DB.eventMap);
+eve.selectToUpdate();
+printData.printEventData(DB.eventMap);
 module.exports = EventManagementPage;

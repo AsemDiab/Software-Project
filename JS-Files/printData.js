@@ -71,7 +71,6 @@ class PrintData {
   }
 
   printMergedTable(data) {
-    console.log(data)
     const obj = Object.fromEntries(data);
 
     const formattedData = Object.values(obj).map((event) => ({
@@ -105,8 +104,6 @@ class PrintData {
           "location" : venueDetails.location,
           "price" : venueDetails.price,
         })
-      } else {
-        console.log("Venue Doesn't Exist");
       }
     });
 

@@ -77,10 +77,9 @@ class RegP extends Page {
     this.email = this.cache.email;
     this.username = this.cache.username;
     this.password = this.cache.password;
-    if(this.password != '' && this.username != '' && this.email != ''){
-    DB.insertUser(this.email, this.username, this.password, "user");
-    console.log(DB.userMap);
-    this.nextPage = 1;
+    if (this.password != "" && this.username != "" && this.email != "") {
+      DB.insertUser(this.email, this.username, this.password, "user");
+      this.nextPage = 1;
     }
     this.nextPage = 0;
   }
@@ -174,6 +173,5 @@ class RegP extends Page {
                   2. Go to start page`);
   }
 }
-// let eve = new RegP();
-// eve.readOption();
+
 module.exports = RegP;
