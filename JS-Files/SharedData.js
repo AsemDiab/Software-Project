@@ -6,6 +6,4 @@ class SharedData{
     static readFromMain = false;
 }
 
-
 module.exports = SharedData
-
