@@ -14,12 +14,10 @@ Track Your Event Expences, Vendor Payments and Venue Rental Fees.`
 
     printData.printEventData(DB.eventMap);
     let option;
-
     if(sharedD.readFromMain ){
     option = readlineSync.question("Choose an Event: ");
     }else{
       option = 'event-001'
-
     }
     let tempMap = new Map();
     tempMap = DB.eventMap;
@@ -28,19 +26,15 @@ Track Your Event Expences, Vendor Payments and Venue Rental Fees.`
     let venueIdChoice;
     tempMap.forEach((value, key) => {
       eventID = value.event_id;
-      if (eventID == option) {
+      if(eventID == option){
         choice = eventID;
         venueIdChoice = value.venueId;
       }
     });
     if (choice == option) {
-      let mergedDetails = printData.mergeData(
-        venueIdChoice,
-        DB.venueMap,
-        DB.eventMap
-      );
+      let mergedDetails = printData.mergeData(venueIdChoice, DB.venueMap, DB.eventMap);
       printData.printMergedTable(mergedDetails);
-    } else {
+    } else{
       console.log("Event Doesn't Exist");
     }
   }

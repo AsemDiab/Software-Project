@@ -140,7 +140,7 @@ class AdminP extends Page {
         console.log("Invalid option. Please choose an existed option");
     }
   }
-
+  
   readOption() {
     const option = readlineSync.question("Enter option number: ");
     if (option < 4) this.clicks(this.instructions[option]);

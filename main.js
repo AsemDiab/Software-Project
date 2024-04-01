@@ -14,7 +14,6 @@
 // const VenuePage = require("./JS-Files/venue");
 // const SharedData = require("./JS-Files/SharedData.js");
 
-
 // class Server {
 //   static currentPage = new Page();
 //   static PageName;

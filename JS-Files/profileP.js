@@ -149,6 +149,4 @@ class ProfilePage extends Page {
   }
 }
 
-
 module.exports = ProfilePage;
-

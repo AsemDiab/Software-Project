@@ -94,15 +94,16 @@ class PrintData {
         eventObj.forEach((eventValue, key) => {
           if (venue_ID == eventValue.venueId) {
             eventsAtVenue = eventValue;
+
           }
         });
-        newObj.set(newObj.size, {
-          name: eventsAtVenue.name,
-          date: eventsAtVenue.date,
-          time: eventsAtVenue.time,
-          location: venueDetails.location,
-          price: venueDetails.price,
-        });
+        newObj.set( newObj.size,{
+          "name" : eventsAtVenue.name,
+          "date" : eventsAtVenue.date,
+          "time" : eventsAtVenue.time,
+          "location" : venueDetails.location,
+          "price" : venueDetails.price,
+        })
       }
     });
 

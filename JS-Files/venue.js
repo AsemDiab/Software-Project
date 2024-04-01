@@ -125,10 +125,8 @@ class VenuePage extends Page {
     let result = "";
     let tempMap = DB.venueMap;
 
-
     if (id != undefined&& (id.toString()).trim()!=='') {
       let key = id.toString()
-
       let row = new Map();
       row.set(key, tempMap.get(key));
 
@@ -146,7 +144,6 @@ class VenuePage extends Page {
         DB.venueMap.get(key).Amenities
       )} |  ${VenuePage.makeCol(DB.venueMap.get(key).url)} |\n`;
     }
-
     if (name != undefined&&(name.toString()).trim()!='') tempMap = this.selectByname(name, tempMap);
 
     if (location != undefined&&(location.toString()).trim()!='')
@@ -156,7 +153,6 @@ class VenuePage extends Page {
       tempMap = this.selectByCapacity(capacity, tempMap);
 
     if (price != undefined&&(price.toString()).trim()!='') tempMap = this.selectByPrice(price, tempMap);
-
 
     tempMap.forEach((value, key) => {
       result += `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(

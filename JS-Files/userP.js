@@ -48,7 +48,6 @@ class UserP extends Page {
     if(SharedMemory.readFromMain){
       option = readlineSync.question("Enter option number: ");
     }else{
-
       option = 2;
     }
     if (option < 3) this.run(this.instructions[option]);
