@@ -14,10 +14,12 @@ Track Your Event Expences, Vendor Payments and Venue Rental Fees.`
 
     printData.printEventData(DB.eventMap);
     let option;
-    if (sharedD.readFromMain) {
-      option = readlineSync.question("Choose an Event: ");
-    } else {
-      option = "event-001";
+
+    if(sharedD.readFromMain ){
+    option = readlineSync.question("Choose an Event: ");
+    }else{
+      option = 'event-001'
+
     }
     let tempMap = new Map();
     tempMap = DB.eventMap;

@@ -127,7 +127,7 @@ class EventManagementPage extends Page {
       DB.insertEvent(
         id,
         name,
-        SharedData.email,
+          SharedData.email,
         date,
         time,
         theme,
@@ -208,6 +208,7 @@ class EventManagementPage extends Page {
     }
   }
 
+
   cacheSubmit() {
     this.eventID = this.cache.ID;
     this.eventName = this.cache.name;
@@ -252,16 +253,18 @@ class EventManagementPage extends Page {
       count = readlineSync.question("Enter Your Count: ");
       type = readlineSync.question("Enter Your Type: ");
       venueID = readlineSync.question("Enter Your Venue-ID: ");
-    } else {
-      ID = "event-000";
-      name = "event1";
-      date = "10-10-2010";
-      time = "10:10";
-      theme = "tenDark";
-      description = "10/10/10";
-      count = "10";
-      type = "tenten";
-      venueID = "101";
+
+    }else{
+      ID = 'event-000';
+      name = 'event1';
+      date = '10-10-2010';
+      time = '10:10';
+      theme = 'tenDark';
+      description = '10/10/10';
+      count = '10';
+      type = 'tenten';
+      venueID = '101';
+
     }
 
     this.setID(ID);
@@ -319,12 +322,15 @@ class EventManagementPage extends Page {
     if (option < 5) this.run(this.instructions[option]);
     return this.nextPage;
   }
-  getRows() {
-    let temp = new Map();
-    DB.eventMap.forEach((value, key) => {
-      if (value.owner.trim() === SharedData.email.trim()) temp.set(key, value);
-    });
-    return temp;
+
+  getRows(){
+    let temp=new Map();
+    DB.eventMap.forEach((value,key)=>{
+      if(value.owner.trim()===SharedData.email.trim())
+        temp.set(key,value)
+    })
+   return temp
+
   }
   run(theAction) {
     switch (theAction.trim()) {
@@ -349,5 +355,6 @@ class EventManagementPage extends Page {
     }
   }
 }
+
 
 module.exports = EventManagementPage;
