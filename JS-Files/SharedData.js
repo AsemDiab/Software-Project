@@ -1,9 +1,9 @@
-class SharedData{
-    static email;
-    static venueID;
-    static eventID;
-    static bussinessID;
-    static readFromMain = false;
+class SharedData {
+  static email;
+  static venueID;
+  static eventID;
+  static bussinessID;
+  static readFromMain = false;
 }
 
-module.exports = SharedData
+module.exports = SharedData;

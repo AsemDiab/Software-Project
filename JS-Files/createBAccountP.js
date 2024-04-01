@@ -10,7 +10,7 @@ class CpaP extends Page {
   email = null;
   myAccountPage = 0;
   nextPage = 0;
-  i=1;
+  i = 1;
 
   instructions = ["create Business Account", "return"];
   pageNameValid(namePage) {
@@ -82,8 +82,8 @@ class CpaP extends Page {
       namePage = readlineSync.question("Enter Your Page Name:");
       phoneNumber = readlineSync.question("Enter Your Phone Number:");
     } else {
-      namePage = 'cucumber';
-      phoneNumber = '059 999 9999';
+      namePage = "cucumber";
+      phoneNumber = "059 999 9999";
     }
     this.selectType();
     if (
@@ -103,7 +103,7 @@ class CpaP extends Page {
       1: Return to MyAccount Page
       `);
   }
-  
+
   selectType() {
     console.log(`select your business type
                   1. Art Design.
@@ -116,7 +116,7 @@ class CpaP extends Page {
     if (sharedD.readFromMain) {
       option = readlineSync.question("Enter Your Option: ");
     } else {
-      option = 0+this.i;
+      option = 0 + this.i;
       this.i++;
     }
     switch (String(option)) {

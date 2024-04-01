@@ -69,7 +69,7 @@ class LoginP extends Page {
         console.log("Invalid option. Please choose an existed option");
     }
   }
-  goToAdmin(){
+  goToAdmin() {
     this.nextPage = 7;
   }
   checkEmailAndPassword(email, password) {
@@ -84,7 +84,7 @@ class LoginP extends Page {
         SharedMemory.email = email;
         switch (tempState) {
           case "admin":
-            console.log('welcom admin');
+            console.log("welcom admin");
             this.goToAdmin();
             break;
           case "user":
@@ -95,10 +95,10 @@ class LoginP extends Page {
             break;
         }
       } else {
-        console.log('incorrect password')
+        console.log("incorrect password");
       }
     } else {
-      console.log('this email doesnt exist');
+      console.log("this email doesnt exist");
     }
   }
 

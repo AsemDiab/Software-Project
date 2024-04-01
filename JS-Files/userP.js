@@ -45,15 +45,15 @@ class UserP extends Page {
 
   readOption() {
     let option;
-    if(SharedMemory.readFromMain){
+    if (SharedMemory.readFromMain) {
       option = readlineSync.question("Enter option number: ");
-    }else{
+    } else {
       option = 2;
     }
     if (option < 3) this.run(this.instructions[option]);
     return this.nextPage;
   }
-  
+
   reopenPage() {
     this.nextPage = 0;
   }
