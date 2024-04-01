@@ -3,7 +3,6 @@ const DB = require("../JS-Files/ourDataBase");
 const SharedData = require("../JS-Files/SharedData.js");
 const Page = require("./Page.js");
 
-
 class RegP extends Page {
   username = null;
   email = null;
@@ -95,7 +94,7 @@ class RegP extends Page {
     return this.emailValidity(email);
   }
 
-  readTheData() {
+
 
     let email ;
     let username;
@@ -105,6 +104,7 @@ class RegP extends Page {
       username = readlineSync.question("Enter Your Name: ");
       password = readlineSync.question("Enter Your Password: ");
     }else{
+
       email = "ahmad301@gmail.com";
       username = "ahamdD";
       password = "123Ss#1123";
@@ -118,11 +118,13 @@ class RegP extends Page {
       this.setPassword(password);
       this.setEmail(email);
       this.printSubmitManu();
+
       let submit ;
       if(SharedData.readFromMain){
        submit = readlineSync.question("Enter submit to complete: ");
       }else{submit = 1}
       
+
       this.submitMenu(submit);
     }
 

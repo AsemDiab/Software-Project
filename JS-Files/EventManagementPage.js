@@ -253,6 +253,7 @@ class EventManagementPage extends Page {
       count = readlineSync.question("Enter Your Count: ");
       type = readlineSync.question("Enter Your Type: ");
       venueID = readlineSync.question("Enter Your Venue-ID: ");
+
     }else{
       ID = 'event-000';
       name = 'event1';
@@ -263,6 +264,7 @@ class EventManagementPage extends Page {
       count = '10';
       type = 'tenten';
       venueID = '101';
+
     }
 
     this.setID(ID);
@@ -320,6 +322,7 @@ class EventManagementPage extends Page {
     if (option < 5) this.run(this.instructions[option]);
     return this.nextPage;
   }
+
   getRows(){
     let temp=new Map();
     DB.eventMap.forEach((value,key)=>{
@@ -327,6 +330,7 @@ class EventManagementPage extends Page {
         temp.set(key,value)
     })
    return temp
+
   }
   run(theAction) {
     switch (theAction.trim()) {
