@@ -5,6 +5,6 @@ class SharedData{
     static eventID;
     static bussinessID;
     static readFromMain = false;
-
+}
 
 module.exports = SharedData;
