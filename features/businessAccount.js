@@ -11,8 +11,7 @@ Given("the user is on Business Account page", function () {
 });
 
 When("select {string} options in Business Account page", function (string) {
-  bAccount.printMenue();
-  console.log("user select option:" + string);
+  bAccount.printMenu();
   bAccount.run(string);
 });
 
@@ -37,18 +36,17 @@ When(
 When(
   "user select {string} options in Business Account page",
   function (string) {
-    bAccount.printMenue();
-    console.log("user select option:" + string);
+    bAccount.printMenu();
     bAccount.run(string);
   }
 );
 Then("return him to Business Account page", function () {
-  bAccount.openPage();
+  bAccount.backspace();
 });
 
 When(
   "the user enters invalid integer in Business Account Page {string}",
   function (string) {
-    console.log("user enter:" + string);
+    bAccount.run(string); 
   }
 );

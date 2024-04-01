@@ -16,17 +16,7 @@ When("clicks on {string} option in evenet page", function (string) {
 });
 
 When("the user fill all data to add event", function () {
-  eventManagmentPage.addEvent(
-    "event-003",
-    "event c",
-    "2024-5-6",
-    "4:00",
-    "blue",
-    "101",
-    "D/D/D",
-    "42",
-    "party"
-  );
+  eventManagmentPage.run('add new event');
 });
 
 Then("reture user to Event management page", function () {
@@ -63,17 +53,7 @@ When("the user fill data with invalid input", function () {
 });
 
 When("the user fill data to update", function () {
-  eventManagmentPage.editEvent(
-    "event-001",
-    "event n",
-    "2024-5-6",
-    "4:00",
-    "blue",
-    "101",
-    "D/D/D",
-    "20",
-    "party"
-  );
+  eventManagmentPage.run('update event');
 });
 
 When("the user enter ID that does not exist", function () {
@@ -105,8 +85,7 @@ When("the user fill data to update with invalid data", function () {
 });
 
 When("the user enter ID to delete", function () {
-  eventManagmentPage.deleteEvent("event-001");
-  console.log(DB.eventMap)
+  eventManagmentPage.run('delete event')
 });
 
 When("the user enter unexisted ID to delete", function () {
@@ -119,19 +98,19 @@ Then("back to user page", function () {
 When(
   "user select {string} options in event management page",
   function (string) {
-    console.log("the option is:" + string);
+    eventManagmentPage.run('return')
   }
 );
 When(
   "the user enters invalid integer in event management page Page {int}",
   function (int) {
-    console.log("the option is:" + int);
+    eventManagmentPage.run(String(int));
   }
 );
 
 When(
   "the user enters invalid integer in event management page Page {string}",
   function (string) {
-    console.log(string);
+    eventManagmentPage.run(string)
   }
 );

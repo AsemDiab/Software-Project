@@ -8,19 +8,21 @@ DB.init();
 
 Given("the user is on the Create Business Account page", function () {
   createBAccount.openPage();
-  console.log("open page");
+  createBAccount.printMenu();
 });
 When("clicks on {string} page option", function (string) {
-  createBAccount.printMenu();
-  // createBAccount.clicks(string);
+  createBAccount.clicks(string);
 });
 
 When("the user enters valid data page", function () {
-  namePage = 'Al-Najah-UNI';
-  phoneNumber = '0599989199';
-  pageType = 'company';
-  sharedD.email = 'ahmad@gmail.com';
-  createBAccount.writeData(namePage, phoneNumber ,pageType);
+  namePage = "Al-Najah-UNI";
+  phoneNumber = "0599989199";
+  createBAccount.selectType();
+  pageType = createBAccount.businessType;
+  console.log(pageType);
+  sharedD.email = "ahmad@gmail.com";
+  createBAccount.allInputsValid(namePage, phoneNumber, pageType);
+  createBAccount.writeData(namePage, phoneNumber, pageType);
 });
 
 Then("redirect him to myAccount page", function () {
@@ -28,25 +30,28 @@ Then("redirect him to myAccount page", function () {
 });
 
 When("the user enters valid name page that already exist", function () {
-  namePage = 'Asem-Hesham';
-  phoneNumber = '0599989199';
-  pageType = 'company';
-  sharedD.email = 'ahmad@gmail.com';
-  createBAccount.writeData(namePage, phoneNumber ,pageType);
+  namePage = "Asem-Hesham";
+  phoneNumber = "0599989199";
+  createBAccount.selectType();
+  pageType = createBAccount.businessType;
+  sharedD.email = "ahmad@gmail.com";
+  createBAccount.allInputsValid(namePage, phoneNumber, pageType);
+  createBAccount.writeData(namePage, phoneNumber, pageType);
 });
 
 When("the user enters invalid data page like null", function () {
-  namePage = '';
-  phoneNumber = '0599989199';
-  pageType = 'company';
-  sharedD.email = 'ahmad@gmail.com';
-  createBAccount.writeData(namePage, phoneNumber ,pageType);
+  namePage = "";
+  phoneNumber = "0599989199";
+  createBAccount.selectType();
+  pageType = createBAccount.businessType;
+  sharedD.email = "ahmad@gmail.com";
+  createBAccount.allInputsValid(namePage, phoneNumber, pageType);
+  createBAccount.writeData(namePage, phoneNumber, pageType);
 });
 
 When(
   "the user enters invalid integer in create Business Account Page {int}",
   function (int) {
-    console.log("the option is:" + int);
     createBAccount.clicks(String(int));
   }
 );
@@ -58,13 +63,11 @@ Then("return him to create Business Account page", function () {
 When(
   "the user enters invalid integer in create Business Account Page {string}",
   function (string) {
-    console.log("the option is:" + string);
     createBAccount.clicks(string);
   }
 );
 
 When("user select {string} options", function (string) {
-  createBAccount.printMenu();
   createBAccount.clicks(string);
 });
 
