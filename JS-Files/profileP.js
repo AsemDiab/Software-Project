@@ -4,94 +4,66 @@ const Page = require("../JS-Files/Page.js");
 const VenuePage = require("../JS-Files/venue.js");
 const SharedData = require("../JS-Files/SharedData");
 
-function isDateInRange(dateToCheck, startDate, endDate) {
-  const dateToCheckMs = new Date(dateToCheck).getTime();
-  const startDateMs = new Date(startDate).getTime();
-  const endDateMs = new Date(endDate).getTime();
-
-  return dateToCheckMs >= startDateMs && dateToCheckMs <= endDateMs;
-}
-
 class ProfilePage extends Page {
-  isManuDisplaied = false;
-  isRevelitionDisplaied = false;
-  isMyAccountOpened = false;
-  isNotificstion = false;
-  isLogout = false;
-  isReturnToUserHome = false;
-  isuserWarned = false;
-  systemMsg = "";
   nextPage = 0;
 
-  init() {
-    this.isManuDisplaied = false;
-    this.isRevelitionDisplaied = false;
-    this.isMyAccountOpened = false;
-    this.isNotificstion = false;
-    this.isReturnToUserHome = false;
+  instructions = [
+    "Reservation",
+    "my account",
+    "notification",
+    "Logout",
+    "return",
+  ];
+
+  isDateInRange(dateToCheck, startDate, endDate) {
+    const dateToCheckMs = new Date(dateToCheck).getTime();
+    const startDateMs = new Date(startDate).getTime();
+    const endDateMs = new Date(endDate).getTime();
+
+    return dateToCheckMs >= startDateMs && dateToCheckMs <= endDateMs;
   }
 
   readOption() {
-    this.nextPage = 0;
-    let option = readlineSync.question("enter Choice");
-    console.log("option:", option + "");
-    switch (option + "") {
-      case "0":
-        this.displayRevelation(SharedData.email);
-        readlineSync.question();
-        break;
-      case "1":
-        this.myAccount();
-        readlineSync.question();
-        break;
-      case "2":
-        this.displayNotification();
-        readlineSync.question();
-        break;
-      case "3":
-        this.nextPage = 1;
-        readlineSync.question();
-        break;
-      case "4":
-        this.nextPage = 4;
-        readlineSync.question();
-        break;
-    }
+    const option = readlineSync.question("Enter option number: ");
+    if (option < 5) this.run(this.instructions[option]);
     return this.nextPage;
   }
   logout() {
-    this.isLogout = true;
+    this.nextPage = 1;
   }
   displayRevelation(email) {
-    this.isRevelitionDisplaied = true;
     DB.reservationMap.forEach((value, key) => {
       if (
-        value != undefined &&
-        value.email != undefined &&
-        email != undefined &&
-        value.email == email
+          value != undefined &&
+          value.email != undefined &&
+          email != undefined &&
+          value.email == email
       ) {
         console.log(
-          `${VenuePage.makeCol(key)}  | ${VenuePage.makeCol(
-            value.email
-          )} | ${VenuePage.makeCol(value.id)} | ${VenuePage.makeCol(
-            value.startTime
-          )} | ${VenuePage.makeCol(value.endTime)} | ${VenuePage.makeCol(
-            value.startDate
-          )} |  ${VenuePage.makeCol(value.endDate)} |`
+            `${VenuePage.makeCol(key)}  | ${VenuePage.makeCol(
+                value.email
+            )} | ${VenuePage.makeCol(value.id)} | ${VenuePage.makeCol(
+                value.startTime
+            )} | ${VenuePage.makeCol(value.endTime)} | ${VenuePage.makeCol(
+                value.startDate
+            )} |  ${VenuePage.makeCol(value.endDate)} |`
         );
       }
     });
   }
   myAccount() {
-    this.isMyAccountOpened = true;
     this.nextPage = 8;
   }
   displayNotification() {
-    this.isNotificstion = true;
-
     DB.reservationMap.forEach((value, key) => {
-      if (value.email == SharedData.email) {
+      let emailChecker;
+      if (SharedData.readFromMain) {
+        emailChecker = SharedData.email;
+      } else {
+        emailChecker = "asemhesham@gmail.com";
+      }
+
+      if (value.email == emailChecker) {
         let date1 = value.startDate;
         let date2 = value.endDate;
         let time1 = value.startTime;
@@ -111,39 +83,39 @@ class ProfilePage extends Page {
 
         oneDayLater.setDate(currentTime.getDate() + 1);
 
-        if (isDateInRange(date1Obj, currentTime, oneDayLater))
+        if (this.isDateInRange(currentTime, date1Obj, oneDayLater)) {
           console.log(
-            `the reverition will start soon ${VenuePage.makeCol(
-              key
-            )}  | ${VenuePage.makeCol(value.email)} | ${VenuePage.makeCol(
-              value.id
-            )} | ${VenuePage.makeCol(value.startTime)} | ${VenuePage.makeCol(
-              value.endTime
-            )} | ${VenuePage.makeCol(value.startDate)} |  ${VenuePage.makeCol(
-              value.endDate
-            )} |\n`
+              `the reverition will start soon ${VenuePage.makeCol(
+                  key
+              )}  | ${VenuePage.makeCol(value.email)} | ${VenuePage.makeCol(
+                  value.id
+              )} | ${VenuePage.makeCol(value.startTime)} | ${VenuePage.makeCol(
+                  value.endTime
+              )} | ${VenuePage.makeCol(value.startDate)} |  ${VenuePage.makeCol(
+                  value.endDate
+              )} |\n`
           );
-        else if (isDateInRange(date2Obj, currentTime, oneDayLater))
+        } else if (this.isDateInRange(currentTime, oneDayLater, date2Obj)) {
           console.log(
-            `the reverition will finish soon ${VenuePage.makeCol(
-              key
-            )}  | ${VenuePage.makeCol(value.email)} | ${VenuePage.makeCol(
-              value.id
-            )} | ${VenuePage.makeCol(value.startTime)} | ${VenuePage.makeCol(
-              value.endTime
-            )} | ${VenuePage.makeCol(value.startDate)} |  ${VenuePage.makeCol(
-              value.endDate
-            )} |\n`
+              `the reverition will finish soon ${VenuePage.makeCol(
+                  key
+              )}  | ${VenuePage.makeCol(value.email)} | ${VenuePage.makeCol(
+                  value.id
+              )} | ${VenuePage.makeCol(value.startTime)} | ${VenuePage.makeCol(
+                  value.endTime
+              )} | ${VenuePage.makeCol(value.startDate)} |  ${VenuePage.makeCol(
+                  value.endDate
+              )} |\n`
           );
+        }
       }
     });
   }
 
   returnBack() {
-    this.isReturnToUserHome = true;
+    this.nextPage = 4;
   }
   printMenu() {
-    super.printMenu();
     console.log(`
         select the button by enter the number: 
             0: Revelation
@@ -153,37 +125,28 @@ class ProfilePage extends Page {
             4: return
         `);
   }
+
   run(theButton) {
     switch (theButton.trim()) {
       case "Reservation":
-        this.displayRevelation();
-        readlineSync.question();
+        this.displayRevelation(SharedData.email);
         break;
       case "my account":
         this.myAccount();
-        console.log("in my account case");
         break;
       case "notification":
         this.displayNotification();
-        console.log("in notification case");
-        readlineSync.question();
-
         break;
       case "Logout":
         this.logout();
-        console.log("in Logout case");
         break;
       case "return":
         this.returnBack();
-        console.log("in return case");
         break;
       default:
-        this.invalidOption();
         console.log("in invalid input case");
     }
   }
-  invalidOption() {
-    this.isuserWarned = true;
-  }
 }
+
 module.exports = ProfilePage;

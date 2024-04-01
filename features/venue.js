@@ -72,7 +72,10 @@ When("select venue does not exist to delete", function () {
   venue.deleteVenue('108');
 });
 
-Then("back the user to user home page", function () {});
+Then("back the user to user home page", function () {
+    venue.clickButton('return')
+   assert.equal(venue.nextPage,8,'return test failed')
+});
 
 When("the user enters invalid integer in venue Page {int}", function (int) {
   console.log("the option is:" + int);
@@ -86,3 +89,74 @@ When(
     venue.clickButton();
   }
 );
+
+When('the user search  by , {string}, {string}, {string}, {string}', function (string, string2, string3, string4) {
+ venue.searchByAtteibute('',string, string2, string3, string4)
+});
+
+
+
+When('the user search  by , {string}, , {string}, {string}', function (string, string2, string3) {
+      venue.searchByAtteibute('',string,'', string2, string3)
+
+    });
+When('the user search  by {string}, {string}, {string}, {string}, {string}', function (string, string2, string3, string4, string5) {
+  venue.searchByAtteibute(string, string2, string3, string4,string5)
+
+});
+When('the user search  by {string}, , , , ', function (string) {
+  venue.searchByAtteibute(string,'','','','')
+});
+When('the user search  by , {string}, {string}, , {string}', function (string, string2, string3) {
+  venue.searchByAtteibute(undefined,string,string2,'','','',string3)
+
+});
+When('the user search  by , {string}, {string}, {string}, ', function (string, string2, string3) {
+  venue.searchByAtteibute('',string,string2,'','',string3)
+
+});
+
+
+When('the user search  by , {string}, , , {string}', function (string, string2) {
+  venue.searchByAtteibute('',string,'','','',string2)
+
+});
+
+When('the user search  by , {string}, , {string}, ', function (string, string2) {
+  venue.searchByAtteibute('',string,'',string2,'')
+
+});
+
+When('the user search  by , {string}, {string}, , ', function (string, string2) {
+  venue.searchByAtteibute('',string,string2,'','')
+
+});
+
+When('the user search  by , , , , {string}', function (string) {
+  venue.searchByAtteibute('','','','',string)
+
+});
+
+When('the user search  by , , , {string}, ', function (string) {
+  venue.searchByAtteibute('','','',string,'')
+
+});
+
+When('the user search  by , , {string}, , ', function (string) {
+  venue.searchByAtteibute('','',string,'','')
+});
+When('the user search  by , {string}, , , ', function (string) {
+  venue.searchByAtteibute('',string,'','','')
+
+});
+
+
+
+
+
+
+
+Then('display', function () {
+});
+
+

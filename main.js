@@ -5,13 +5,14 @@
 // const UserPage = require("./JS-Files/userP");
 // const ProfilePage = require("./JS-Files/profileP");
 // const Page = require("./JS-Files/Page.js");
-// const adminPage = require("./JS-Files/Page.js");
+// const adminPage = require("./JS-Files/adminP.js");
 // const DB = require("./JS-Files/ourDataBase");
 // const readlineSync = require("readline-sync");
 // const MyAccount = require("./JS-Files/myAccountP");
 // const CreateBussinessAccount = require("./JS-Files/createBAccountP");
 // const BussinessAccount = require("./JS-Files/businessAccountP");
 // const VenuePage = require("./JS-Files/venue");
+// const SharedData = require("./JS-Files/SharedData.js");
 
 // class Server {
 //   static currentPage = new Page();
@@ -66,13 +67,16 @@
 //   }
 //   static excute() {
 //     DB.init();
-
+//     SharedData.readFromMain = true;
 //     while (true) {
 //       Server.currentPage.printMenu();
 //       let status = Server.currentPage.readOption();
 //       console.log(Server.getStatusMessage(status));
 //       if (status == undefined) console.log("\n");
 //       switch (String(status)) {
+//         case "-1":
+//           process.exit(0);
+
 //         case "0":
 //           break;
 //         case "1":
@@ -115,4 +119,3 @@
 
 // Server.buildServer();
 // module.exports = Server;
-

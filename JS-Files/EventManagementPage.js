@@ -3,6 +3,7 @@ const DB = require("../JS-Files/ourDataBase.js");
 const readlineSync = require("readline-sync");
 const Server = require("../main");
 const PrintData = require("../JS-Files/printData.js");
+const SharedData = require("../JS-Files/SharedData");
 let printData = new PrintData();
 DB.init();
 
@@ -78,7 +79,8 @@ class EventManagementPage extends Page {
     if (eventID != "" && eventID != undefined && eventID != null) {
       this.cacheSubmit();
       return DB.eventMap.get(eventID) == undefined;
-    } else return false;
+    }
+    return false;
   }
 
   isValidInput(value) {
@@ -125,6 +127,7 @@ class EventManagementPage extends Page {
       DB.insertEvent(
         id,
         name,
+          SharedData.email,
         date,
         time,
         theme,
@@ -156,10 +159,7 @@ class EventManagementPage extends Page {
     attendeeCount,
     eventType
   ) {
-    if (
-
-      this.checkEventID(id) == false
-    ) {
+    if (this.checkEventID(id) == false) {
       DB.updateEvent(
         id,
         name,
@@ -184,7 +184,12 @@ class EventManagementPage extends Page {
   }
 
   selectToDelete() {
-    const ID = readlineSync.question("Enter ID To Delete:");
+    let ID;
+    if (SharedData.readFromMain) {
+      ID = readlineSync.question("Enter ID To Delete:");
+    } else {
+      ID = "event-001";
+    }
     if (!this.checkEventID(ID)) {
       this.deleteEvent(ID);
     } else {
@@ -203,9 +208,6 @@ class EventManagementPage extends Page {
     }
   }
 
-  setOption(option) {
-    this.option = option;
-  }
 
   cacheSubmit() {
     this.eventID = this.cache.ID;
@@ -232,15 +234,37 @@ class EventManagementPage extends Page {
   };
 
   readData() {
-    const ID = readlineSync.question("Enter Your ID: ");
-    const name = readlineSync.question("Enter Your Name: ");
-    const date = readlineSync.question("Enter Your Date: ");
-    const time = readlineSync.question("Enter Your Time: ");
-    const theme = readlineSync.question("Enter Your Theme: ");
-    const description = readlineSync.question("Enter Your Discription: ");
-    const count = readlineSync.question("Enter Your Count: ");
-    const type = readlineSync.question("Enter Your Type: ");
-    const venueID = readlineSync.question("Enter Your Venue-ID: ");
+    let ID;
+    let name;
+    let date;
+    let time;
+    let theme;
+    let description;
+    let count;
+    let type;
+    let venueID;
+    if (SharedData.readFromMain) {
+      ID = readlineSync.question("Enter Your ID: ");
+      name = readlineSync.question("Enter Your Name: ");
+      date = readlineSync.question("Enter Your Date: ");
+      time = readlineSync.question("Enter Your Time: ");
+      theme = readlineSync.question("Enter Your Theme: ");
+      description = readlineSync.question("Enter Your Discription: ");
+      count = readlineSync.question("Enter Your Count: ");
+      type = readlineSync.question("Enter Your Type: ");
+      venueID = readlineSync.question("Enter Your Venue-ID: ");
+    }else{
+      ID = 'event-000';
+      name = 'event1';
+      date = '10-10-2010';
+      time = '10:10';
+      theme = 'tenDark';
+      description = '10/10/10';
+      count = '10';
+      type = 'tenten';
+      venueID = '101';
+    }
+
     this.setID(ID);
     this.setName(name);
     this.setDate(date);
@@ -268,7 +292,12 @@ class EventManagementPage extends Page {
   }
 
   selectToUpdate() {
-    const ID = readlineSync.question("Enter ID To Update:");
+    let ID;
+    if (SharedData.readFromMain) {
+      ID = readlineSync.question("Enter ID To Update:");
+    } else {
+      ID = "event-004";
+    }
     if (this.isValidInput(ID)) {
       this.readData();
       this.editEvent(
@@ -291,11 +320,18 @@ class EventManagementPage extends Page {
     if (option < 5) this.run(this.instructions[option]);
     return this.nextPage;
   }
-
+  getRows(){
+    let temp=new Map();
+    DB.eventMap.forEach((value,key)=>{
+      if(value.owner.trim()===SharedData.email.trim())
+        temp.set(key,value)
+    })
+   return temp
+  }
   run(theAction) {
     switch (theAction.trim()) {
       case "show event":
-        printData.printEventData(DB.eventMap);
+        printData.printEventData(this.getRows());
         break;
       case "add new event":
         this.fillDataToAdd();
@@ -308,14 +344,13 @@ class EventManagementPage extends Page {
         break;
       case "return":
         this.goToUserPage();
+        break;
       default:
         console.log("invalid data input");
         break;
     }
   }
 }
-let eve =new EventManagementPage();
-printData.printEventData(DB.eventMap);
-eve.selectToUpdate();
-printData.printEventData(DB.eventMap);
+
+
 module.exports = EventManagementPage;

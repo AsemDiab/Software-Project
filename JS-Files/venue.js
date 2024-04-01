@@ -7,7 +7,6 @@ let printData = new PrintData();
 
 DB.init();
 class VenuePage extends Page {
-  nextPage = 0;
   userPage = 0;
   nextPage = 0;
   instructions = [
@@ -27,7 +26,6 @@ class VenuePage extends Page {
                         4. return`);
   }
   openUserPage() {
-    this.userPage = 1;
     this.nextPage = 8;
   }
   deleteChecker(idValue) {
@@ -38,12 +36,12 @@ class VenuePage extends Page {
   }
   allInputsValid(idValue, name, location, capacity, price, Amenities) {
     return (
-      isValidInput(idValue) &&
-      isValidInput(name) &&
-      isValidInput(location) &&
-      isValidInput(capacity) &&
-      isValidInput(price) &&
-      isValidInput(Amenities)
+        isValidInput(idValue) &&
+        isValidInput(name) &&
+        isValidInput(location) &&
+        isValidInput(capacity) &&
+        isValidInput(price) &&
+        isValidInput(Amenities)
     );
   }
 
@@ -120,7 +118,6 @@ class VenuePage extends Page {
     return option + whiteSpace;
   }
   viewVenue() {
-    
     printData.printVenueData(DB.venueMap);
   }
 
@@ -128,10 +125,11 @@ class VenuePage extends Page {
     let result = "";
     let tempMap = DB.venueMap;
 
-    if (id != undefined) {
-      let key = id.toString();
+    if (id != undefined&& (id.toString()).trim()!=='') {
+      let key = id.toString()
       let row = new Map();
       row.set(key, tempMap.get(key));
+
       printData.printVenueData(row);
 
       return `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(
@@ -146,15 +144,15 @@ class VenuePage extends Page {
         DB.venueMap.get(key).Amenities
       )} |  ${VenuePage.makeCol(DB.venueMap.get(key).url)} |\n`;
     }
-    if (name != undefined) tempMap = this.selectByname(name, tempMap);
+    if (name != undefined&&(name.toString()).trim()!='') tempMap = this.selectByname(name, tempMap);
 
-    if (location != undefined)
+    if (location != undefined&&(location.toString()).trim()!='')
       tempMap = this.selectByLocation(location, tempMap);
 
-    if (capacity != undefined)
+    if (capacity != undefined&&(capacity.toString()).trim()!='')
       tempMap = this.selectByCapacity(capacity, tempMap);
 
-    if (price != undefined) tempMap = this.selectByPrice(price, tempMap);
+    if (price != undefined&&(price.toString()).trim()!='') tempMap = this.selectByPrice(price, tempMap);
 
     tempMap.forEach((value, key) => {
       result += `${VenuePage.makeCol(key)} | ${VenuePage.makeCol(
@@ -213,24 +211,7 @@ class VenuePage extends Page {
     return tempMap;
   }
 
-  compareTimes(time1, time2) {
-    const [hours1, minutes1] = time1.split(":").map(Number);
-    const [hours2, minutes2] = time2.split(":").map(Number);
 
-    if (hours1 < hours2) {
-      return -1;
-    } else if (hours1 > hours2) {
-      return 1;
-    } else {
-      if (minutes1 < minutes2) {
-        return -1;
-      } else if (minutes1 > minutes2) {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
-  }
   isBooked(id, startTime, endTime, startDate, endDate) {
     let tempMap = DB.reservationMap;
     let date1 = startDate;
@@ -312,7 +293,7 @@ class VenuePage extends Page {
   readOption() {
     const option = readlineSync.question("enter option number");
     if (option < 5) this.clickButton(this.instructions[option]);
-    return this.nextPage
+    return this.nextPage;
   }
 }
 
